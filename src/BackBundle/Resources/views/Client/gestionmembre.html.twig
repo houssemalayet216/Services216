@@ -1,0 +1,1083 @@
+{% extends '@Back/default/templateclient.html.twig' %}
+{% block section_haider %}
+<section class="content-header">
+        <h1>
+        Membres famille
+        <small>Services216</small>
+      </h1>
+      <ol class="breadcrumb">
+      <li class="active"><i class="fa fa-users"></i> Membres famille</li>
+      </ol>
+    </section>
+{%endblock%}
+
+ {%block content%} 
+ 
+
+ 
+
+
+
+
+
+  <div class="row">
+<div class="col-md-12">
+
+
+
+<div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Membres famille</h3><br/>
+            
+<div class="pull pull-right">
+
+   {{ render(controller(
+        'BackBundle:Client:addmembre'
+       
+    )) }}
+
+
+</div>
+
+
+
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="tablemembre" class="table table-bordered table-striped" >
+                <thead>
+                <tr>
+                  <th class="text-center">Nom</th>
+                  <th class="text-center">Prènom</th>
+                  <th class="text-center">Type Relation</th>
+                  <th class="text-center">Ville</th>
+                  <th class="text-center">Adresse</th>
+                  <th class="text-center">Action</th>
+                </tr>
+                </thead>
+                
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>         
+
+
+
+
+
+<div class="modal fade" tabindex="-1" id="Modalmembredelete" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Supprimer Membre</h4>
+      </div>
+      <div class="modal-body">
+        <p>Êtes-vous sûr de supprimer ce membre ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="delete-m"><span>Supprimer membre</span><i id="spin-delete-member"></i></button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+
+<div class="modal fade" id="myModalmembreedit"  role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" id="close_up_edit_membre_modale" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Ajouter un membre de famille</h4>
+      </div>
+   
+       <form id="edit_membre_form" method="post" action="{{path('edit_annonce')}}">
+      <div class="modal-body">
+        
+        <div class="row">
+<div class="col-md-12">
+
+
+
+
+
+
+
+<input type="hidden" id="id_edit_membre" name="id_edit_membre">
+
+
+ <div class="col-md-6 form-group">
+                  <label for="username">Civilité :*</label>
+                  <select id="edit_civilite_membre" name="edit_civilite_membre" class="form-control">
+                  <option value>Choisir civilite</option>
+                  <option value="Homme">Homme</option>
+                  <option value="Femme">Femme</option>
+                  </select>              
+                    <span class="text-danger" id="editcivilite"></span>
+
+                 
+       </div>
+
+
+<div class="col-md-6 form-group">
+                  <label for="username">Nom :*</label>
+                 <input type="text" class="form-control" id="edit_nom_membre" name="edit_nom_membre">                 
+                    <span class="text-danger" id="editnom"></span>
+
+                 
+       </div>
+
+
+<div class="col-md-6 form-group">
+                  <label for="username">Prènom :*</label>
+                 <input type="text" class="form-control" id="edit_prenom_membre" name="edit_prenom_membre">                
+                    <span class="text-danger" id="editprenom"></span>
+
+                 
+       </div>
+
+
+       <div class="col-md-6 form-group">
+                  <label for="username">Date Naissance :*</label>
+                     <input type="text" class="form-control" id="edit_naissance_membre" name="edit_naissance_membre">            
+                    <span class="text-danger" id="data.datenaissance"></span>
+
+                 
+       </div>
+
+      <div class="col-md-6 form-group">
+                  <label for="username">Type Relation :*</label>
+                         <select id="edit_relation_membre" name="edit_relation_membre" class="form-control">
+                  <option value>Choisir Type Relation</option>
+                  <option value="Père">Père</option>
+                  <option value="Mère">Mère</option>
+                  <option value="Frère">Frère</option>
+                  <option value="Soeur">Soeur</option>
+                  <option value="Autre">Autre</option>
+               
+    
+                  </select>              
+
+
+
+                    <span class="text-danger" id="editrelation"></span>
+
+                 
+       </div>
+
+       <div class="col-md-6 form-group">
+                  <label for="username">Ville :*</label>
+                  
+                       <select class="form-control" id="edit_ville_membre" name="edit_ville_membre">
+                  
+                   <option value="Tunis">Tunis</option>
+                    <option value="Beja">Beja</option>
+                     
+                    <option value="Ariana">Ariana</option>
+                    <option value="Ben arous">Ben arous</option>
+                     <option value="Bizert">Bizert</option>
+                    <option value="Gabes">Gabes</option>
+                     <option value="Gafsa">Gafsa</option>
+                    <option value="Jendouba">Jendouba</option>
+                     <option value="Kairouan">Kairouan</option>
+                    <option value="Kasserine">kasserine</option>
+                     <option value="kébili">Kébili</option>
+                    <option value="Kef">Kef</option>
+                     <option value="Mahdia">Mahdia</option>
+                    <option value="Manouba">Manouba</option>
+                     <option value="Médnine">Médnine</option>
+                    <option value="Nabeul">Nabeul</option>
+                     <option value="Sfax">Sfax</option>
+                    <option value="Sidi Bouzid">Sidi Bouzid</option>
+                     <option value="Siliana">Siliana</option>
+                    <option value="Sousse">Sousse</option>
+                     <option value="Tataouine">Tataouine</option>
+                    <option value="Touzeur">Touzeur</option>
+                    <option value="Zaghouan">Zaghouan</option>
+                   </select>                
+
+
+
+
+
+
+
+
+                    <span class="text-danger" id="editville"></span>
+
+                 
+       </div>
+
+
+
+           <div class="col-md-6 form-group">
+                  <label for="username">Adresse :*</label>
+                  <input type="text" class="form-control" id="edit_adresse_membre" name="edit_adresse_membre">                  
+                    <span class="text-danger" id="editadresse"></span>
+
+                 
+       </div>
+
+
+
+           <div class="col-md-6 form-group">
+                  <label for="username">Code Postale :*</label>
+               <input type="number" class="form-control" id="edit_cp_membre" name="edit_cp_membre" >                   
+                    <span class="text-danger" id="editcp"></span>
+
+                 
+       </div>
+
+
+          <div class="col-md-6 form-group">
+                  <label for="username">Téléphone :*</label>
+                 <input type="text" class="form-control" id="edit_telephone_membre" name="edit_telephone_membre">                
+                    <span class="text-danger" id="edittelephone"></span>
+
+                 
+       </div>
+
+
+         <div class="col-md-6 form-group">
+                  <label for="username">Téléphone 2 :*</label>
+                  <input type="text" class="form-control" id="edit_telephoneII_membre" name="edit_telephoneII_membre">               
+                    <span class="text-danger" id="edittelephoneII"></span>
+
+                 
+       </div>
+
+
+
+         <div class="col-md-6 form-group">
+                  <label for="username">Fix :*</label>
+                         <input type="text" class="form-control" id="edit_fix_membre" name="edit_fix_membre">            
+                    <span class="text-danger" id="editfix"></span>
+
+                 
+       </div>
+
+
+
+
+
+
+      
+
+
+
+
+        <div class="col-md-12 form-group">
+                  <label for="username">Autres détailles :</label>
+                  <textarea rows="5" id="edit_autre_membre" name="edit_autre_membre" class="form-control"></textarea>                
+                    <span class="text-danger" id="editautre"></span>
+
+                 
+       </div> 
+
+  
+</div>
+</div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="close_modale_edit_membre">Close</button>
+        <button type="submit" class="btn btn-primary" id="btn_edit_membre"> <span>Enregistrer</span><i id="spin_edit_membre"></i></button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{%endblock%}
+
+
+
+  {%block aside %}
+  {% endblock %}
+
+   {% block javascript %}
+
+<script>
+var mem;
+$(document).ready(function($){
+ mem=$("#tablemembre").DataTable({
+     columnDefs: [
+    {
+        targets: -1,
+        className: 'dt-body-left'
+    }
+  ],
+  'destroy':true,
+   
+    'ajax':'{{path('membre_famille')}}',
+     'order': []
+});
+
+});
+
+</script>
+
+
+
+    
+   <script>
+
+
+
+
+
+
+
+
+
+
+                    $cf = $('#telephone-membre');
+    $cf.blur(function(e){
+        phone = $(this).val();
+        phone = phone.replace(/[^0-9]/g,'');
+        if (phone.length != 8)
+        {
+            document.getElementById('data.telephone').textContent='Phone number must be 8 digits. ';
+            $('#telephone-membre').val('');
+            $('#telephone-membre').focus();
+        }else{
+
+           document.getElementById('data.telephone').textContent='';
+
+        }
+    });
+
+
+
+
+
+       $telephoneIIvalidation = $('#telephoneII-membre');
+    $telephoneIIvalidation.blur(function(e){
+        phonee = $(this).val();
+        phonee = phonee.replace(/[^0-9]/g,'');
+        if (phonee.length != 8)
+        {
+            document.getElementById('data.telephoneII').textContent='telephone doit etre 8 numero. ';
+            $('#telephoneII').val('');
+            $('#telephoneII').focus();
+        }else{
+
+           document.getElementById('data.telephoneII').textContent='';
+
+        }
+    });
+
+
+
+                 $fixvalidation = $('#fix-membre');
+    $fixvalidation.blur(function(e){
+        fixs = $(this).val();
+        fixs = fixs.replace(/[^0-9]/g,'');
+        if (fixs.length != 8)
+        {
+            document.getElementById('data.fix').textContent='numero fix doit etre 8 numero. ';
+            $('#fix-membre').val('');
+            $('#fix-membre').focus();
+        }else{
+
+           document.getElementById('data.fix').textContent='';
+
+        }
+    });
+
+
+
+
+
+                   $cpvalidation = $('#cp-membre');
+    $cpvalidation.blur(function(e){
+        cps = $(this).val();
+      
+        if (cps.length != 4)
+        {
+            document.getElementById('data.cp').textContent='code postale invalide. ';
+            $('#cp-membre').val('');
+            $('#cp-membre').focus();
+        }else{
+
+           document.getElementById('data.cp').textContent='';
+
+        }
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    $('#btn-add-membre').click(function(e){
+                  e.preventDefault();
+                    $('#btn-add-membre').prop('disabled',true);
+                  $("#spin-add-membre").addClass('fa fa-spinner fa-spin fa-register');
+
+
+                    var civilite=$('#civilite-membre').val();
+                  var nom=$('#nom-membre').val();
+                  var prenom=$('#prenom-membre').val();
+                  var datenaissance=$('#datenaissance').val();
+                  var relation= $('#relation-membre').val();
+                   var ville= $('#ville-membre').val();
+                  var adresse= $('#adresse-membre').val();
+                   var cp= $('#cp-membre').val();
+                   var telephone=$('#telephone-membre').val(); 
+                  
+                   var errormArray=['data.civilite','data.nom','data.prenom','data.datenaissance','data.relation','data.ville','data.adresse','data.cp','data.telephone'];
+                    var formmembre = document.getElementById("add-membre-form");
+
+
+
+                     if(civilite=="")
+                  {
+                       document.getElementById('data.civilite').textContent='Ce champ ne doit pas etre vide ';
+                     $("#spin-add-membre").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn-add-membre').prop('disabled',false); 
+                  }
+
+                    
+                    if(nom=="")
+                  {
+                       document.getElementById('data.nom').textContent='Ce champ ne doit pas etre vide ';
+                     $("#spin-add-membre").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn-add-membre').prop('disabled',false); 
+                  }
+                  
+
+                    if(prenom=="")
+                  {
+                       document.getElementById('data.prenom').textContent='Ce champ ne doit pas entre vide ';
+                     $("#spin-add-membre").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn-add-membre').prop('disabled',false); 
+                  }
+
+                     if(datenaissance=="")
+                  {
+                       document.getElementById('data.datenaissance').textContent='Ce champ ne doit pas entre vide ';
+                     $("#spin-add-membre").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn-add-membre').prop('disabled',false); 
+                  }
+
+
+                      if(relation=="")
+                  {
+                       document.getElementById('data.relation').textContent='Ce champ ne doit pas entre vide ';
+                     $("#spin-add-membre").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn-add-membre').prop('disabled',false); 
+                  }
+
+                       if(ville=="")
+                  {
+                       document.getElementById('data.ville').textContent='Ce champ ne doit pas entre vide ';
+                     $("#spin-add-membre").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn-add-membre').prop('disabled',false); 
+                  }
+
+
+                       if(adresse=="")
+                  {
+                       document.getElementById('data.adresse').textContent='Ce champ ne doit pas entre vide ';
+                     $("#spin-add-membre").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn-add-membre').prop('disabled',false); 
+                  }
+
+
+                       if(cp=="")
+                  {
+                       document.getElementById('data.cp').textContent='Ce champ ne doit pas entre vide ';
+                     $("#spin-add-membre").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn-add-membre').prop('disabled',false); 
+                  }
+
+                       if(telephone=="")
+                  {
+                       document.getElementById('data.telephone').textContent='Ce champ ne doit pas entre vide ';
+                     $("#spin-add-membre").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn-add-membre').prop('disabled',false); 
+                  }
+
+
+
+                 
+                  
+
+
+
+
+
+
+                        $('#civilite-membre').change(function(){
+                  
+                 if($.trim(document.getElementById('data.civilite').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.civilite').textContent="";
+                                  }
+                    
+                                 });
+
+
+                                    $('#nom-membre').change(function(){
+                  
+                 if($.trim(document.getElementById('data.nom').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.nom').textContent="";
+                                  }
+                    
+                                 });
+
+                   $('#prenom-membre').change(function(){
+                  
+                 if($.trim(document.getElementById('data.prenom').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.prenom').textContent="";
+                                  }
+                    
+                                 });
+
+
+                   $('#datenaissance').change(function(){
+                  
+                 if($.trim(document.getElementById('data.datenaissance').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.datenaissance').textContent="";
+                                  }
+                    
+                                 });         
+
+
+                  $('#relation-membre').change(function(){
+                  
+                 if($.trim(document.getElementById('data.relation').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.relation').textContent="";
+                                  }
+                    
+                                 });
+
+
+
+
+                  $('#ville-membre').change(function(){
+                  
+                 if($.trim(document.getElementById('data.ville').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.ville').textContent="";
+                                  }
+                    
+                                 });               
+
+                  $('#adresse-membre').change(function(){
+                  
+                 if($.trim(document.getElementById('data.adresse').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.adresse').textContent="";
+                                  }
+                    
+                                 });
+
+
+
+
+                 $('#cp-membre').change(function(){
+                  
+                 if($.trim(document.getElementById('data.cp').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.cp').textContent="";
+                                  }
+                    
+                                 }); 
+
+
+
+
+                 $('#telephone-membre').change(function(){
+                  
+                 if($.trim(document.getElementById('data.telephone').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.telephone').textContent="";
+                                  }
+                    
+                                 });                                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+                 if(nom!=="" &&prenom!=="" &&relation!==""&&datenaissance!==""&&civilite!==""&&ville!==""&&adresse!==""&&cp!=""&&telephone!="")
+               {
+               
+
+                      $.ajax({
+                       dataType:"json",
+                       url:$("#add-membre-form").attr('action'),
+                       type:$("#add-membre-form").attr('method'),
+                        data:new FormData(formmembre),
+                       contentType:false,
+                       processData:false,
+                       cache:false,
+                       success:function (data,status,object)
+                       {
+
+                       
+                       var message=data.message;
+                       if(data.success==true)
+                          {
+
+
+                         
+                               errormArray.forEach(function(error){
+                                  if($.trim(document.getElementById(error).textContent) !== "")
+
+                                  {
+                                    document.getElementById(error).textContent="";
+                                  }
+                               });
+                             
+                               
+                            $('#myModalmembre').modal('hide');
+                               
+                              $('#add-membre-form')[0].reset();
+                              mem.ajax.reload(null,true);
+
+                            toastr.success(message,'Success', {
+                                      
+                                      "closeButton": false,
+                                       "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": true,
+                                        "positionClass": "toast-top-right",
+                                         "preventDuplicates": false,
+                                         "onclick": null,
+                                          "showDuration": "300",
+                                          "hideDuration": "1000",
+                                           "timeOut": "5000",
+                                           "extendedTimeOut": "1000",
+                                           "showEasing": "swing",
+                                           "hideEasing": "linear",
+                                           "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                              
+
+
+                               });
+
+                          
+                            
+
+                          }
+
+                          else{
+
+                             toastr.error(message,'Error', {
+                                      
+                                      "closeButton": false,
+                                       "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": true,
+                                        "positionClass": "toast-top-right",
+                                         "preventDuplicates": false,
+                                         "onclick": null,
+                                          "showDuration": "300",
+                                          "hideDuration": "1000",
+                                           "timeOut": "5000",
+                                           "extendedTimeOut": "1000",
+                                           "showEasing": "swing",
+                                           "hideEasing": "linear",
+                                           "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                              
+
+
+                               });
+
+
+
+
+                            if(data.errors)
+                            {
+                              errormArray.forEach(function(error){
+
+                               if($.trim(document.getElementById(error).textContent) !== "")
+
+                                  {
+                                    document.getElementById(error).textContent="";
+                                  }
+
+                              });
+
+                              data.errors.forEach(function(error)
+                              {
+
+                               document.getElementById(error.elementId).textContent=error.errorMessage;
+                              });
+
+
+                              $("#spin-add-membre").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn-add-membre').prop('disabled',false); 
+
+                            }
+
+                          }
+                                
+
+                        
+                         $("#spin-add-membre").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn-add-membre').prop('disabled',false); 
+                          
+                          
+                          },
+                          error:function (data,status,object)
+                          {
+                             console.log(data.message);
+
+                           toastr.error(data.message,'Error', {
+                                      
+                                      "closeButton": false,
+                                       "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": true,
+                                        "positionClass": "toast-top-right",
+                                         "preventDuplicates": false,
+                                         "onclick": null,
+                                          "showDuration": "300",
+                                          "hideDuration": "1000",
+                                           "timeOut": "5000",
+                                           "extendedTimeOut": "1000",
+                                           "showEasing": "swing",
+                                           "hideEasing": "linear",
+                                           "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                              
+
+
+                               });
+
+
+
+
+                         $("#spin-add-membre").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn-add-membre').prop('disabled',false); 
+                          }
+
+
+
+
+
+
+
+
+                       });
+
+
+
+
+
+
+
+
+
+
+
+                    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                  });
+
+
+
+
+
+
+
+
+
+
+
+
+   </script>
+   <script>
+
+  function deletemembre(id){
+
+if(id){
+  $("#delete-m").unbind('click').bind('click',function(){
+   
+     $('#delete-m').prop('disabled',true);
+    $("#spin-delete-member").addClass('fa fa-spinner fa-spin fa-register');
+
+       $.ajax({
+                       
+                       url:'/user/home/delete-member/'+id,
+                       type:'POST',
+                       success:function (data,status,object)
+                       {
+
+                        var message=data.message;
+                       if(data.success==true)
+                          {
+
+                           $("#spin-delete-member").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#delete-m').prop('disabled',false);
+
+                           $('#Modalmembredelete').modal('hide');
+                             mem.ajax.reload(null,false);
+
+                               toastr.success(message,'Success', {
+                                      
+                                      "closeButton": false,
+                                       "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": true,
+                                        "positionClass": "toast-top-right",
+                                         "preventDuplicates": false,
+                                         "onclick": null,
+                                          "showDuration": "300",
+                                          "hideDuration": "1000",
+                                           "timeOut": "5000",
+                                           "extendedTimeOut": "1000",
+                                           "showEasing": "swing",
+                                           "hideEasing": "linear",
+                                           "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                              
+
+
+                               });
+
+                             
+
+                          }else{
+                          
+                             
+                           $("#spin-delete-member").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#delete-m').prop('disabled',false);
+                             $('#Modalmembredelete').modal('hide');
+
+                               toastr.error(message,'Error', {
+                                      
+                                      "closeButton": false,
+                                       "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": true,
+                                        "positionClass": "toast-top-right",
+                                         "preventDuplicates": false,
+                                         "onclick": null,
+                                          "showDuration": "300",
+                                          "hideDuration": "1000",
+                                           "timeOut": "5000",
+                                           "extendedTimeOut": "1000",
+                                           "showEasing": "swing",
+                                           "hideEasing": "linear",
+                                           "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                              
+
+
+                               });
+
+
+
+
+                          }
+
+              
+
+                       },error:function()
+                       {
+
+                            $("#spin-delete-member").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#delete-m').prop('disabled',false);
+                             $('#Modalmembredelete').modal('hide');
+
+                               toastr.error(message,'Error', {
+                                      
+                                      "closeButton": false,
+                                       "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": true,
+                                        "positionClass": "toast-top-right",
+                                         "preventDuplicates": false,
+                                         "onclick": null,
+                                          "showDuration": "300",
+                                          "hideDuration": "1000",
+                                           "timeOut": "5000",
+                                           "extendedTimeOut": "1000",
+                                           "showEasing": "swing",
+                                           "hideEasing": "linear",
+                                           "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                              
+
+
+                                       
+                               });
+
+
+
+
+
+
+
+
+
+
+                       }
+
+
+
+                       });
+
+
+
+    });
+
+    }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   </script>
+
+
+
+    {% endblock %}

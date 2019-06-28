@@ -1,0 +1,730 @@
+{% extends '@Front/default/template.html.twig' %}
+
+    
+
+    {% block header %}
+    {% endblock %}
+      {% block pageContainer %}
+
+
+
+
+
+
+
+
+
+        <div>
+            {% block fos_user_content %}
+            {% endblock fos_user_content %}
+        </div>
+
+
+
+            {% endblock pageContainer %}
+
+              {% block footer %}
+                 {% endblock %}
+
+             {% block javascript %}
+
+             <script>
+                $(document).ready(function(){
+
+
+
+
+                
+                 $telephonevalidation = $('#fos_user_registration_form_telephone');
+    $telephonevalidation.blur(function(e){
+        phone = $(this).val();
+        phone = phone.replace(/[^0-9]/g,'');
+        if (phone.length != 8)
+        {
+            document.getElementById('data.telephone').textContent='telephone doit etre 8 numero. ';
+            $('#fos_user_registration_form_telephone').val('');
+            $('#fos_user_registration_form_telephone').focus();
+        }else{
+
+           document.getElementById('data.telephone').textContent='';
+
+        }
+    });
+
+
+
+           $siret = $('#fos_user_registration_form_tva');
+    $siret.blur(function(e){
+        code = $(this).val();
+         code=$(this).val().replace(/[^\d].+/, "");
+
+         if ((e.which < 48 || e.which > 57)) {
+                e.preventDefault();
+            }
+
+        if (code.length != 14)
+        {
+            document.getElementById('data.tva').textContent='numero siret invalide ';
+            $('#fos_user_registration_form_tva').val('');
+            $('#fos_user_registration_form_tva').focus();
+        }else{
+
+           document.getElementById('data.tva').textContent='';
+
+        }
+    });
+
+
+
+
+    $compte = $('#fos_user_registration_form_ncompte');
+    
+    $compte.blur(function(e){
+    nc=$(this).val();
+    var re16digit = /^\d{16}$/
+    if (!re16digit.test(nc)) {
+    document.getElementById('data.ncompte').textContent='numero compte invalide ';
+          $('#fos_user_registration_form_ncompte').val('');
+            $('#fos_user_registration_form_ncompte').focus();
+       
+    }else{
+      document.getElementById('data.ncompte').textContent=''; 
+    }
+
+    });
+
+
+      $cpc = $('#fos_user_registration_form_cp');
+    
+    $cpc.blur(function(e){
+    pc=$(this).val();
+    var re16digit = /^\d{4}$/
+    if (!re16digit.test(pc)) {
+    document.getElementById('data.cp').textContent='code postale invalide ';
+          $('#fos_user_registration_form_cp').val('');
+            $('#fos_user_registration_form_cp').focus();
+       
+    }else{
+      document.getElementById('data.cp').textContent=''; 
+    }
+
+    });
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+                  $('.alert-register').hide();
+
+         
+                  var hidden=0;
+                  var commun=0;
+               $('#hidden_div').hide();
+               $('#hiddencommun').hide();
+               $('#hiddenclient').hide();
+                
+
+                 $('.show-autre').change(function(){
+               if(  $(".show-autre option:selected").val()=='ROLE_FOURNISSEUR')
+               {
+                  
+                   $('#hiddenclient').hide();
+                 $('#hidden_div').show();
+                 $('#hiddencommun').show();
+                
+                 hidden=1;
+                 commun=1;
+               }
+
+               else if(  $(".show-autre option:selected").val()=='ROLE_CLIENT')
+               {
+                  
+                 $('#hidden_div').hide();
+                 $('#hiddenclient').show();
+                   $('#hiddencommun').show();
+                 hidden=2;
+                 commun=1;
+
+               }else{
+               $('#hidden_div').hide();
+               $('#hiddencommun').hide();
+               $('#hiddenclient').hide();
+               commun=0;
+               hidden=0;
+              
+
+               }
+
+
+
+             });
+                
+                
+
+
+
+
+
+
+                  
+
+                 $('#btn_register_ajax').click(function(e){
+                  e.preventDefault();
+                  $('.fa-register').show();
+                  $('#btn_register_ajax').prop('disabled',true);
+                  $("#spins").addClass('fa fa-spinner fa-spin fa-register');
+
+
+                     var raison=$('#fos_user_registration_form_raison').val();
+                  var responsable=$('#fos_user_registration_form_responsable').val();
+                  var tva=$('#fos_user_registration_form_tva').val();
+                    var secteur=$('#fos_user_registration_form_secteur').val();
+                  var email=$('#fos_user_registration_form_email').val();
+                  var username=$('#fos_user_registration_form_username').val();
+                  var password=$('#fos_user_registration_form_plainPassword_first').val();
+                  
+                  var file=$('#fos_user_registration_form_file').val();
+               
+                  var role=$('#fos_user_registration_form_roles').val();
+                    var nom=$('#fos_user_registration_form_nom').val();
+                    var prenom=$('#fos_user_registration_form_prenom').val();
+                    var telephone=$('#fos_user_registration_form_telephone').val();
+                    var adresse=$('#fos_user_registration_form_adresse').val();
+                    var cp=$('#fos_user_registration_form_cp').val();
+                    var pays=$('#fos_user_registration_form_pays').val();
+
+                    var errorsArray=['data.email','data.username','data.plainPassword','data.roles','data.raison','data.responsable','data.tva','data.service','data.file','data.nom','data.prenom','data.pays','data.adresse','data.cp','data.telephone'];
+
+                    
+
+                   
+                  if(hidden==1&& raison=="")
+                  {
+                     document.getElementById('data.raison').textContent='Vous devez emplir le raison sociale ';
+                      $("#spins").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_register_ajax').prop('disabled',false); 
+                  }
+                   if(hidden==1&& responsable ==""){
+                    document.getElementById('data.responsable').textContent='Vous devez emplir le champ responsable ';
+                     $("#spins").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_register_ajax').prop('disabled',false); 
+                  }
+
+                   if(hidden==1&& tva ==""){
+                    document.getElementById('data.tva').textContent='Vous devez emplir le champ tva ';
+                     $("#spins").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_register_ajax').prop('disabled',false); 
+                  }
+              
+                  if(hidden==1&& secteur ==""){
+                    document.getElementById('data.secteur').textContent='Vous devez emplir le champ secteur ';
+                     $("#spins").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_register_ajax').prop('disabled',false); 
+                  }
+
+
+                      if(hidden==2&& pays=="")
+                  {
+                     document.getElementById('data.pays').textContent='Vous devez emplir le raison sociale ';
+                      $("#spins").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_register_ajax').prop('disabled',false); 
+                  }
+                   if(hidden==2&& nom ==""){
+                    document.getElementById('data.nom').textContent='Vous devez emplir le champ responsable ';
+                     $("#spins").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_register_ajax').prop('disabled',false); 
+                  }
+
+                   if(hidden==2&& prenom ==""){
+                    document.getElementById('data.prenom').textContent='Vous devez emplir le champ tva ';
+                     $("#spins").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_register_ajax').prop('disabled',false); 
+                  }
+              
+
+                 
+                      if(commun==1&& telephone=="")
+                  {
+                     document.getElementById('data.telephone').textContent='Vous devez emplir le raison sociale ';
+                      $("#spins").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_register_ajax').prop('disabled',false); 
+                  }
+                   if(commun==1&& adresse ==""){
+                    document.getElementById('data.adresse').textContent='Vous devez emplir le champ responsable ';
+                     $("#spins").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_register_ajax').prop('disabled',false); 
+                  }
+
+                   if(commun==1&& cp ==""){
+                    document.getElementById('data.cp').textContent='Vous devez emplir le champ tva ';
+                     $("#spins").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_register_ajax').prop('disabled',false); 
+                  }
+              
+                   
+
+
+
+
+                  if(email=="")
+                  {
+                       document.getElementById('data.email').textContent='Vous devez emplir le champ email ';
+                     $("#spins").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_register_ajax').prop('disabled',false); 
+                  }
+                  if(username=="")
+                  {
+                        document.getElementById('data.username').textContent='Vous devez emplir le champ username ';
+                     $("#spins").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_register_ajax').prop('disabled',false); 
+
+                  }
+
+                  if(password=="")
+                  {
+
+                     document.getElementById('data.plainPassword').textContent='Vous devez emplir le champ password';
+                     $("#spins").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_register_ajax').prop('disabled',false); 
+
+
+                  }
+
+                if(role=="")
+                {
+                      document.getElementById('data.roles').textContent='Vous devez emplir le champ role';
+                     $("#spins").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_register_ajax').prop('disabled',false); 
+
+                   
+                }
+                    
+                  
+                
+                           $('#fos_user_registration_form_raison').change(function(){
+                  
+                 if($.trim(document.getElementById('data.raison').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.raison').textContent="";
+                                  }
+                    
+                                 });
+
+
+                                     $('#fos_user_registration_form_plainPassword_second').change(function(){
+                  
+                 if($.trim(document.getElementById('children[plainPassword]').textContent) !== "")
+
+                                  {
+                                    document.getElementById('children[plainPassword]').textContent="";
+                                  }
+                    
+                                 });
+
+
+
+                               
+
+                        
+                        $('#fos_user_registration_form_responsable').change(function(){
+                  
+                 if($.trim(document.getElementById('data.responsable').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.responsable').textContent="";
+                                  }
+                    
+                                 });
+
+
+
+                        $('#fos_user_registration_form_tva').change(function(){
+                  
+                 if($.trim(document.getElementById('data.tva').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.tva').textContent="";
+                                  }
+                    
+                                 });
+
+              
+                
+                     $('#fos_user_registration_form_secteur').change(function(){
+                  
+                 if($.trim(document.getElementById('data.secteur').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.secteur').textContent="";
+                                  }
+                    
+                                 });
+
+                 
+                
+                     $('#fos_user_registration_form_email').change(function(){
+                  
+                 if($.trim(document.getElementById('data.email').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.email').textContent="";
+                                  }
+                    
+                                 });
+
+
+
+
+
+
+                       $('#fos_user_registration_form_username').change(function(){
+                  
+                 if($.trim(document.getElementById('data.username').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.username').textContent="";
+                                  }
+                    
+                                 });
+                    
+
+
+
+
+
+
+
+                          $('#fos_user_registration_form_plainPassword_first').change(function(){
+                  
+                 if($.trim(document.getElementById('data.plainPassword').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.plainPassword').textContent="";
+                                  }
+                    
+                                 });
+
+
+
+                     $('#fos_user_registration_form_roles').change(function(){
+                  
+                 if($.trim(document.getElementById('data.roles').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.roles').textContent="";
+                                  }
+                    
+                                 });
+
+
+
+
+                          $('#fos_user_registration_nom').change(function(){
+                  
+                 if($.trim(document.getElementById('data.nom').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.nom').textContent="";
+                                  }
+                    
+                                 });
+
+
+
+                     $('#fos_user_registration_form_prenom').change(function(){
+                  
+                 if($.trim(document.getElementById('data.prenom').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.prenom').textContent="";
+                                  }
+                    
+                                 });
+
+
+
+                          $('#fos_user_registration_form_pays').change(function(){
+                  
+                 if($.trim(document.getElementById('data.pays').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.pays').textContent="";
+                                  }
+                    
+                                 });
+
+
+
+                     $('#fos_user_registration_form_telephone').change(function(){
+                  
+                 if($.trim(document.getElementById('data.telephone').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.telephone').textContent="";
+                                  }
+                    
+                                 });
+
+
+
+
+                          $('#fos_user_registration_form_adresse').change(function(){
+                  
+                 if($.trim(document.getElementById('data.adresse').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.adresse').textContent="";
+                                  }
+                    
+                                 });
+
+
+
+                     $('#fos_user_registration_form_cp').change(function(){
+                  
+                 if($.trim(document.getElementById('data.cp').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.cp').textContent="";
+                                  }
+                    
+                                 });
+            
+
+
+
+
+
+
+
+                      var form = document.getElementById("register_ajax");
+
+                   if((hidden==1 && email!=="" &&username!=="" && password!== "" && role !=="" && raison !==""&& responsable !==""&&tva!==""&&secteur!=="" && telephone!=="" && adresse != "" && cp !=""  )|| (hidden==2  && email!=="" &&username!=="" && password!== "" && role!=="" && telephone!=="" && adresse !=="" && cp !=="" && nom !=="" && prenom !=="" && pays !==""))
+   
+{
+
+
+
+                  $.ajax({
+                       dataType:"json",
+                       url:$("#register_ajax").attr('action'),
+                       type:$("#register_ajax").attr('method'),
+                        data:new FormData(form),
+                       contentType:false,
+                       processData:false,
+                       cache:false,
+                       success:function (data,status,object)
+                       {
+
+                       $('.alert-register').show();
+                       var message=data.message;
+                       if(data.success==true)
+                          {
+
+
+                          if($('.alert-register').hasClass('alert-danger'))
+                             {
+                               $('.alert-register').removeClass('alert-danger')
+                               errorsArray.forEach(function(error){
+                                  if($.trim(document.getElementById(error).textContent) !== "")
+
+                                  {
+                                    document.getElementById(error).textContent="";
+                                  }
+                               });
+                             }
+
+                            $('.alert-register').addClass('alert-success');
+                              $('#register_ajax')[0].reset();
+                           hidden=0;
+                   commun=0;
+               $('#hidden_div').hide();
+               $('#hiddencommun').hide();
+               $('#hiddenclient').hide();
+
+                          }
+
+                          else{
+
+                           if($('.alert-register').hasClass('alert-success'))
+                             {
+                               $('.alert-register').removeClass('alert-success')
+                              
+                             }
+
+                            $('.alert-register').addClass('alert-danger');
+
+                            if(data.errors)
+                            {
+                              errorsArray.forEach(function(error){
+
+                               if($.trim(document.getElementById(error).textContent) !== "")
+
+                                  {
+                                    document.getElementById(error).textContent="";
+                                  }
+
+                              });
+
+                              data.errors.forEach(function(error)
+                              {
+
+                               document.getElementById(error.elementId).textContent=error.errorMessage;
+                              });
+
+                            }
+
+                          }
+                                
+
+                          $('.alert-register').text(message);
+                         $("#spins").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_register_ajax').prop('disabled',false);
+
+                   hidden=0;
+                   commun=0;
+               $('#hidden_div').hide();
+               $('#hiddencommun').hide();
+               $('#hiddenclient').hide(); 
+                          
+
+                          },
+                          error:function (data,status,object)
+                          {
+                             console.log(data.message);
+                          }
+
+
+
+
+
+
+
+
+                       });
+                       
+                       }
+                  });
+
+                  });
+
+            </script>
+              
+
+
+
+            <script>
+                  $('.resseting-password').hide();
+                  
+
+                 $('#btn_resseting').click(function(e){
+                  e.preventDefault();
+                  $('.fa-register').show();
+                  $('#btn_resseting').prop('disabled',true);
+                  $("#spinsr").addClass('fa fa-spinner fa-spin fa-register');
+                  var errorsArray=['data.plainPassword','children[plainPassword]'];
+                  $.ajax({
+                       dataType:"json",
+                       url:$(".fos_user_resetting_reset").attr('action'),
+                       type:$(".fos_user_resetting_reset").attr('method'),
+                       data:$(".fos_user_resetting_reset").serialize(),
+                       success:function (data,status,object)
+                       {
+
+                       $('.resseting-password').show();
+                       var message=data.message;
+                       if(data.success==true)
+                          {
+
+
+                          if($('.resseting-password').hasClass('alert alert-danger'))
+                             {
+                               $('.resseting-password').removeClass('alert-danger')
+                               errorsArray.forEach(function(error){
+                                  if($.trim(document.getElementById(error).textContent) !== "")
+
+                                  {
+                                    document.getElementById(error).textContent="";
+                                  }
+                               });
+                             }
+
+                            $('.resseting-password').addClass('alert alert-success');
+                              $('.fos_user_resetting_reset')[0].reset();
+
+                          }
+
+                          else{
+
+                           if($('.resseting-password').hasClass('alert alert-success'))
+                             {
+                               $('.resseting-password').removeClass('alert alert-success')
+                              
+                             }
+
+                            $('.resseting-password').addClass('alert alert-danger');
+
+                            if(data.errors)
+                            {
+                              errorsArray.forEach(function(error){
+
+                               if($.trim(document.getElementById(error).textContent) !== "")
+
+                                  {
+                                    document.getElementById(error).textContent="";
+                                  }
+
+                              });
+
+                              data.errors.forEach(function(error)
+                              {
+
+                               document.getElementById(error.elementId).textContent=error.errorMessage;
+                              });
+
+                            }
+
+                          }
+                                
+
+                          $('.resseting-password').text(message);
+                         $("#spinsr").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_resseting').prop('disabled',false); 
+                          
+
+                          },
+                          error:function (data,status,object)
+                          {
+                             console.log(data.message);
+                          }
+
+
+
+
+
+
+
+
+                       });
+                  });
+
+            </script>
+                 
+
+               {% endblock %}

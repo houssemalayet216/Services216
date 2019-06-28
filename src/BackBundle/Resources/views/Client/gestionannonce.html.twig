@@ -1,0 +1,261 @@
+{% extends '@Back/default/templateclient.html.twig' %}
+{% block section_haider %}
+<section class="content-header">
+        <h1>
+        Liste des annonces
+        <small>Services 216</small>
+      </h1>
+      <ol class="breadcrumb">
+
+        
+        <li class="active"><i class="fa fa-reorder"></i> Liste des annonces</li>
+      </ol>
+    </section>
+{%endblock%}
+
+ {%block content%} 
+ 
+
+ 
+
+
+
+
+
+  <div class="row">
+<div class="col-md-12">
+
+
+
+<div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Liste des annonces</h3><br/>
+            
+
+
+
+
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="tableannonce" class="table table-bordered table-striped" >
+                <thead>
+                <tr>
+                  <th class="text-center">Titre</th>
+                  <th class="text-center">Service</th>
+                 <th class="text-center">Catégorie</th>
+                  <th class="text-center">Date de publication</th>
+                  <th class="text-center">Action</th>
+                </tr>
+                </thead>
+                
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+
+
+
+
+
+<div class="modal fade" tabindex="-1" id="Modalannoncedelete" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Supprimer Annonce</h4>
+      </div>
+      <div class="modal-body">
+        <p>Êtes-vous sûr de supprimer cet annonce ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="delete-a"><span>Supprimer membre</span><i id="spin-delete-annonce"></i></button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->         
+
+
+
+{%endblock%}
+
+
+
+  {%block aside %}
+  {% endblock %}
+
+   {% block javascript %}
+      <script>
+       var tabannonce;
+$(document).ready(function($){
+ tabannonce=$("#tableannonce").DataTable({
+     columnDefs: [
+    {
+        targets: -1,
+        className: 'dt-body-left'
+    }
+  ],
+  'destroy':true,
+   
+    'ajax':'{{path('annonce_client')}}',
+     'order': []
+});
+
+});
+
+ 
+ 
+
+
+ 
+</script>
+
+
+
+  <script>
+
+  function deleteannonce(id){
+
+if(id){
+  $("#delete-a").unbind('click').bind('click',function(){
+   
+     $('#delete-a').prop('disabled',true);
+    $("#spin-delete-annonce").addClass('fa fa-spinner fa-spin fa-register');
+
+       $.ajax({
+                       
+                       url:'/user/home/delete-annonce/'+id,
+                       type:'POST',
+                       success:function (data,status,object)
+                       {
+
+                        var message=data.message;
+                       if(data.success==true)
+                          {
+
+                           $("#spin-delete-annonce").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#delete-a').prop('disabled',false);
+
+                           $('#Modalannoncedelete').modal('hide');
+                             tabannonce.ajax.reload(null,false);
+
+                               toastr.success(message,'Success', {
+                                      
+                                      "closeButton": false,
+                                       "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": true,
+                                        "positionClass": "toast-top-right",
+                                         "preventDuplicates": false,
+                                         "onclick": null,
+                                          "showDuration": "300",
+                                          "hideDuration": "1000",
+                                           "timeOut": "5000",
+                                           "extendedTimeOut": "1000",
+                                           "showEasing": "swing",
+                                           "hideEasing": "linear",
+                                           "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                              
+
+
+                               });
+
+                             
+
+                          }else{
+                          
+                             
+                           $("#spin-delete-annonce").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#delete-a').prop('disabled',false);
+                             $('#Modalannoncedelete').modal('hide');
+
+                               toastr.error(message,'Error', {
+                                      
+                                      "closeButton": false,
+                                       "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": true,
+                                        "positionClass": "toast-top-right",
+                                         "preventDuplicates": false,
+                                         "onclick": null,
+                                          "showDuration": "300",
+                                          "hideDuration": "1000",
+                                           "timeOut": "5000",
+                                           "extendedTimeOut": "1000",
+                                           "showEasing": "swing",
+                                           "hideEasing": "linear",
+                                           "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                              
+
+
+                               });
+
+
+
+
+                          }
+
+              
+
+                       },error:function()
+                       {
+
+                            $("#spin-delete-annonce").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#delete-a').prop('disabled',false);
+                             $('#Modalannoncedelete').modal('hide');
+
+                               toastr.error(message,'Error', {
+                                      
+                                      "closeButton": false,
+                                       "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": true,
+                                        "positionClass": "toast-top-right",
+                                         "preventDuplicates": false,
+                                         "onclick": null,
+                                          "showDuration": "300",
+                                          "hideDuration": "1000",
+                                           "timeOut": "5000",
+                                           "extendedTimeOut": "1000",
+                                           "showEasing": "swing",
+                                           "hideEasing": "linear",
+                                           "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                              
+
+
+                                       
+                               });
+
+
+
+
+
+
+
+
+
+
+                       }
+
+
+
+                       });
+
+
+
+    });
+
+    }
+    }
+
+
+   </script>
+
+
+
+
+    {% endblock %}

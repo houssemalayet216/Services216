@@ -1,0 +1,552 @@
+ {% extends '@Front/default/template.html.twig' %}
+
+
+
+
+{% block pageContainer %}
+  <section class="content background-grey">
+
+   <div class="contentannonce clearfix">
+<div class="main-content-annonce single">
+       
+
+	<div class="post-content">
+		
+   <div class="table-responsive">
+            <table class="table  tabledesign">
+
+            {%if typeannonce=='offre' %}
+             <tr>
+                <th style='width:20%'>Titre de l&apos;offre : </th>
+                <td>{{annonce.titre}} </td>
+            
+
+            </tr>
+              <tr>
+                <th style='width:20%'>Description de l&apos;offre : </th>
+                <td>{{annonce.description}}  </td>
+
+            </tr>
+
+             <tr>
+                <th style='width:20%'>Service : </th>
+                <td>{{annonce.service.titre}}  </td>
+
+            </tr>
+
+             <tr>
+                <th style='width:20%'>Catégorie : </th>
+                <td>{{annonce.specialite.titre}}  </td>
+
+            </tr>
+
+            
+            {% if annonce.mission != null %}
+
+            <tr>
+                <th style='width:20%'>Missions peut faire : </th>
+                <td>
+                 {%for mission in annonce.mission %}
+                  {{mission.titre}} <br/>
+
+                 {%endfor%}
+
+
+                  </td>
+
+            </tr>
+
+            {%endif%}
+
+
+
+
+
+              <tr>
+                <th style='width:20%'>Teritoire d'activité : </th>
+                <td>{{annonce.zone}}  </td>
+
+            </tr>
+              <tr>
+                <th style='width:20%'>Date publication: </th>
+                <td> {{ annonce.datePublication|date("m/d/Y") }} </td>
+
+            </tr>
+              <tr>
+                <th style='width:20%'>Type Tarification </th>
+                <td>{{annonce.typetarif}}  </td>
+
+            </tr>
+              <tr>
+                <th style='width:20%'>Devis </th>
+                <td>{{annonce.devis}}  </td>
+
+            </tr>
+
+             <tr>
+                <th style='width:20%'>Tarif </th>
+                <td>{{annonce.prix}}  </td>
+
+            </tr>
+
+            <tr>
+                <th style='width:20%'>Autres détailles </th>
+                <td>{{annonce.autres}}  </td>
+
+            </tr>
+
+            {%if annonce.note >0%}
+             <tr>
+                <th style='width:20%'>Evalutions des clients </th>
+                <td> 
+                {% if annonce.note > 20 %}
+                
+                <span class="fa fa-star checkedetoile"></span>
+               <span class="fa fa-star checkedetoile"></span>
+               <span class="fa fa-star checkedetoile"></span>
+               <span class="fa fa-star checkedetoile"></span>
+               <span class="fa fa-star checkedetoile"></span>
+
+                {%endif%}
+                  {%if annonce.note >0 and annonce.note < 5%}
+
+                <span class="fa fa-star checkedetoile"></span>
+               <span class="fa fa-star uncheckedetoile"></span>
+               <span class="fa fa-star uncheckedetoile"></span>
+               <span class="fa fa-star uncheckedetoile"></span>
+               <span class="fa fa-star uncheckedetoile"></span>
+               {%endif%}
+
+                   {%if annonce.note >5 and annonce.note < 10 %}
+
+                <span class="fa fa-star checkedetoile"></span>
+               <span class="fa fa-star checkedetoile"></span>
+               <span class="fa fa-star uncheckedetoile"></span>
+               <span class="fa fa-star uncheckedetoile"></span>
+               <span class="fa fa-star uncheckedetoile"></span>
+               {%endif%}
+
+                  {%if annonce.note >10 and annonce.note < 15 %}
+
+                <span class="fa fa-star checkedetoile"></span>
+               <span class="fa fa-star checkedetoile"></span>
+               <span class="fa fa-star checkedetoile"></span>
+               <span class="fa fa-star uncheckedetoile"></span>
+               <span class="fa fa-star uncheckedetoile"></span>
+               {%endif%}
+
+
+
+                  {%if annonce.note >15 and annonce.note < 20 %}
+
+                <span class="fa fa-star checkedetoile"></span>
+               <span class="fa fa-star checkedetoile"></span>
+               <span class="fa fa-star checkedetoile"></span>
+               <span class="fa fa-star checkedetoile"></span>
+               <span class="fa fa-star uncheckedetoile"></span>
+               {%endif%}
+                
+             
+
+                 </td>
+            
+
+            </tr>
+            {%endif%}
+         
+ 
+              {% else %}
+             
+               <tr>
+                <th style='width:20%'>Titre du demande : </th>
+                <td>{{annonce.titre}} </td>
+            
+
+            </tr>
+              <tr>
+                <th style='width:20%'>Description du demande  : </th>
+                <td>{{annonce.description}}  </td>
+
+            </tr>
+            
+              <tr>
+                <th style='width:20%'>Service  : </th>
+                <td>{{annonce.service.titre}}  </td>
+
+            </tr>
+
+             <tr>
+                <th style='width:20%'>Catégorie  : </th>
+                <td>{{annonce.specialite.titre}}  </td>
+
+            </tr>
+
+                {% if annonce.mission != null %}
+
+            <tr>
+                <th style='width:20%'>Missions souhaité : </th>
+                <td>
+                 {%for mission in annonce.mission %}
+                  {{mission.titre}} <br/>
+
+                 {%endfor%}
+
+
+                  </td>
+
+            </tr>
+
+            {%endif%}
+
+            {%if annonce.depart !=null %}
+             
+
+             <tr>
+                <th style='width:20%'>Départ  : </th>
+                <td>{{annonce.depart}}  </td>
+
+            </tr>
+
+
+
+
+            {%endif%}
+
+             {%if annonce.arrive != null%}
+
+
+             <tr>
+                <th style='width:20%'>Arrivé  : </th>
+                <td>{{annonce.arrive}}  </td>
+
+            </tr>
+            {%endif%}
+
+             {%if annonce.adressmembre != null%}
+
+
+             <tr>
+                <th style='width:50%'>Départ a partir de l'adresse du membre  : </th>
+                <td>{{annonce.adressmembre}}  </td>
+
+            </tr>
+            {%endif%}
+
+
+
+
+
+             {%if annonce.trajet != null %}
+
+
+             <tr>
+                <th style='width:20%'>Trajet  : </th>
+                <td>{{annonce.trajet}}  </td>
+
+            </tr>
+
+
+            {%endif%}
+
+
+            {%if annonce.aport != null and annonce.aport=='true' %}
+
+
+             <tr>
+                <th style='width:50%'>Le jobber doit aporter son matérille  : </th>
+
+               
+                <td>Oui  </td>
+                
+
+            </tr>
+
+
+            {%endif%}
+
+
+
+            {%if annonce.achat != null  and annonce.achat=='true' %}
+
+
+             <tr>
+                <th style='width:50%'>Le jobber doit acheter les fourniture déclarer dans l'annonce  : </th>
+                <td>Oui  </td>
+
+            </tr>
+
+
+            {%endif%}
+
+
+
+
+
+
+
+
+
+             {%if annonce.produits != null %}
+
+
+             <tr>
+                <th style='width:20%'>Listes des achats  : </th>
+                <td>{{annonce.produits}}  </td>
+
+            </tr>
+            {%endif%}
+
+
+           <tr>
+                <th style='width:20%'>Recurence du besoin  : </th>
+                {% if annonce.typeVisite=='Une' %}
+                <td>Une seule visite  </td>
+                {% else %}
+                <td>Plusieurs visites  </td>
+                {%endif%}
+
+            </tr>
+
+        
+
+         <tr>
+                <th style='width:20%'> Date correspond au demande  : </th>
+                <td> 
+                 {% for datevisite in annonce.dates%}
+                {{datevisite.datev|date("m/d/Y")}}  <br/>
+
+               
+             
+               {%endfor%}
+                </td>
+
+            </tr>
+  
+
+         <tr>
+                <th style='width:20%'> Temp correspond au demande  : </th>
+                 
+                <td> {{annonce.datePrevu|date("H:i")}} </td>
+             
+              
+
+            </tr>
+
+
+
+
+               <tr>
+                <th style='width:50%'> Nombres des personne Bénéficiaires du service   : </th>
+                 
+                <td> {{annonce.membres|length }} </td>
+             
+             
+
+            </tr>
+
+
+
+
+
+               <tr>
+                <th style='width:30%'> Détailles des personnes Bénéficiaires du service  : </th>
+                
+                <td>
+                 {% for mem in annonce.membres%}
+
+                 Nom et prenom : {{mem.nom }} {{mem.prenom}}<br/>
+                     Civilité : {{mem.civilite }} <br/>
+                     Date naissance : {{mem.datenaissance |date("m/d/Y") }} <br/>
+                     Type relation: {{mem.relation }} <br/>
+                      Adresse: {{mem.ville }} , {{mem.adresse }} , {{mem.cp }}  <br/>
+                      Autres: {{mem.autres  }} <br/>
+                      Contact: {{mem.telephone  }} ,  {{mem.telephoneII  }}, {{mem.fix  }}  <br/><br/><br/>
+
+                      {%endfor%}
+                 </td>
+                 
+             
+           
+
+            </tr>
+
+
+
+
+              {%endif%}
+            </table>
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <a href="{{path('contacter_annonce',{id:annonce.id})}}" class="btn btn-danger btn-contact pull-right" > <span><i class="fa fa-envelope"></i> <span> Contacter </a>
+
+		
+	</div>
+</div>	
+
+
+
+
+<div class="sidebar single">
+	
+   
+	
+
+
+
+<div class="sectionannonce">
+
+
+
+<div class="haiderannonceur">
+<p><b>L'annonceur</strong></b>
+</div>
+<div class="cardannonce" style="text-align:center">
+
+{%if typeannonce == 'offre' %}
+ {%if annonce.user.logo !=null %}
+  <img src="{{asset('')}}uploads/logo/{{annonce.user.logo}}" alt="John"  class="imagepublisher" style="width:90px;height:90px;">
+  {%else%}
+   <img src="{{asset('uploads/telechargement.jpg')}}" alt="John"  class="imagepublisher" style="width:90px;height:90px;">
+  {%endif%}
+  <br>
+     <div><span class="Namesingle">{{annonce.user.raison}}</span></div>
+  <div><span class="adressesingle"><i class="fa fa-user"></i>Responsable: {{annonce.user.responsable}}</span></div>
+  <div><span class="emailsingle"> <i class="fa fa-building-o"></i> {{annonce.user.adresse}} , {{annonce.user.cp}}</span></div>
+  <div><span class="telephonesingle"><i class="fa fa-phone"></i> {{annonce.user.telephone}}</span></div> 
+  <div><span class="telephonesingle"><i class="fa fa-envelope-o"></i> {{annonce.user.email}}</span></div> 
+{%else%}
+    
+    {%if annonce.user.logo !=null %}
+  <img src="{{asset('')}}uploads/logo/{{annonce.user.logo}}" alt="John"  class="imagepublisher" style="width:90px;height:90px;">
+  {%else %}
+   <img src="{{asset('uploads/telechargement.jpg')}}" alt="John"  class="imagepublisher" style="width:90px;height:90px;">
+   {%endif%}
+  <br>
+     <div><span class="Namesingle">{{annonce.user.nom}} {{annonce.user.prenom}}</span></div>
+     {% if annonce.user.adresse != null %}
+  <div><span class="adressesingle"><i class="fa fa-address-card-o"></i> {{annonce.user.pays}} , {{annonce.user.adresse}} , {{annonce.user.cp}}</span></div>
+   {%endif%}
+   {%if annonce.user.telephone != null %}
+  <div><span class="emailsingle"><i class="fa fa-phone"></i> {{annonce.user.telephone}}</span></div>
+   {%endif%}
+
+  <div><span class="telephonesingle"><i class="fa fa-envelope-o"></i> {{annonce.user.email}}</span></div>
+
+
+{%endif%}
+
+</div>
+</div>
+
+
+
+<div class="sectionannonce popular">
+      <div class="haiderannonceur">
+		
+    <p><b>Annonces simulaires</b></p>
+    </div>
+     
+     {%if simulaireannonce|length > 0 %}
+
+     {% for simular in simulaireannonce %}
+
+
+    
+        <div class="postsingle clearfix">
+        {%if simular.image !=null %}
+          <img src="{{asset('')}}uploads/logo/{{simular.image}}"style="max-width:224px;max-height:150px;">
+        {% else %}
+        <img src="{{asset('FrontFolder/images/petitannonce.jpg')}}" alt=""  class="imagesimalaire" />
+        {% endif %}
+        <a class="title"><h3 class="similairetitre">{{simular.titre}}</h3></a>
+        	
+        </div>
+        {% endfor %}
+         
+
+        
+     {%else%}
+     <div class="center"><h3 class="similairetitre center">Aucune annonce trouvé ! </h3></div>
+      {%endif%}    
+       
+
+		
+		
+	</div>
+    
+
+
+
+
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </section>
+
+
+
+
+
+
+
+
+{%endblock%}
+
+{% block javascript %}
+
+
+{%endblock%}

@@ -1,0 +1,239 @@
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+<i class="fa fa-plus"></i>  Ajouter offre
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal"  role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" id="close-up-add-modale" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Ajouter offre</h4>
+      </div>
+       {{ form_start(form, {'method': 'post', 'action': path('create_offre'), 'attr': {'id':'add-offre-form'}}) }}
+      <div class="modal-body">
+        
+        <div class="row">
+<div class="col-md-12">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       <div class="col-md-6 form-group">
+                  <label for="username">Service :*</label>
+                    {{form_widget(form.secteur ,{'id':'secteur-offre','empty_data' :app.user.service.titre,'attr':{'class': 'form-control' ,'value':app.user.service.titre,'disabled':true}})}}     
+                    <span class="text-danger" id="data.secteur"></span>
+
+                 
+       </div> 
+
+
+       <div class="col-md-6 form-group">
+                  <label for="username">Catégories :*</label>
+                    <select class="form-control" id="option-offre" name="option-offre" placeholder="Choisir une catégorie">
+                     <option >Choisir une catégorie</option>
+                    {% for option in option %}
+                     
+                    <option value="{{option.titre}}">{{option.titre}}</option>
+
+                    {% endfor %}
+                    </select>     
+                    <span class="text-danger" id="data.option"></span>
+
+                 
+       </div>
+
+
+     <div class="col-md-12 form-group" id="divmission">
+     
+     </div>  
+
+
+  
+ <div class="col-md-12 form-group">
+                  <label for="username">Titre:*</label>
+                  {{form_widget(form.titre ,{'id':'titre-offre','attr':{'class': 'form-control','placeholder':'Titre'}})}}                 
+                    <span class="text-danger" id="data.titre"></span>
+
+                 
+       </div>
+     
+
+
+
+  <div class="col-md-12 form-group">
+                  <label for="username">Description :*</label>
+                  {{form_widget(form.description ,{'id':'description-offre','attr':{'class': 'form-control','placeholder':'Description'}})}}                 
+                    <span class="text-danger" id="data.description"></span>
+
+                 
+       </div>
+
+
+
+
+
+
+
+
+ <div class="col-md-12 form-group">
+                  <label for="username">Type de tarification  :*</label>
+                {{form_widget(form.typetarif ,{'id':'ypetarif-offre','attr':{'class': 'form-control','placeholder':'TypeTarification'}})}}                  
+                    <span class="text-danger" id="data.typetarif"></span>
+
+                 
+       </div>
+
+
+  
+        
+
+ <div class="col-md-6 form-group">
+                  <label for="username">Tarif :*</label>
+                 <input type="number" id="prix-offre" name="prix-offre" class="form-control" placeholder="Prix" />                
+                    <span class="text-danger" id="data.prix"></span>
+
+                 
+       </div>
+
+
+       <div class="col-md-6 form-group">
+                  <label for="username">Type de tarification  :*</label>
+                {{form_widget(form.devis ,{'id':'devis-offre','attr':{'class': 'form-control','placeholder':'Devis'}})}}                  
+                    <span class="text-danger" id="data.devis"></span>
+
+                 
+       </div>
+
+
+
+
+
+  <div class="col-md-6 form-group">
+                  <label for="username">Zone de travail :*</label>
+                  {{form_widget(form.zone ,{'id':'zone-offre','attr':{'class': 'form-control'}})}}                 
+                    <span class="text-danger" id="data.zone"></span>
+
+                 
+       </div>
+
+
+
+
+
+
+
+
+
+
+
+ <div class="col-md-12 form-group">
+                  <label for="username">Image offre :</label>
+                  {{form_widget(form.image ,{'id':'image-offre','attr':{'class': 'form-control','placeholder':'Image offre'}})}}                 
+                    <span class="text-danger" id="data.image"></span>
+
+                 
+       </div> 
+
+
+
+
+
+
+ <div class="col-md-12 form-group">
+                 
+                 <div>
+  <input type="checkbox" id="affichercord-offre" name="affichercord-offre" value='affiche'>
+  <label>Afficher vos coordonnées sur l&apos;annonce </label>
+</div>                
+  <span class="text-danger" id="data.cordaffiche"></span>
+
+                 
+       </div> 
+
+
+
+
+
+        <div class="col-md-12 form-group">
+                  <label for="username">Autre Détailles :</label>
+                  {{form_widget(form.autres ,{'id':'autres-offre','attr':{'class': 'form-control','placeholder':'Autres'}})}}                 
+                    <span class="text-danger" id="data.autres"></span>
+
+                 
+       </div> 
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="close-modale-add">Close</button>
+        <button type="submit" class="btn btn-primary" id="btn-add-offre"> <span>Enregistrer</span><i id="spin-add-offre"></i></button>
+      </div>
+      {{ form_end(form) }}
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

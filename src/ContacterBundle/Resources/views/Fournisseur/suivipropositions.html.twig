@@ -1,0 +1,363 @@
+{% extends '@Back/default/templatefournisseur.html.twig' %}
+{% block section_haider %}
+<section class="content-header">
+        <h1>
+        Suivi vos propositions
+        <small>Services 216</small>
+      </h1>
+      <ol class="breadcrumb">
+
+        
+        <li class="active"><i class="fa fa-hourglass-half"></i>Suivi vos propositions</li>
+      </ol>
+    </section>
+{%endblock%}
+
+ {%block content%} 
+ 
+
+ 
+
+
+
+
+
+  <div class="row">
+<div class="col-md-12">
+
+
+
+<div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Suivi vos propositions</h3><br/>
+            
+
+
+
+
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="tableproposition" class="table table-bordered table-striped" >
+                <thead>
+                <tr>
+                  <th class="text-center">Client</th>
+                  <th class="text-center">Annonce</th>
+                  <th class="text-center">Date de publication</th>
+                  <th class="text-center">Status</th>
+                  <th class="text-center">Action</th>
+                </tr>
+                </thead>
+                
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>         
+
+
+
+
+<div class="modal fade" tabindex="-1" id="Modalvoirtousproposition" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Voir Proposition</h4>
+      </div>
+      <div class="modal-body">
+
+      <div id="divvoirpropositionagent">
+
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="modal-footer">
+       
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+<div class="modal fade" tabindex="-1" id="Modalfinmission" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Déclarer la fin du mission</h4>
+      </div>
+      <div class="modal-body">
+          <form method="POST" action="{{path('cloturer_mission')}}" id="form_cloture">
+          <input type="hidden" id="idproposition" name="idproposition" />
+<label>Etat du mission :</label>
+     
+      <div class="radio">
+  <label><input type="radio" id="optcomplete" name="optcomplete" value='success' checked>Mission complète avec succèss</label>
+
+</div>
+
+
+
+<div class="radio">
+  <label><input type="radio" id="optcomplete"  name="optcomplete" value='eureur'>Mission incomplète</label>
+</div>
+
+
+<div class="form-group" id="descriptioneureur">
+<label for="username">Décriver le problème :*</label>  
+<textarea rows="5" id="eureurmissiondescription" name="eureurmissiondescription" class="form-control"></textarea> 
+</div>
+
+
+
+
+</form>
+
+
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="fin_mission"><span>Enregistrer</span><i id="spin_fin_mission"></i></button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</div>
+
+
+
+{% endblock %}
+
+
+
+  {%block aside %}
+  {% endblock %}
+
+
+   {% block javascript %}
+    <script>
+    $('#descriptioneureur').hide();
+ ;
+     $('input[type=radio][name=optcomplete]').change(function(){      
+if($('input[name=optcomplete]:checked').val()=='eureur')
+{
+
+ $('#descriptioneureur').show();
+}else{
+  $('#descriptioneureur').hide();
+}
+
+});
+
+
+
+
+
+
+
+  $('#fin_mission').click(function(e){
+                  e.preventDefault();
+                    $('#fin_mission').prop('disabled',true);
+                  $("#spin_fin_mission").addClass('fa fa-spinner fa-spin fa-register');
+
+
+                    var form_cloture  = document.getElementById("form_cloture");
+
+
+
+
+
+
+
+
+                      $.ajax({
+                       dataType:"json",
+                       url:$("#form_cloture").attr('action'),
+                       type:$("#form_cloture").attr('method'),
+                        data:new FormData(form_cloture),
+                       contentType:false,
+                       processData:false,
+                       cache:false,
+                       success:function (data,status,object)
+                       {
+
+                      
+                       var message=data.message;
+                       if(data.success==true)
+                          {
+
+
+                         
+                             
+                             
+                               
+                            $('#Modalfinmission').modal('hide');
+                                proposition.ajax.reload(null,true);
+                              $('#form_cloture')[0].reset();
+
+                            toastr.success(message,'Success', {
+                                      
+                                      "closeButton": false,
+                                       "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": true,
+                                        "positionClass": "toast-top-right",
+                                         "preventDuplicates": false,
+                                         "onclick": null,
+                                          "showDuration": "300",
+                                          "hideDuration": "1000",
+                                           "timeOut": "5000",
+                                           "extendedTimeOut": "1000",
+                                           "showEasing": "swing",
+                                           "hideEasing": "linear",
+                                           "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                              
+
+
+                               });
+
+                          
+                              $("#spin_fin_mission").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#fin_mission').prop('disabled',false);
+
+                          }
+
+                          else{
+
+                             toastr.error(message,'Error', {
+                                      
+                                      "closeButton": false,
+                                       "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": true,
+                                        "positionClass": "toast-top-right",
+                                         "preventDuplicates": false,
+                                         "onclick": null,
+                                          "showDuration": "300",
+                                          "hideDuration": "1000",
+                                           "timeOut": "5000",
+                                           "extendedTimeOut": "1000",
+                                           "showEasing": "swing",
+                                           "hideEasing": "linear",
+                                           "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                              
+
+
+                               });
+
+
+
+                             $("#spin_fin_mission").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#fin_mission').prop('disabled',false);
+                            
+
+                          }
+                                
+
+                        
+                         $("#spin_fin_mission").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#fin_mission').prop('disabled',false);
+                          
+                          
+                          },
+                          error:function (data,status,object)
+                          {
+                             console.log(data.message);
+
+                           toastr.error(data.message,'Error', {
+                                      
+                                      "closeButton": false,
+                                       "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": true,
+                                        "positionClass": "toast-top-right",
+                                         "preventDuplicates": false,
+                                         "onclick": null,
+                                          "showDuration": "300",
+                                          "hideDuration": "1000",
+                                           "timeOut": "5000",
+                                           "extendedTimeOut": "1000",
+                                           "showEasing": "swing",
+                                           "hideEasing": "linear",
+                                           "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                              
+
+
+                               });
+
+
+
+
+                          $("#spin-add-offre").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#fin_mission').prop('disabled',false); 
+                          }
+
+
+                       });
+
+
+                
+
+
+
+
+                  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+   {% endblock %}

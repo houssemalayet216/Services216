@@ -1,0 +1,319 @@
+{% extends '@Back/default/templatefournisseur.html.twig' %}
+{% block section_haider %}
+<section class="content-header">
+        <h1>
+        Suivi les demandes reçues
+        <small>Services 216</small>
+      </h1>
+      <ol class="breadcrumb">
+
+       
+        <li class="active"><i class="fa fa-list-alt"></i> Suivi les demandes Reçues</li>
+      </ol>
+    </section>
+{%endblock%}
+
+ {%block content%} 
+ 
+
+ 
+
+
+
+
+
+  <div class="row">
+
+
+
+
+<div class="col-md-12">
+
+        
+          <!-- /. box -->
+     
+<div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Suivi demandes Reçues</h3><br/>
+            
+
+
+
+
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="viewdemanderecu" class="table table-bordered table-striped" >
+                <thead>
+                <tr>
+                 <th class="text-center">l&apos;offre</th>
+                  <th class="text-center">Client</th>
+                 <th class="text-center">demande</th>
+                  <th class="text-center">Date du contacte </th>
+                  <th class="text-center">Status</th>
+                  <th class="text-center">Action</th>
+                </tr>
+                </thead>
+                
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>  
+
+
+
+
+
+
+
+<div class="modal fade" tabindex="-1" id="Modalsuividemanderecu" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" style="text-align:center;">Voir Demande</h4>
+      </div>
+      <div class="modal-body">
+        <form method='post' action='{{path('proposer_prix_voir')}}' id='formproposerprix'>
+          <div class="table-responsive">
+            <table class="table">
+             <div id="divviewdemanderecus">
+
+             </div>
+
+            </table>
+          </div>
+      </div>
+      </form>
+      <div class="modal-footer">
+       
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+
+
+
+
+
+
+
+<div class="modal fade" tabindex="-1" id="Modalproposerprix" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Proposer un prix</h4>
+      </div>
+      <div class="modal-body">
+        <form method='post' action='{{path('proposer_prix')}}' id='proposerprixform'>
+         
+          <input type='hidden'  name='idproposerprix' id='idproposerprix' />
+                <div class='col-md-6 form-group'>
+                
+              <input  type='number' id='prixproposer' name='prixproposer'  class='form-control'  placeholder='Proposer un prix'/>
+               <span class='text-danger' id='eureurproposer'></span>
+
+              </div>
+
+                <div class='col-md-6 form-group'>
+               <select name='typetarificationprix' class='form-control'>
+               <option disabled selected>Type Tarification</option>
+               <option value='eur'>Euro</option>
+               <option value='usd'>Dollar</option>
+
+               </select> 
+               <span class='text-danger' id='eureurtypetarificationprix'></span> 
+              
+              </div>
+
+              <div class='col-md-6 form-group'>
+                 <button type='submit' name='Proposer' id='Proposer'  class='btn btn-info btn-sm'> <span>Enregistrer</span><i id='spin-proposer-prix-modal'></i></button>
+                 </div>
+
+
+
+
+
+
+
+
+        </form>
+      </div>
+      <div class="modal-footer">
+       
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+
+
+
+
+
+
+<div class="modal fade" tabindex="-1" id="ModalRefuser" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Refuser demande</h4>
+      </div>
+      <div class="modal-body">
+         
+     <p>Êtes-vous sûr de refuser cet demande ?</p>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="refuser_demande"><span>Enregistrer</span><i id="spin_refuser_demande"></i></button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+
+
+
+
+
+<div class="modal fade" tabindex="-1" id="Modalfindemande" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Déclarer la fin du mission</h4>
+      </div>
+       
+       
+      <div class="modal-body">
+          <form method='post' action='{{path('cloturer_mission_demande')}}' id='form_cloture_demande'>
+          <input type="hidden" id="idpropositiondemande" name="idpropositiondemande" />
+<label>Etat du mission :</label>
+     
+      <div class="radio">
+  <label><input type="radio" id="optcompletedemande" name="optcompletedemande" value='success' checked>Mission complète avec succèss</label>
+
+</div>
+
+
+
+<div class="radio">
+  <label><input type="radio" id="optcompletedemande"  name="optcompletedemande" value='eureur'>Mission incomplète</label>
+</div>
+
+
+<div class="form-group" id="descriptioneureurdemanderecu">
+<label for="username">Décriver le problème :*</label>  
+<textarea rows="5" id="eureurmissiondescription" name="eureurmissiondescription" class="form-control"></textarea> 
+</div>
+
+
+ <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" id="fin_mission_demande"><span>Enregistrer</span><i id="spin_fin_mission_demande"></i></button>
+
+         </form>
+
+
+
+      </div>
+      <div class="modal-footer">
+       
+     
+      </div>
+      
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</div>
+
+
+
+
+{%endblock%}
+
+
+
+  {%block aside %}
+  {% endblock %}
+
+   {% block javascript %}
+    <script>
+
+    var viewdemanderecu;
+ 
+
+
+$(document).ready(function($){
+ 
+ viewdemanderecu=$("#viewdemanderecu").DataTable({
+     columnDefs: [
+    {
+        targets: -1,
+        className: 'dt-body-left'
+    }
+  ],
+
+  'destroy':true,
+   
+    'ajax':'/user/home/demande-recu',
+     'order': []
+});
+
+
+});
+
+
+
+
+
+
+
+    </script>
+
+
+
+   {% endblock %}

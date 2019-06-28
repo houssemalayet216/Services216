@@ -1,0 +1,236 @@
+<html>
+<head>
+<title>Facture</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="{{asset('/backFolder/dist/css/pdf.css')}}">
+</head>
+<style>
+	html,body{
+	height:100%;
+}
+
+
+
+
+
+
+body{
+
+	width:800px;
+    position: relative;
+	color:#222;
+	font-family: "Helvetica Neue",Arial,Verdana,sans-serif;
+    line-height: 1.4;
+
+}
+
+h1{
+
+font-size: 3em;
+font-weight: bold;
+margin:0 0 70px 0;	
+}
+
+
+.adress_label , .infos_label{
+	color:#555;
+	float:left;
+	width:105px;
+	text-align:right;
+}
+
+.adress_content , .infos_content{
+	margin-left:115px;
+	border-left:1px solid #CCCCCC;
+    padding-left:10px;
+}
+
+.adress-to{
+	position:absolute;
+	top:7px;
+	right:0;
+	width:50%;
+
+}
+
+
+.adress-from{
+	float:left;
+	width:50%;
+
+}
+
+
+.infos{
+	float:right;
+	width:50%;
+}
+
+
+.infos_content,.infos_label{
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+
+
+.cb{
+	clear:both;
+}
+
+.items{
+	margin: 50px 0;
+	width:100%;
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+
+.items tbody tr:nth-child(odd)
+{
+	background: #f6f6f6;
+}
+
+.items th{
+	
+	border:1px solid #CCCCCC;
+    border-top:none;
+    text-align: left;
+    padding: 10px 3px;
+    font-size: 0.9em;
+
+
+}
+
+.items td {
+	padding:10px;
+	border:1px solid  #CCCCCC;
+	border-right: none;
+	border-left: none;
+}
+
+
+.total{
+ background:transparent !important;
+
+}
+.total td{
+	border:none!important;
+	padding: 5px 10px;
+}
+
+.total-first td{
+	padding-top:28px;
+}
+
+.total-big td {
+	padding-top:10px;
+font-size:1.3em;
+font-weight: bold;
+}
+
+
+.total_label{
+	text-align: right;
+	background:transparent;
+}
+
+footer{
+	border-top:1px solid #CCCCCC;
+	position: absolute;
+	bottom: 0;
+	left:0;
+	right:0;
+	padding:1em 5px 0 5px;
+}
+</style>
+<body>
+<h1>Facture</h1>
+
+<div class="adress adress-from">
+<div class="adress_label">De</div>
+<div class="adress_content">
+<strong>{{facture.Agent.raison}}</strong><br>
+Responsable: {{facture.Agent.responsable}}<br>
+{{facture.Agent.adresse}}<br>
+{{facture.Agent.cp}}<br>
+SIRET:{{facture.Agent.tva}}<br>
+
+</div>
+</div>
+
+
+
+
+
+<div class="adress adress-to">
+<div class="adress_label">Pour</div>
+<div class="adress_content">
+<strong>{{facture.client.nom}} {{facture.client.prenom}}</strong><br>
+{{facture.client.pays}}<br>
+{{facture.client.adresse}}<br>
+{{facture.client.cp}}<br>
+
+
+</div>
+</div>
+
+
+
+
+<div class="infos">
+<div class="infos_label">Facture n°</div>
+<div class="infos_content"><strong>{{facture.id}}</strong></div>
+<div class="infos_label">Emis le</div>
+<div class="infos_content">{{facture.datepayment|date("m/d/Y H:i")}}</div>
+
+</div>
+
+<div class="cb">
+</div>
+
+
+<table class="items">
+<thead>
+<tr>
+<th>Description</th>
+<th style="78px">Prix HT</th>
+<th style="108px">Prix TTC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> Payement de service {{facture.annonce.service.titre}} ,{{facture.annonce.specialite.titre}}  </td>
+<td> {{facture.montant}} {{devis}} </td>
+<td> {{facture.montant}} {{devis}} </td>
+</tr>
+<tr class="total total-first">
+<td colspan="2" class="total_label"> Sous-total</td>
+<td > <strong> {{facture.montant}} {{devis}}</strong></td>
+</tr>
+
+
+<tr class="total">
+<td colspan="2" class="total_label"><strong> Taxe </strong></td>
+<td >  0 {{devis}}</td>
+</tr>
+
+
+
+<tr class="total total-big">
+<td colspan="2" class="total_label">Total</td>
+<td ><strong>  {{facture.montant}} {{devis}} </strong></td>
+</tr>
+
+</tbody>
+
+</table>
+
+
+<footer>
+Adhérant de services 216 ,acceptant à ce titre le payments par carte bleue
+
+</footer>
+
+
+
+
+</body>

@@ -1,0 +1,435 @@
+ {% extends '@Front/default/template.html.twig' %}
+
+
+
+
+{% block pageContainer %}
+
+
+ <div class="container">
+
+<div class="v2-formrech animo17-formrech">
+<div class="v2-formcontent " id="animo17-zf">
+
+<form method="POST" action="{{path('recherche_annonce')}}">
+<div class="row ">
+
+<div class="formrecherche  " >
+  <div class="form-group col-md-3">
+   
+    <select  name="option_front_recherche"">
+                           <option selected disabled value="" >Catégories</option>
+                          
+                           {%for optionrecherche in menu().optionsrecherches %}
+                           <option value="{{optionrecherche.id}}">{{optionrecherche.titre}}</option>
+                           {% endfor %}
+                      
+                        </select>
+
+
+
+
+  </div>
+
+    <div class="form-group col-md-3">
+    <input type="text"  name="mot_cle_front_recherche"  placeholder="Mot Cle">
+  </div>
+
+
+  <div class="form-group col-md-3">
+  
+
+         
+                             <select  name="ville_front_recherche">
+                             <option selected disabled value="" >Ville</option>
+                    <option value="Tunis">Tunis</option>
+                    <option value="Beja">Beja</option>
+                    <option value="Ariana">Ariana</option>
+                    <option value="Ben arous">Ben arous</option>
+                     <option value="Bizert">Bizert</option>
+                    <option value="Gabes">Gabes</option>
+                     <option value="Gafsa">Gafsa</option>
+                    <option value="Jendouba">Jendouba</option>
+                     <option value="Kairouan">Kairouan</option>
+                    <option value="Kasserine">kasserine</option>
+                     <option value="kébili">Kébili</option>
+                    <option value="Kef">Kef</option>
+                     <option value="Mahdia">Mahdia</option>
+                    <option value="Manouba">Manouba</option>
+                     <option value="Médnine">Médnine</option>
+                    <option value="Nabeul">Nabeul</option>
+                     <option value="Sfax">Sfax</option>
+                    <option value="Sidi Bouzid">Sidi Bouzid</option>
+                     <option value="Siliana">Siliana</option>
+                    <option value="Sousse">Sousse</option>
+                     <option value="Tataouine">Tataouine</option>
+                    <option value="Touzeur">Touzeur</option>
+                    
+                              </select>
+
+
+
+  </div>
+
+    <div class="form-group col-md-3">
+      <input type="submit" id="search-submit" value="Chercher" style="
+    margin-right: 80px;margin-bottom:6px;">
+    </div>
+
+</div>
+
+</div>
+</form>
+
+
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+       
+       
+          <div class="allpage">
+<div class="post_container filter_data_recherche">         
+
+
+
+
+
+
+
+             {% if annoncesrecherche is defined and annonces is defined and  annonces!=null  %}
+
+             
+                
+                {% for annonce in annoncesrecherche %}
+                
+
+              
+              <div class="annonce">
+<a href="{{path('single_annonce',{'id':annonce.id})}}">
+<div class="img img_annonce">
+{%if annonce.image !=null %}
+
+  <img src="{{asset('')}}uploads/logo/{{annonce.image}}"style="max-width:224px;max-height:150px;">
+{%else%}
+ <img src="{{asset('FrontFolder/images/petitannonce.jpg')}}" style="max-width:224px;max-height:150px;">
+{%endif%}
+ 
+
+
+
+</div>
+
+
+
+
+
+
+<div class="txtannonce">
+<div class="flol" style="max-width:270px;">
+<h3 style="padding:0 !important;">
+{{annonce.titre}}
+</h3>
+<cite style="text-transform:capitalize">  </cite>
+<h3 class="lo">
+{%if annonce.typeAnnance=='demande'%}
+{{annonce.user.nom}} {{annonce.user.prenom}}
+{%else%}
+{{annonce.user.raison}}
+{%endif%}
+</h3>
+</div>
+<div class="ergov3-priceannonce">
+</div>
+<div class="fin"></div>
+<cite class="texte">
+{{annonce.description}}
+</cite>
+</div>
+
+
+
+<div class="ergov3-bottomannonce ergov3-bottomannmini">
+<div class="ergov3-voirann">
+<div class="ergov3-rightmini ergov3-rightminianim">
+
+<span>
+{%if annonce.typeAnnance=='demande'%}
+(Demande)
+{%else%}
+(Offre)
+{%endif%}
+
+</span>
+</div>
+<div class="fin"></div>
+<span class="voirann voirannanim">Voir l'annonce</span>
+</div>
+<div class="fin"></div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="fin"></div>
+
+</a>  
+</div>
+<div class="fin"></div>
+            
+   
+
+               
+
+
+
+
+
+                {% endfor%}
+
+             <div  style="margin-left:400px;">{{ knp_pagination_render(annoncesrecherche) }}</div>
+
+
+             {%endif%}
+
+            {%if annonces is defined and  annonces == null %}
+            <div><h4>Aucun Annonce trouvé</h4></div>
+
+             {%endif%}
+
+
+         
+
+
+
+                    </div>
+
+
+                 
+                  
+
+
+
+
+
+
+
+
+
+                                                
+<div class="sidefilter sidefiltere">
+  <div class="blockright">
+    <h3 >Filtrer:</h3>
+
+
+                            
+                             
+
+                                
+
+                         {%if options is defined and options != null %}
+                          
+                                  <div class="row espacefilter">
+                  <div class="col-md-12 form-group text-center ">
+                              <select class="common_selector_recherche activite_annonce_recherche">
+                              <option selected disabled value="" >Services</option>
+                              {%for option in options%}
+                               
+                                 <option value="{{option.id}}">{{option.titre}}</option>
+
+                                 {% endfor%}
+
+                              </select>
+                              </div>
+                              </div>
+                                
+
+                         {%endif%}
+                             
+                              
+
+
+
+
+
+
+                               <div class="row espacefilter">
+                  <div class="col-md-12 form-group text-center ">
+                              <select class="common_selector_recherche type_annonce_recherche">
+                               <option selected disabled value="" >Type d&apos;annonce</option>
+                              <option value="demande">Demande</option>
+                              <option value="offre">Offre</option>
+                              </select>
+                              </div>
+                              </div>
+                                
+                               
+
+                                  <div class="row espacefilter">
+                  <div class="col-md-12 form-group text-center ">
+                              <select class=" common_selector_recherche time_annonce_recherche">
+                              <option selected disabled value="" >Publier depuis</option>
+                              <option value="1">24 heures</option>
+                              <option value="7">Une semaine</option>
+                              <option value="14">Deux semaines</option>
+                              <option value="30">Mois</option>
+                              </select>
+                              </div>
+                              </div>
+
+
+                            
+
+
+
+
+                                  <div class="row espacefilter">
+                  <div class="col-md-12 form-group text-center ">
+                              <select class=" common_selector_recherche ville_annonce_recherche ville_filter_recherche villeannonce">
+                              <option selected value="" disabled>Ville</option>
+                               <option value="Tunis">Tunis</option>
+                    <option value="Beja">Beja</option>
+                    <option value="Ariana">Ariana</option>
+                    <option value="Ben arous">Ben arous</option>
+                     <option value="Bizert">Bizert</option>
+                    <option value="Gabes">Gabes</option>
+                     <option value="Gafsa">Gafsa</option>
+                    <option value="Jendouba">Jendouba</option>
+                     <option value="Kairouan">Kairouan</option>
+                    <option value="Kasserine">kasserine</option>
+                     <option value="kébili">Kébili</option>
+                    <option value="Kef">Kef</option>
+                     <option value="Mahdia">Mahdia</option>
+                    <option value="Manouba">Manouba</option>
+                     <option value="Médnine">Médnine</option>
+                    <option value="Nabeul">Nabeul</option>
+                     <option value="Sfax">Sfax</option>
+                    <option value="Sidi Bouzid">Sidi Bouzid</option>
+                     <option value="Siliana">Siliana</option>
+                    <option value="Sousse">Sousse</option>
+                     <option value="Tataouine">Tataouine</option>
+                    <option value="Touzeur">Touzeur</option>
+                    
+                              </select>
+                              </div>
+                              </div>
+
+
+                  
+                            <div class="row espacefilter">
+                  <div class="col-md-12 form-group text-center ">
+                       <select class=" common_selector_recherche type_visite_recherche">
+                       <option selected disabled value="" >Type Visite</option>
+                              <option value="Une">Une seule visite</option>
+                              <option value="plusieurs">Plusieurs visite</option>
+                              </select>
+
+                    </div> 
+                    </div>        
+
+
+
+
+
+
+
+                            </div>
+                         
+
+                       
+
+
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+             </div>
+
+
+
+            </div>
+            </section>
+
+            
+            <style>
+            .find{
+             
+            height:150px;
+
+          
+            }
+
+
+            #loading_recherche{
+               text-align: center;
+               background:url(' {{asset('uploads/loader.gif')}}') no-repeat center;
+               height:150px;
+                    } 
+          
+            </style>
+
+
+{%endblock%}
+
+{% block javascript %}
+<script>
+
+
+
+
+
+</script>
+
+
+
+
+{%endblock%}
+

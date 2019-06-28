@@ -1,0 +1,546 @@
+ {% extends '@Front/default/template.html.twig' %}
+
+
+
+
+
+{% block pageContainer %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="body">
+
+
+<div class="container">
+
+
+
+
+
+
+
+{%if eureur != false  %}
+<div role="alert" class="alert alert-danger alert-dismissible" style="margin-top:20px;"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span> </button><strong>Eureur!</strong>Vous ne pouvez pas contacter cet annonce </div>
+
+{%endif%}
+
+
+
+{% if   dejacontacter != false%}
+
+<div role="alert" class="alert alert-danger alert-dismissible" style="margin-top:20px;"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span> </button><strong>Eureur!</strong>Vous avez déja contacter cet annonce </div>
+
+
+{%endif%}
+
+<div class="alertcontacterdemande" style="margin-top:30px;">
+
+</div>
+
+
+<div id="makedisabledemande">
+        
+   <div class="page-content">
+    <div class="form-v5-content">
+            
+       
+
+         
+         <form method="POST" action="{{path('offre_pour_demande')}}" id="form_contacter_demande" class="form-detail"  >
+          <h2>Proposer votre offre</h2>
+<input type="hidden" value="{{annonce.id}}" id="demandeid" name="demandeid"/>
+<input type="hidden" value="{{annonce.user.id}}" id="createurid" name="createurid"/>
+
+
+                       <div class="row">
+           <div class="col-md-12">
+            <div class="form-group">
+                  <label for="username" class="label-elem">Titre :*</label>
+              <input  type="text" id="titrecontact" name="titrecontact" placeholder="Titre" />                
+                    <span class="text-danger" id="data.titrecontact"></span>      
+       </div>
+       </div>
+       </div>
+
+
+       
+                       <div class="row">
+           <div class="col-md-12">
+            <div class="form-group">
+
+
+
+                  <label for="username" class="label-elem">Description :*</label>
+              <textarea  type="text" id="descriptioncontact" name="descriptioncontact"  placeholder="Description" ></textarea>                
+                    <span class="text-danger" id="data.descriptioncontact"></span>      
+       </div>
+       </div>
+       </div>
+
+
+
+                       <div class="row">
+           <div class="col-md-6">
+            <div class="form-group">
+                  <label for="username" class="label-elem">Prix :*</label>
+              <input  type="number" id="prixcontact" name="prixcontact"  placeholder="Prix" />                
+                    <span class="text-danger" id="data.prixcontact"></span>      
+       </div>
+       </div>
+
+
+         <div class="col-md-6">
+            <div class="form-group">
+                  <label for="username" class="label-elem">Devis :*</label>
+              <select id="prixdevis" name="prixdevis">
+              <option disabled selected>Devis</option>
+              <option value="eur">Euro</option>
+              <option value="USD">USD</option>
+              </select>               
+                    <span class="text-danger" id="data.devis"></span>      
+       </div>
+       </div>
+                       
+     
+       </div> 
+
+
+               <div class="row ">
+             <div class="col-md-12">
+            <div class="form-group">
+
+                  <label for="username" class="label-elem">Email :*</label>
+              <input  type="email" id="emailcontact" name="emailcontact"  placeholder="Email" />                
+                    <span class="text-danger" id="data.prixcontact"></span>      
+       </div> 
+       </div>
+       </div>     
+
+
+
+                       <div class="row">
+           <div class="col-md-6">
+            <div class="form-group">
+                  <label for="username" class="label-elem">Télephone :*</label>
+              <input  type="text" id="telephonecontact" name="telephonecontact"  placeholder="Téléphone" />                
+                         
+       </div>
+       </div>
+       
+
+             
+                      
+           <div class="col-md-6">
+            <div class="form-group">
+                  <label for="username" class="label-elem">Fix :*</label>
+              <input  type="text" id="fixcontact" name="fixcontact"  placeholder="Fix" />                
+                     
+       </div> 
+       </div>
+       </div>
+
+
+
+                
+                       <div class="row">
+           <div class="col-md-12">
+            <div class="form-group">
+                  <label for="username" class="label-elem">Autres :*</label>
+              <textarea  type="text" id="autrescontact" name="autrescontact"   placeholder="Autres"></textarea>                
+                    <span class="text-danger" id="data.autrescontact"></span>      
+       </div>
+       </div>
+       </div>
+
+
+
+
+                       <div class="row">
+           <div class="col-md-12">
+            <div class="form-group">
+                 
+                 <div>
+  <input type="checkbox" id="cordonneecompte" name="cordonneecompte" value='coordonnées'>
+  <label  class="notlabel">Utiliser vos coordonnées du compte   </label>
+</div>                
+ 
+
+                 
+           </div>
+           </div>
+           </div>
+
+
+
+
+
+                       <div class="row">
+           <div class="col-md-12">
+            <div class="form-group">
+                 
+                 <div>
+  <input type="checkbox" id="acceptercontact" name="acceptercontact" value='accepter'>
+  <label  class="notlabel">Accepter d&apos;afficher vos coordonnées   </label>
+</div>                
+ 
+
+                 
+       </div>
+       </div>
+       </div> 
+
+
+{%if eureur == false and dejacontacter == false %}
+ <div class="form-row-last">
+   <button type="submit" class="btn btn-primary" id="btn_add_offre_demande"> <span>Enregistrer</span><i id="spin-add-offre-offre-contact"></i></button>
+</div>
+
+{% endif %}
+
+
+
+       </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+           </div>
+        </div>
+       </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+ </div>
+
+
+ <style>
+.is_disabled{
+  opacity: .5;
+  pointer-events: none;
+}
+</style>
+
+    </section>
+
+    {%endblock%}
+
+{% block javascript %}
+
+
+<script>
+
+
+
+    $('#btn_add_offre_demande').click(function(e){
+                  e.preventDefault();
+                    $('#btn_add_offre_demande').prop('disabled',true);
+                  $("#spin-add-offre-offre-contact").addClass('fa fa-spinner fa-spin fa-register');
+
+
+                    var titre=$('#titrecontact').val();
+                  var description=$('#descriptioncontact').val();
+                  var prix=$('#prixcontact').val();
+               
+                  
+                   var errorArrayContacterDemande=['data.titrecontact','data.descriptioncontact','data.prixcontact'];
+                    var formcontacterdemande = document.getElementById("form_contacter_demande");
+
+
+
+                     if(titre=="")
+                  {
+                       document.getElementById('data.titrecontact').textContent='Ce champ ne doit pas etre vide ';
+                     $("#spin-add-offre-offre-contact").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_add_offre_demande').prop('disabled',false); 
+                  }
+
+                    
+                    if(description=="")
+                  {
+                       document.getElementById('data.descriptioncontact').textContent='Ce champ ne doit pas etre vide ';
+                        $("#spin-add-offre-offre-contact").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_add_offre_demande').prop('disabled',false); 
+                  }
+                  
+
+                    if(prix=="")
+                  {
+                       document.getElementById('data.prixcontact').textContent='Ce champ ne doit pas entre vide ';
+                        $("#spin-add-offre-offre-contact").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_add_offre_demande').prop('disabled',false);  
+                  }
+
+             
+
+
+                 
+                  
+
+
+
+
+
+
+                        $('#titrecontact').change(function(){
+                  
+                 if($.trim(document.getElementById('data.titrecontact').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.titrecontact').textContent="";
+                                  }
+                    
+                                 });
+
+
+                                    $('#descriptioncontact').change(function(){
+                  
+                 if($.trim(document.getElementById('data.descriptioncontact').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.descriptioncontact').textContent="";
+                                  }
+                    
+                                 });
+
+                   $('#prixcontact').change(function(){
+                  
+                 if($.trim(document.getElementById('data.prixcontact').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.prixcontact').textContent="";
+                                  }
+                    
+                                 });
+
+                                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+                 if(titre!=="" &&description!=="" &&prix!=="")
+               {
+               
+
+                      $.ajax({
+                       dataType:"json",
+                       url:$("#form_contacter_demande").attr('action'),
+                       type:$("#form_contacter_demande").attr('method'),
+                        data:new FormData(formcontacterdemande),
+                       contentType:false,
+                       processData:false,
+                       cache:false,
+                       success:function (data,status,object)
+                       {
+
+                       
+                       var message=data.message;
+                       if(data.success==true)
+                          {
+
+
+                         
+                               errorArrayContacterDemande.forEach(function(error){
+                                  if($.trim(document.getElementById(error).textContent) !== "")
+
+                                  {
+                                    document.getElementById(error).textContent="";
+                                  }
+                               });
+                             
+                               
+                          
+                               
+                              $('#form_contacter_demande')[0].reset();
+                          
+
+                  $('.alertcontacterdemande').html('<div role="alert" class="alert alert-success alert-dismissible">'+ '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span> </button>'+'<strong>Success!</strong> '+message +' </div>');
+
+                          
+                            
+
+                          }
+
+                          else{
+                          
+                             
+                               
+                              $('#form_contacter_demande')[0].reset();
+  $('.alertcontacterdemande').html('<div role="alert" class="alert alert-danger alert-dismissible">'+ '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span> </button>'+'<strong>Eureur!</strong> '+message +' </div>');
+
+
+
+
+                            if(data.errors)
+                            {
+                              errorArrayContacterDemande.forEach(function(error){
+
+                               if($.trim(document.getElementById(error).textContent) !== "")
+
+                                  {
+                                    document.getElementById(error).textContent="";
+                                  }
+
+                              });
+
+                              data.errors.forEach(function(error)
+                              {
+
+                               document.getElementById(error.elementId).textContent=error.errorMessage;
+                              });
+
+
+                             $("#spin-add-offre-offre-contact").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_add_offre_demande').prop('disabled',false); 
+
+                            }
+
+                          }
+                                
+
+                        
+                           $("#spin-add-offre-offre-contact").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_add_offre_demande').prop('disabled',false); 
+                          
+                          
+                          },
+                          error:function (data,status,object)
+                          {
+                            
+                             
+                               
+                              $('#form_contacter_demande')[0].reset();
+                                $('.alertcontacterdemande').html('<div role="alert" class="alert alert-danger alert-dismissible">'+ '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span> </button>'+'<strong>Eureur!</strong> '+data.message +' </div>');
+
+
+
+
+                      $("#spin-add-offre-offre-contact").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_add_offre_demande').prop('disabled',false); 
+                          }
+
+
+
+
+                       });
+
+
+
+
+                    }
+
+
+
+
+
+
+
+                  });
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{%if dejacontacter !=false or eureur !=false %}
+<script>
+
+$('#makedisabledemande').addClass('is_disabled');
+</script>
+
+{%endif%}
+
+
+
+
+
+    {%endblock%}
+

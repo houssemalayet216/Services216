@@ -1,0 +1,56 @@
+admin:
+    resource: "@AdminBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+payment:
+    resource: "@PaymentBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+frannonce:
+    resource: "@FrannonceBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+message:
+    resource: "@MessageBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+calendar:
+    resource: "@CalendarBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+contacter:
+    resource: "@ContacterBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+filter:
+    resource: "@FilterBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+notification:
+    resource: "@NotificationBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+back:
+    resource: "@BackBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+front:
+    resource: "@FrontBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

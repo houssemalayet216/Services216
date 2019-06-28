@@ -1,0 +1,445 @@
+{% extends '@Back/default/templateclient.html.twig' %}
+{% block section_haider %}
+<section class="content-header">
+        <h1>
+        Suivi demandes
+        <small>Services 216</small>
+      </h1>
+      <ol class="breadcrumb">
+
+      
+        <li class="active"><i class="fa fa-hourglass-half"></i>Suivi demandes</li>
+      </ol>
+    </section>
+{%endblock%}
+
+ {%block content%} 
+ 
+
+ 
+
+
+
+
+
+  <div class="row">
+
+
+
+
+<div class="col-md-12">
+
+        
+          <!-- /. box -->
+     
+<div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Suivi demandes</h3><br/>
+            
+
+
+
+
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="clientviewdemande" class="table table-bordered table-striped" >
+                <thead>
+                <tr>
+                  <th class="text-center">Agent/Société</th>
+                  <th class="text-center">l&apos;offre</th>
+                 <th class="text-center">demande</th>
+                  <th class="text-center">Date publication </th>
+                  <th class="text-center">Status</th>
+                  <th class="text-center">Action</th>
+                </tr>
+                </thead>
+                
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>  
+
+
+
+
+
+
+
+<div class="modal fade" tabindex="-1" id="Modalsuividemande" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" style="text-align:center;">Voir Demande</h4>
+      </div>
+      <div class="modal-body">
+          <div class="table-responsive">
+            <table class="table">
+             <div id="divviewdemande">
+
+             </div>
+
+            </table>
+          </div>
+      </div>
+      <div class="modal-footer">
+       
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+
+<div class="modal fade" tabindex="-1" id="Modalannulerdemande" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Annuler opération</h4>
+      </div>
+      <div class="modal-body">
+        <p>Êtes-vous sûr d&apos;annuler cet mission ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="annuler_demande"><span>Annuler</span><i id="spin-annuler-demande"></i></button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+
+
+
+
+
+<div class="modal fade" tabindex="-1" id="Evaluation" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Evaluez l'offre</h4>
+      </div>
+      <div class="modal-body">
+       
+
+      <form  method="POST" action="{{path('Evaluez')}}" id="Evaluationform">
+      <input type="hidden" name="contacternote" id="contacternote">
+
+      <input type="radio" name="note" value="0"> 0/5<br>
+  <input type="radio" name="note" value="1" checked> 1/5<br>
+  <input type="radio" name="note" value="2"> 2/5<br>
+  <input type="radio" name="note" value="3"> 3/5<br>
+   <input type="radio" name="note" value="4"> 4/5<br>
+    <input type="radio" name="note" value="5"> 5/5<br>
+</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="evaluez-offre"><span>Evaluez</span><i id="spin-evaluez-offre"></i></button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="modal fade " tabindex="-1" id="Paymentmydemande" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header ">
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+      
+    
+
+ <div class="container">
+<div class="row">
+
+<div class="col-xs-12 col-md-4 col-md-offset-1">
+
+
+
+<div class="panel panel-default credit-card-box text-center">
+<div class="panel-heading display-table" >
+<div class="row display-tr" >
+<h3 class="panel-title display-td" >Payment Details</h3>
+<div class="display-td" >                            
+<img class="img-responsive pull-right" src="http://i76.imgup.net/accepted_c22e0.png">
+</div>
+</div>                    
+</div>
+<div class="panel-body">
+<form  id="paymentdemande-form" method="POST" action="{{path('payment_demande')}}">
+
+
+
+<input type="hidden" id="iddemandepayment" name="iddemandepayment"/>
+
+
+
+<div class="row">
+<div class="col-xs-12">
+<div class="form-group">
+<label >Name complete :</label>
+
+<input 
+type="text"
+class="form-control"
+name="nomdemandepayment"
+placeholder="Name Complete"
+required  
+/>
+
+
+</div>                            
+</div>
+</div>
+
+
+
+
+
+
+
+
+<div class="row">
+<div class="col-xs-12">
+<div class="form-group">
+<label >Email</label>
+
+<input 
+type="email"
+class="form-control"
+name="emaildemandepayment"
+placeholder="Email"
+
+required  
+/>
+
+
+</div>                            
+</div>
+</div>
+
+
+
+
+
+<div class="row">
+<div class="col-xs-12">
+<div class="form-group">
+<label >CARD NUMBER</label>
+<div class="input-group">
+<input 
+type="tel"
+class="form-control"
+name="carddemandepayment"
+placeholder="Valid Card Number"
+ data-stripe="number"
+required  
+/>
+
+<span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+
+</div>
+</div>                            
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+<div class="col-xs-7 col-md-7">
+<div class="form-group">
+<label ><span class="hidden-xs">EXPIRATION </span><span class="visible-xs-inline">EXP</span> Month</label>
+<input 
+type="tel" 
+class="form-control" 
+name="moisdemandepayment"
+placeholder="MM"
+data-stripe="exp_month"
+required 
+/>
+</div>
+</div>
+
+<div class="col-xs-5 col-md-5 pull-right">
+<div class="form-group">
+<label >YEAR EXPIRATION</label>
+<input 
+type="tel" 
+class="form-control"
+name="yeardemandepayment"
+placeholder="YY"
+data-stripe="exp_year"
+
+required
+/>
+</div>
+</div>
+</div>
+
+
+<div class="row">
+<div class="col-xs-12">
+<div class="form-group">
+<label>CVC</label>
+<input type="text" class="form-control"  data-stripe="cvc"   name="cvcdemandepayment" />
+</div>
+</div>                        
+</div>
+
+
+<div class="row">
+<div class="col-xs-12">
+<button class="btn btn-success btn-lg btn-block" type="submit">Payment de <span class="prixdemandeproposition"></span></button>
+</div>
+</div>
+
+
+
+
+
+
+</form>
+</div>
+</div>            
+<!-- CREDIT CARD FORM ENDS HERE -->
+
+
+</div>            
+
+
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+      </div>
+   
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</div>
+
+
+
+
+{%endblock%}
+
+
+
+  {%block aside %}
+  {% endblock %}
+
+   {% block javascript %}
+    <script>
+
+    var viewdemandeclient;
+ 
+
+
+$(document).ready(function($){
+ 
+ viewdemandeclient=$("#clientviewdemande").DataTable({
+     columnDefs: [
+    {
+        targets: -1,
+        className: 'dt-body-left'
+    }
+  ],
+ 
+  'destroy':true,
+   
+    'ajax':'/user/home/demande-envoyer',
+     'order': []
+});
+
+
+});
+
+
+
+
+
+
+
+    </script>
+
+
+
+   {% endblock %}

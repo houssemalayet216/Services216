@@ -1,0 +1,944 @@
+{% extends '@Front/default/template.html.twig' %}
+
+
+
+
+{% block pageContainer %}
+
+
+  
+
+
+
+
+
+      
+            
+            <div class="container">
+
+              <div class="alertpublierdemande" style="margin-top:30px;">
+              </div>
+
+         
+
+
+
+
+
+
+   
+
+
+
+
+
+ {%if nbrmembre < 1 %}
+
+<div class="alert alert-info alert-dismissible" class="text-center" >
+            <span id="alert_member" class="alert_member"> Vous devez ajouter au moin un membre famille !!<span>
+              </div>
+
+
+{% endif %}
+
+
+
+{{ form_start(form, {'method': 'post', 'action': path('create_annonce'), 'attr': {'id':'add-annonce-form','class':'steps'}}) }}
+
+
+ <ul id="progressbar">
+    <li class="active">Demandes</li>
+    <li>Personalisez</li>
+    <li>Coordonnées</li>
+    <li>Membres</li>
+  </ul>
+
+
+        <fieldset>
+    <h2 class="fs-title">Demandes</h2>
+    <h3 class="fs-subtitle">Précisez des informations générales sur votre demande</h3>
+                   
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+                  <label for="username">Service :*</label>
+                  {{form_widget(form.service ,{'id':'service_demande'})}}                 
+                    <span class="text-danger" id="data.service"></span>
+
+                 
+       </div>
+       </div>
+
+
+           <div class="col-md-6">
+            <div class="form-group">
+                  <label for="username">Catégories :*</label>
+                      <select  id="option_demande" name="option_demande">
+                      </select>           
+                    <span class="text-danger" id="data.option"></span>
+
+                 
+       </div>
+       </div>
+       </div>
+
+
+     
+          <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+     <div  id="missiondemande">
+
+     </div>
+     </div>
+     </div>
+     </div>
+
+
+
+
+
+          <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+                  <label for="username">Titre :*</label>
+                  {{form_widget(form.titre ,{'id':'titre_demande','attr':{'placeholder':'Titre'}})}}                 
+                    <span class="text-danger" id="data.titre"></span>
+
+                 
+       </div>
+       </div>
+       </div>
+
+
+
+      
+
+
+  
+          <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+                  <label for="username">Description :*</label>
+                  {{form_widget(form.description ,{'id':'description_demande','attr':{'placeholder':'Description'}})}}                 
+                    <span class="text-danger" id="data.description"></span>
+
+                 
+       </div>
+       </div>
+       </div>
+
+
+
+
+ <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+                 
+                 <div>
+  <input type="checkbox" id="aporter-demande" name="aporter-demande" value='aporter'>
+  <label class="notlabel">Le jobber apporte ses outils  </label>
+</div>                
+  <span class="text-danger" id="data.aporter"></span>
+
+                 
+         </div>
+       </div>
+       </div>
+
+
+
+
+
+
+
+
+
+   <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+      
+
+            <div>     
+               
+  <input type="checkbox" id="fourniture-demande" name="fourniture-demande" value='acheter'>
+  <label class="notlabel">Le jobber doit acheter les fournitures  indiqué dans l&apos;annonce</label>
+  </div>
+
+  <span class="text-danger" id="data.fourniture"></span>
+
+                 
+       </div>
+       </div>
+       </div>
+ 
+
+
+
+  
+
+
+
+
+
+          <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+                  <label for="username">Détails :</label>
+                  {{form_widget(form.autres ,{'id':'autres_demande','attr':{'placeholder':'Détails'}})}}                 
+                    <span class="text-danger" id="data.autres"></span>
+
+                  </div>
+       </div>
+       </div>
+      
+
+              {% if nbrmembre < 1 %}
+                   
+                 
+              
+                {%else%}
+                
+                  <input type="button" data-page="1" name="next" id="next1-annonce" class="next action-button" value="Suivant"/>
+                
+                {%endif%}
+
+
+          </fieldset>
+
+
+          <fieldset>
+    <h2 class="fs-title">Personalisez</h2>
+    <h3 class="fs-subtitle">Personalisez votre demande</h3>
+
+                <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <div  id="listedesproduits">
+
+              </div>
+              </div>
+              </div>
+              </div>
+
+          
+
+              <div  id="divdeplacement">
+             
+              </div>
+
+
+
+
+
+
+
+
+                   <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+                  <label for="username">Récurence du besoin *:</label>
+                  {{form_widget(form.typeVisite ,{'id':'typevisite_demande','attr':{'placeholder':'Recurence du besoin'}})}}                 
+                    <span class="text-danger" id="data.typeVisite"></span>
+
+                 
+                   </div>
+                   </div>
+                   </div>
+
+
+                           <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+                  <label for="username">Sélectionnez les dates corresponds a votre demande *:</label>
+                           
+
+                          <input type="text" id="datedemande" name="datedemande"  placeholder="Dates Visites" />    
+                    <span class="text-danger" id="data.dateVisite"></span>
+
+                 
+       </div>
+       </div>
+       </div>
+
+
+
+
+
+                               <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+                  <label for="username">Sélectionnez le temp correspond a votre demande *:</label>
+                           {{form_widget(form.datePrevu ,{'id':'timedemande','attr':{'class': 'form-control','placeholder':'Temp prévu'}})}}       
+                    <span class="text-danger" id="data.datePrevu"></span>
+
+                 
+       </div>
+       </div>
+       </div>
+
+
+
+
+                  <input type="button" data-page="2" name="previous" id="previous1-annonce" class="previous action-button" value="Previous" />
+    <input type="button" data-page="2"  name="next"  id="next2-annonce"class="next action-button" value="Next" />
+          
+
+                  </fieldset>
+
+            
+
+
+     
+             
+
+               <fieldset>
+    <h2 class="fs-title">Coordonnéer</h2>
+    <h3 class="fs-subtitle">Publier votre cordonnées</h3>
+
+            
+          
+           <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+
+                  <label for="username">Téléphone :*</label>
+                        <input type="number" id="telephone_demande" name="telephone_demande"/>          
+                    <span class="text-danger" id="data.telephone"></span>
+
+                 
+       </div>
+       </div>
+     
+          <div class="col-md-6">
+            <div class="form-group">
+                  <label for="username">Téléphone 2 :</label>
+                        <input type="number" id="telephone2_demande" name="telephone2_demande" >          
+                    <span class="text-danger" id="data.telephoneII"></span>
+
+                 
+       </div>
+       </div>
+       </div>
+
+
+
+                       <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+                  <label for="username">Fix :</label>
+                        <input type="number" id="fix_demande" name="fix_demande" >          
+                    <span class="text-danger" id="data.fix"></span>
+
+                 
+       </div>
+       </div>
+     
+
+
+                
+          <div class="col-md-6">
+            <div class="form-group">
+                  <label for="username">Email :*</label>
+                        <input type="email" id="email_demande" name="email_demande" >          
+                    <span class="text-danger" id="data.email"></span>
+
+                 
+       </div>
+         </div>
+       </div>
+
+                       <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+                  <label for="username">Pays :*</label>
+                       
+
+                        <select  id="ville_demande" name="ville_demande" >
+                          <option value="Åland Islands">Åland Islands</option>
+                          <option value="Afghanistan">Afghanistan</option>
+                          <option value="Albania">Albania</option>
+                          <option value="Algeria">Algeria</option>
+                          <option value="Andorra">Andorra</option>
+                          <option value="Angola">Angola</option>
+                          <option value="Anguilla">Anguilla</option>
+                          <option value="Antarctica">Antarctica</option>
+                          <option value="Antigua et Barbuda">Antigua et Barbuda</option>
+                          <option value="Argentina">Argentina</option>
+                          <option value="Armenia">Armenia</option>
+                          <option value="Aruba">Aruba</option>
+                          <option value="Australia">Australia</option>
+                          <option value="Austria">Austria</option>
+                          <option value="Azerbaijan">Azerbaijan</option>
+                          <option value="Bahamas">Bahamas</option>
+                          <option value="Bahrain">Bahrain</option>
+                          <option value="Bangladesh">Bangladesh</option>
+                          <option value="Barbados">Barbados</option>
+                          <option value="Belarus">Belarus</option>
+                          <option value="Belau">Belau</option>
+                          <option value="Belgium">Belgium</option>
+                          <option value="Belize">Belize</option>
+                          <option value="Benin">Benin</option>
+                          <option value="Bermuda">Bermuda</option>
+                          <option value="Bhutan">Bhutan</option>
+                          <option value="Bolivia">Bolivia</option>
+                          <option value="Saint Eustatius">Bonaire, Saint Eustatius and Saba</option>
+                          <option value="Bosnia">Bosnia and Herzegovina</option>
+                          <option value="Botswana">Botswana</option>
+                          <option value="Bouvet">Bouvet Island</option>
+                          <option value="Brazil">Brazil</option>
+                          <option value="British Indian ">British Indian Ocean Territory</option>
+                          <option value="British Virgin">British Virgin Islands</option>
+                          <option value="Brunei">Brunei</option>
+                          <option value="Bulgaria">Bulgaria</option>
+                          <option value="Burkina Faso">Burkina Faso</option>
+                          <option value="Burundi">Burundi</option>
+                          <option value="Cambodia">Cambodia</option>
+                          <option value="Cameroon">Cameroon</option>
+                          <option value="Canada">Canada</option>
+                          <option value="Cape Verde">Cape Verde</option>
+                          <option value="Cayman Islands">Cayman Islands</option>
+                          <option value="Central African Republic">Central African Republic</option>
+                          <option value="Chad">Chad</option>
+                          <option value="Chile">Chile</option>
+                          <option value="China">China</option>
+                          <option value="Christmas Island">Christmas Island</option>
+                          <option value="CC">Cocos (Keeling) Islands</option>
+                          <option value="Colombia">Colombia</option>
+                          <option value="KM">Comoros</option>
+                          <option value="CG">Congo (Brazzaville)</option>
+                          <option value="CD">Congo (Kinshasa)</option>
+                          <option value="CK">Cook Islands</option>
+                          <option value="Costa Rica">Costa Rica</option>
+                          <option value="Croatia">Croatia</option>
+                          <option value="CU">Cuba</option>
+                          <option value="CW">CuraÇao</option>
+                          <option value="Cyprus">Cyprus</option>
+                          <option value="Czech Republic">Czech Republic</option>
+                          <option value="Denmark">Denmark</option>
+                          <option value="DJ">Djibouti</option>
+                          <option value="DM">Dominica</option>
+                          <option value="DO">Dominican Republic</option>
+                          <option value="EC">Ecuador</option>
+                          <option value="Egypt">Egypt</option>
+                          <option value="SV">El Salvador</option>
+                          <option value="GQ">Equatorial Guinea</option>
+                          <option value="ER">Eritrea</option>
+                          <option value="EE">Estonia</option>
+                          <option value="ET">Ethiopia</option>
+                          <option value="FK">Falkland Islands</option>
+                          <option value="FO">Faroe Islands</option>
+                          <option value="FJ">Fiji</option>
+                          <option value="Finland">Finland</option>
+                          <option value="France">France</option>
+                          <option value="GF">French Guiana</option>
+                          <option value="PF">French Polynesia</option>
+                          <option value="TF">French Southern Territories</option>
+                          <option value="GA">Gabon</option>
+                          <option value="GM">Gambia</option>
+                          <option value="Georgia">Georgia</option>
+                          <option value="Germany">Germany</option>
+                          <option value="Ghana">Ghana</option>
+                          <option value="GI">Gibraltar</option>
+                          <option value="Greece">Greece</option>
+                          <option value="GL">Greenland</option>
+                          <option value="GD">Grenada</option>
+                          <option value="GP">Guadeloupe</option>
+                          <option value="GT">Guatemala</option>
+                          <option value="GG">Guernsey</option>
+                          <option value="GN">Guinea</option>
+                          <option value="GW">Guinea-Bissau</option>
+                          <option value="GY">Guyana</option>
+                          <option value="HT">Haiti</option>
+                          <option value="HM">Heard Island and McDonald Islands</option>
+                          <option value="HN">Honduras</option>
+                          <option value="HK">Hong Kong</option>
+                          <option value="Hungary">Hungary</option>
+                          <option value="IS">Iceland</option>
+                          <option value="IN">India</option>
+                          <option value="ID">Indonesia</option>
+                          <option value="IR">Iran</option>
+                          <option value="IQ">Iraq</option>
+                          <option value="IM">Isle of Man</option>
+                          <option value="IL">Israel</option>
+                          <option value="IT">Italy</option>
+                          <option value="CI">Ivory Coast</option>
+                          <option value="JM">Jamaica</option>
+                          <option value="Japan">Japan</option>
+                          <option value="JE">Jersey</option>
+                          <option value="JO">Jordan</option>
+                          <option value="KZ">Kazakhstan</option>
+                          <option value="KE">Kenya</option>
+                          <option value="KI">Kiribati</option>
+                          <option value="KW">Kuwait</option>
+                          <option value="KG">Kyrgyzstan</option>
+                          <option value="LA">Laos</option>
+                          <option value="LV">Latvia</option>
+                          <option value="Lebanon">Lebanon</option>
+                          <option value="LS">Lesotho</option>
+                          <option value="LR">Liberia</option>
+                          <option value="LY">Libya</option>
+                          <option value="LI">Liechtenstein</option>
+                          <option value="Lithuania">Lithuania</option>
+                          <option value="Luxembourg">Luxembourg</option>
+                          <option value="MO">Macao S.A.R., China</option>
+                          <option value="MK">Macedonia</option>
+                          <option value="MG">Madagascar</option>
+                          <option value="MW">Malawi</option>
+                          <option value="MY">Malaysia</option>
+                          <option value="MV">Maldives</option>
+                          <option value="ML">Mali</option>
+                          <option value="MT">Malta</option>
+                          <option value="MH">Marshall Islands</option>
+                          <option value="MQ">Martinique</option>
+                          <option value="MR">Mauritania</option>
+                          <option value="MU">Mauritius</option>
+                          <option value="YT">Mayotte</option>
+                          <option value="Mexico">Mexico</option>
+                          <option value="FM">Micronesia</option>
+                          <option value="Moldova">Moldova</option>
+                          <option value="Monaco">Monaco</option>
+                          <option value="MN">Mongolia</option>
+                          <option value="ME">Montenegro</option>
+                          <option value="MS">Montserrat</option>
+                          <option value="Morocco">Morocco</option>
+                          <option value="MZ">Mozambique</option>
+                          <option value="MM">Myanmar</option>
+                          <option value="NA">Namibia</option>
+                          <option value="NR">Nauru</option>
+                          <option value="NP">Nepal</option>
+                          <option value="Netherlands">Netherlands</option>
+                          <option value="AN">Netherlands Antilles</option>
+                          <option value="NC">New Caledonia</option>
+                          <option value="NZ">New Zealand</option>
+                          <option value="NI">Nicaragua</option>
+                          <option value="NE">Niger</option>
+                          <option value="NG">Nigeria</option>
+                          <option value="NU">Niue</option>
+                          <option value="NF">Norfolk Island</option>
+                          <option value="KP">North Korea</option>
+                          <option value="Norway">Norway</option>
+                          <option value="OM">Oman</option>
+                          <option value="PK">Pakistan</option>
+                          <option value="PS">Palestinian Territory</option>
+                          <option value="PA">Panama</option>
+                          <option value="PG">Papua New Guinea</option>
+                          <option value="Paraguay">Paraguay</option>
+                          <option value="PE">Peru</option>
+                          <option value="PH">Philippines</option>
+                          <option value="PN">Pitcairn</option>
+                          <option value="Poland">Poland</option>
+                          <option value="Portugal">Portugal</option>
+                          <option value="Qatar">Qatar</option>
+                          <option value="Republic of Ireland">Republic of Ireland</option>
+                          <option value="RE">Reunion</option>
+                          <option value="Romania">Romania</option>
+                          <option value="Russia">Russia</option>
+                          <option value="RW">Rwanda</option>
+                          <option value="ST">São Tomé and Príncipe</option>
+                          <option value="BL">Saint Barthélemy</option>
+                          <option value="SH">Saint Helena</option>
+                          <option value="KN">Saint Kitts and Nevis</option>
+                          <option value="LC">Saint Lucia</option>
+                          <option value="SX">Saint Martin (Dutch part)</option>
+                          <option value="MF">Saint Martin (French part)</option>
+                          <option value="PM">Saint Pierre and Miquelon</option>
+                          <option value="VC">Saint Vincent and the Grenadines</option>
+                          <option value="SM">San Marino</option>
+                          <option value="Saudi Arabia">Saudi Arabia</option>
+                          <option value="SN">Senegal</option>
+                          <option value="RS">Serbia</option>
+                          <option value="SC">Seychelles</option>
+                          <option value="SL">Sierra Leone</option>
+                          <option value="SG">Singapore</option>
+                          <option value="SK">Slovakia</option>
+                          <option value="Slovenia">Slovenia</option>
+                          <option value="SB">Solomon Islands</option>
+                          <option value="SO">Somalia</option>
+                          <option value="South Africa">South Africa</option>
+                          <option value="GS">South Georgia/Sandwich Islands</option>
+                          <option value="KR">South Korea</option>
+                          <option value="SS">South Sudan</option>
+                          <option value="Spain">Spain</option>
+                          <option value="LK">Sri Lanka</option>
+                          <option value="SD">Sudan</option>
+                          <option value="SR">Suriname</option>
+                          <option value="SJ">Svalbard and Jan Mayen</option>
+                          <option value="Swaziland">Swaziland</option>
+                          <option value="Sweden">Sweden</option>
+                          <option value="Switzerland">Switzerland</option>
+                          <option value="SY">Syria</option>
+                          <option value="TW">Taiwan</option>
+                          <option value="TJ">Tajikistan</option>
+                          <option value="TZ">Tanzania</option>
+                          <option value="TH">Thailand</option>
+                          <option value="TL">Timor-Leste</option>
+                          <option value="TG">Togo</option>
+                          <option value="TK">Tokelau</option>
+                          <option value="TO">Tonga</option>
+                          <option value="TT">Trinidad and Tobago</option>
+                       
+                          <option value="Turkey">Turkey</option>
+                          <option value="TM">Turkmenistan</option>
+                          <option value="TC">Turks and Caicos Islands</option>
+                          <option value="TV">Tuvalu</option>
+                          <option value="UG">Uganda</option>
+                          <option value="Ukraine">Ukraine</option>
+                          <option value="United Arab Emirates">United Arab Emirates</option>
+                          <option  value="United Kingdom ">United Kingdom (UK)</option>
+                          <option value="United States">United States (US)</option>
+                          <option value="UY">Uruguay</option>
+                          <option value="UZ">Uzbekistan</option>
+                          <option value="VU">Vanuatu</option>
+                          <option value="VA">Vatican</option>
+                          <option value="VE">Venezuela</option>
+                          <option value="VN">Vietnam</option>
+                          <option value="WF">Wallis and Futuna</option>
+                          <option value="EH">Western Sahara</option>
+                          <option value="WS">Western Samoa</option>
+                          <option value="YE">Yemen</option>
+                          <option value="ZM">Zambia</option>
+                          <option value="ZW">Zimbabwe</option>
+                        </select>         
+                    <span class="text-danger" id="data.ville"></span>
+
+                 
+       </div>
+       </div>
+
+
+            
+          <div class="col-md-6">
+            <div class="form-group">
+                  <label for="username">Adresse :*</label>
+                        <input type="text" id="adresse_demande" name="adresse_demande" >          
+                    <span class="text-danger" id="data.adresse"></span>
+
+                 
+       </div>
+       </div>
+       </div>
+
+
+               <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+                  <label for="username">Cp :*</label>
+                        <input type="number" id="cp_demande" name="cp_demande" >          
+                    <span class="text-danger" id="data.cp"></span>
+
+                 
+       </div>
+       </div>
+       </div>
+
+
+              
+                 
+     <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+                 
+                 <div>
+  <input type="checkbox" id="affichercord-demande" name="affichercord-demande" value='affiche'>
+  <label>Afficher vos coordonnées sur l&apos;annonce </label>
+</div>                
+  <span class="text-danger" id="data.cordaffiche"></span>
+
+                 
+       </div> 
+       </div>
+       </div>         
+                    
+
+                 
+    
+
+             
+
+           
+                  <input type="button" data-page="3" name="previous" id="previous2-annonce" class="previous action-button" value="Previous" />
+    <input type="button" data-page="3"  name="next"  id="next3-annonce"class="next action-button" value="Next" />
+               </fieldset>
+
+
+
+
+
+
+
+       <fieldset>
+    <h2 class="fs-title">Membres de familles</h2>
+    <h3 class="fs-subtitle">Précisez vos membres bénificier du service</h3>
+               
+             
+
+
+
+
+
+                           <div class="row">
+          <div class="col-md-12">
+            <div class="form-group"> 
+                  <label for="username">Sélectionnez les membres de famille bénéficier du service :</label>
+                  {{form_widget(form.membres ,{'id':'selectmembres','attr':{'placeholder':'Membres','multiple': 'multiple'}})}}                 
+                    <span class="text-danger" id="data.membres"></span>
+
+                 
+       </div>
+       </div>
+       </div>
+
+
+               
+                    <input type="button" data-page="4" name="previous" id="previous3-annonce" class="previous action-button" value="Previous" />
+                   <button type="submit" name="btn_membre" id="btn_membre" class="hs-button primary large action-button next"> <span>Enregistrer</span><i id="spin-add-annonce"></i></button>
+ 
+
+ </fieldset>
+
+
+    {{ form_end(form) }}
+
+
+          
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              
+{%endblock%}
+
+{% block javascript %}
+<script>
+
+
+
+
+ $('#timedemande').datetimepicker({
+ format:'HH:mm'
+ });
+
+$('select[multiple]').multiSelect();
+
+       var total=0;
+       var params={format:'dd/mm/yyyy',startDate:new Date(),};
+       
+       var membres_demande_selected; 
+       var service_demande_selected;  
+       var option_demande_selected; 
+       var visite_demande_selected;
+       var heure_demande_selected;
+      
+
+
+
+ $('#typevisite_demande').on('change', function () {
+
+if($("#typevisite_demande option:selected").val()=='Une')
+{
+ 
+
+
+
+
+ params.multidate = false;
+ 
+
+$('#datedemande').datepicker(params);
+
+
+
+
+
+
+
+
+
+ 
+
+}else{
+  
+ 
+ 
+
+
+ params.multidate = true;
+
+
+$('#datedemande').datepicker(params);
+
+
+
+
+
+
+
+
+}
+
+
+
+
+});
+
+
+
+                 
+                 
+                 
+                   
+  
+   
+
+
+
+
+
+
+
+
+       </script>
+
+       <style>
+       .alert_member{
+       text-align: center;
+       }
+       </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{%endblock%}

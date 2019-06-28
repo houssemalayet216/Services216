@@ -1,0 +1,819 @@
+ {% extends '@Front/default/template.html.twig' %}
+
+
+
+
+{% block pageContainer %}
+
+
+
+
+
+
+         <div class="body">
+  
+            <div class="container">
+             
+
+    
+
+           {% if valid == 1 %}
+            
+            <div role="alert" class="alert alert-danger alert-dismissible" style="margin-top:20px;">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span> </button><strong>Eureur!</strong>Vous ne pouvez pas publier des offres si votre compte n&apos;est pas active  </div>
+
+           {%endif%}
+             
+        
+
+
+              <div class="alertpublieroffre" style="margin-top:30px;"> 
+              </div>
+               
+
+        <div class="page-content" id="makedisabled" >
+    <div class="form-v5-content">
+              
+
+ 
+           
+         {{ form_start(form, {'method': 'post', 'action': path('deposer_annonce'), 'attr': {'id':'add_offre_form_front','class':'form-detail'}}) }}
+     <h2>Déposer un offre</h2>
+         
+                  <div class="row">
+           <div class="col-md-6">
+            <div class="form-group">
+                  <label for="username" class="label-elem">Service :*</label>
+                    {{form_widget(form.secteur ,{'id':'secteur-offre','empty_data' :app.user.service.titre,'attr':{ 'value':app.user.service.titre,'disabled':true}})}}     
+                    <span class="text-danger" id="data.secteur"></span>
+
+                 
+       </div> 
+       </div>
+
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                  <label for="username" class="label-elem">Catégories :*</label>
+                    <select  id="option-offre" name="option-offre" placeholder="Choisir une catégorie">
+                     <option >Choisir une catégorie</option>
+                    {% for option in option %}
+                     
+                    <option value="{{option.titre}}">{{option.titre}}</option>
+
+                    {% endfor %}
+                    </select>     
+                    <span class="text-danger" id="data.option"></span>
+
+                 
+       </div>
+       </div>
+       </div>
+
+       <div class="row">
+           <div class="col-md-12">
+            <div class="form-group">
+     <div  id="divmission">
+     
+     </div>  
+     </div>
+     </div>
+     </div>
+
+
+  
+                  <div class="row">
+           <div class="col-md-12">
+            <div class="form-group">
+                  <label for="username" class="label-elem">Titre:*</label>
+                  {{form_widget(form.titre ,{'id':'titre-offre','attr':{'placeholder':'Titre'}})}}                 
+                    <span class="text-danger" id="data.titre"></span>
+
+                 
+       </div>
+       </div>
+       </div>
+     
+
+
+              
+                      <div class="row">
+           <div class="col-md-12">
+            <div class="form-group">
+                  <label for="username" class="label-elem">Description :*</label>
+                  {{form_widget(form.description ,{'id':'description-offre','attr':{'placeholder':'Description'}})}}                 
+                    <span class="text-danger" id="data.description"></span>
+
+                 
+       </div>
+       </div>
+       </div>
+
+
+
+
+
+
+
+
+    <div class="row">
+           <div class="col-md-12">
+            <div class="form-group">
+                  <label for="username" class="label-elem">Type de tarification  :*</label>
+                {{form_widget(form.typetarif ,{'id':'ypetarif-offre','attr':{'placeholder':'TypeTarification'}})}}                  
+                    <span class="text-danger" id="data.typetarif"></span>
+
+                 
+       </div>
+       </div>
+       </div>
+
+
+  
+        
+
+           <div class="row">
+           <div class="col-md-6">
+            <div class="form-group">
+                  <label for="username" class="label-elem">Tarif :*</label>
+                 <input type="number" id="prix-offre" name="prix-offre"  placeholder="Prix" />                
+                    <span class="text-danger" id="data.prix"></span>
+
+                 
+       </div>
+       </div>
+
+
+       <div class="col-md-6">
+            <div class="form-group">
+                  <label for="username" class="label-elem">Devis  :*</label>
+                {{form_widget(form.devis ,{'id':'devis-offre','attr':{'placeholder':'Devis'}})}}                  
+                    <span class="text-danger" id="data.devis"></span>
+
+                 
+       </div>
+       </div>
+
+
+
+
+
+
+
+
+       </div>
+
+
+
+
+
+
+ <div class="row">
+           <div class="col-md-12">
+            <div class="form-group">
+                  <label for="username" class="label-elem">Zone de travail :*</label>
+                  {{form_widget(form.zone ,{'id':'zone-offre'})}}                 
+                    <span class="text-danger" id="data.zone"></span>
+
+                 
+       </div>
+       </div>
+       </div>
+
+
+
+
+
+
+
+
+
+
+
+ <div class="row">
+           <div class="col-md-12">
+            <div class="form-group">
+                  <label for="username" class="label-elem">Image offre :</label>
+                  {{form_widget(form.image ,{'id':'image-offre','attr':{'placeholder':'Image offre'}})}}                 
+                    <span class="text-danger" id="data.image"></span>
+
+                 
+       </div> 
+       </div>
+       </div>
+
+
+
+
+<div class="row">
+ <div class="col-md-12">
+            <div class="form-group">
+                 
+            <div>
+  <input type="checkbox" id="affichercord-offre" name="affichercord-offre" value='affiche'>
+  <label class="notlabel">Afficher vos coordonnées sur l&apos;annonce </label>
+  </div>
+              
+  <span class="text-danger" id="data.cordaffiche"></span>
+
+                 
+      </div>
+      </div>
+      </div>
+
+
+
+
+
+                 <div class="row">
+           <div class="col-md-12">
+            <div class="form-group">
+                  <label for="username" class="label-elem">Autre Détailles :</label>
+                  {{form_widget(form.autres ,{'id':'autres-offre','attr':{'placeholder':'Autres'}})}}                 
+                    <span class="text-danger" id="data.autres"></span>
+
+                 
+       </div> 
+       </div>
+       </div>
+
+  
+
+
+
+
+       <div class="form-row-last">
+
+
+      <button type="submit" class="btn btn-danger" id="btn-add-offre"> <span>Enregistrer</span><i id="spin-add-offre"></i></button>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+           {{ form_end(form) }}
+
+
+
+
+
+
+
+
+
+          </div>
+        </div>
+    
+            
+
+
+
+
+
+
+
+
+
+
+
+
+             </div>
+
+
+
+                  
+</div>
+
+<style>
+.is_disabled{
+  opacity: .5;
+  pointer-events: none;
+}
+
+</style>
+            
+         
+
+
+{%endblock%}
+
+{% block javascript %}
+<script>
+
+
+
+
+
+                  $("#zone-offre").select2({
+                
+                   minimumInputLength: 3,
+                placeholder:'Choisir votre zone de travaille ',
+                allowClear: true,
+                 theme: "bootstrap"
+              
+            });
+
+
+
+ $('#option-offre').on('change', function () {
+             
+                                 var categorie=$("#option-offre option:selected").val();
+                                 
+                                 if(categorie !==null)
+                                 {
+                                 $.ajax({
+
+                         url:'/user/home/mission-option/'+categorie,
+                       type:'GET',
+                       success:function (data,status,object)
+                       {
+                       if(data.success==true)
+                       {
+                          $('#divmission').html(data.output);
+                        
+
+                       }
+
+                      },error:function()
+                      {
+                      $('#divmission').html("");
+                      }
+
+                        });
+
+                                 }else{
+                                  $('#divmission').html("");
+                                 }
+
+
+                                 });
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+           $('#btn-add-offre').click(function(e){
+                  e.preventDefault();
+                    $('#btn-add-offre').prop('disabled',true);
+                  $("#spin-add-offre").addClass('fa fa-spinner fa-spin fa-register');
+
+
+                    var titre=$('#titre-offre').val();
+                  var description=$('#description-offre').val();
+                  var zone=$('#zone-offre').val();
+                  var option=$('#option-offre').val();
+                  var horaire= $('#horaire-offre').val();
+                
+                    
+                  
+                   var errorfArray=['data.titre','data.description','data.zone','data.option'];
+                    var formoffre = document.getElementById("add_offre_form_front");
+
+
+
+
+
+                    
+                    if(titre=="")
+                  {
+                       document.getElementById('data.titre').textContent='Ce champ ne doit pas etre vide ';
+                     $("#spin-add-offre").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn-add-offre').prop('disabled',false); 
+                  }
+                  
+
+                    if(description=="")
+                  {
+                       document.getElementById('data.description').textContent='Ce champ ne doit pas entre vide ';
+                     $("#spin-add-offre").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn-add-offre').prop('disabled',false); 
+                  }
+
+
+                  
+
+
+                 
+                  
+
+                    if(zone=="")
+                  {
+                       document.getElementById('data.zone').textContent='Ce champ ne doit pas entre vide ';
+                     $("#spin-add-offre").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn-add-offre').prop('disabled',false); 
+                  }
+
+
+                  if(option=="")
+                  {
+                       document.getElementById('data.option').textContent='Ce champ ne doit pas entre vide ';
+                     $("#spin-add-offre").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn-add-offre').prop('disabled',false); 
+                  }
+                  
+
+                  
+                  
+                
+
+
+
+
+
+
+
+
+                        $('#titre-offre').change(function(){
+                  
+                 if($.trim(document.getElementById('data.titre').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.titre').textContent="";
+                                  }
+                    
+                                 });
+
+
+                                 $('#description-offre').change(function(){
+                  
+                 if($.trim(document.getElementById('data.description').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.description').textContent="";
+                                  }
+                    
+                                 });
+
+
+                    
+           
+
+
+
+                     
+
+
+                                 $('#zone-offre').change(function(){
+                  
+                 if($.trim(document.getElementById('data.zone').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.zone').textContent="";
+                                  }
+                    
+                                 });
+
+                      
+
+          
+
+
+
+                        $('#option-offre').change(function(){
+                  
+                 if($.trim(document.getElementById('data.option').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.option').textContent="";
+                                  }
+                    
+                                 });
+
+
+                   
+
+
+                  
+
+                      
+
+
+
+
+
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                 if(titre!=="" &&description!=="" &&zone!==""&&option!=="")
+               {
+               
+
+                      $.ajax({
+                       dataType:"json",
+                       url:$("#add_offre_form_front").attr('action'),
+                       type:$("#add_offre_form_front").attr('method'),
+                        data:new FormData(formoffre),
+                       contentType:false,
+                       processData:false,
+                       cache:false,
+                       success:function (data,status,object)
+                       {
+
+                       $('.alert-editclient').show();
+                       var message=data.message;
+                       if(data.success==true)
+                          {
+
+
+                         
+                               errorfArray.forEach(function(error){
+                                  if($.trim(document.getElementById(error).textContent) !== "")
+
+                                  {
+                                    document.getElementById(error).textContent="";
+                                  }
+                               });
+                             
+                               
+                          
+                               
+                              $('#add_offre_form_front')[0].reset();
+                              $('#divmission').html("");
+                              $('.alertpublieroffre').html('<div role="alert" class="alert alert-success alert-dismissible">'+
+        '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span> </button>'+'<strong>Success!</strong> '+message +' </div>');
+
+                     
+
+                          
+                            
+
+                          }
+
+                          else{
+
+                                $('.alertpublieroffre').html('<div role="alert" class="alert alert-danger alert-dismissible">'+
+        '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span> </button>'+'<strong>Eureur!</strong> '+message +' </div>');
+
+                      
+
+
+
+
+                            if(data.errors)
+                            {
+                              errorfArray.forEach(function(error){
+
+                               if($.trim(document.getElementById(error).textContent) !== "")
+
+                                  {
+                                    document.getElementById(error).textContent="";
+                                  }
+
+                              });
+
+                              data.errors.forEach(function(error)
+                              {
+
+                               document.getElementById(error.elementId).textContent=error.errorMessage;
+                              });
+
+
+                              $("#spin-add-offre").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn-add-offre').prop('disabled',false); 
+
+                            }
+
+                          }
+                                
+
+                        
+                         $("#spin-add-offre").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn-add-offre').prop('disabled',false); 
+                          
+                          
+                          },
+                          error:function (data,status,object)
+                          {
+                             console.log(data.message);
+
+                           toastr.error(data.message,'Error', {
+                                      
+                                      "closeButton": false,
+                                       "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": true,
+                                        "positionClass": "toast-top-right",
+                                         "preventDuplicates": false,
+                                         "onclick": null,
+                                          "showDuration": "300",
+                                          "hideDuration": "1000",
+                                           "timeOut": "5000",
+                                           "extendedTimeOut": "1000",
+                                           "showEasing": "swing",
+                                           "hideEasing": "linear",
+                                           "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                              
+
+
+                               });
+
+
+
+
+                         $("#spin-add-offre").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn-add-offre').prop('disabled',false); 
+                          }
+
+
+
+
+
+
+
+
+                       });
+
+
+
+
+
+
+
+
+
+
+
+                    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                  });
+
+
+
+
+</script>
+
+
+
+
+{%if valid == 1 %}
+<script>
+$('#makedisabled').addClass('is_disabled');
+</script>
+
+{% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{%endblock%}
+

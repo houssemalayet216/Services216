@@ -1,0 +1,163 @@
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalmembre">
+<i class="fa fa-plus"></i>  Ajouter un membre
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModalmembre"  role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" id="close-up-add-membre-modale" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Ajouter un membre de famille</h4>
+      </div>
+       {{ form_start(form, {'method': 'post', 'action': path('create_membre'), 'attr': {'id':'add-membre-form'}}) }}
+      <div class="modal-body">
+        
+        <div class="row">
+<div class="col-md-12">
+
+
+
+
+
+
+
+
+
+
+ <div class="col-md-6 form-group">
+                  <label for="username">Civilité :*</label>
+                  {{form_widget(form.civilite ,{'id':'civilite-membre','attr':{'class': 'form-control','placeholder':'Civilité'}})}}                 
+                    <span class="text-danger" id="data.civilite"></span>
+
+                 
+       </div>
+
+
+<div class="col-md-6 form-group">
+                  <label for="username">Nom :*</label>
+                  {{form_widget(form.nom ,{'id':'nom-membre','attr':{'class': 'form-control','placeholder':'Nom'}})}}                 
+                    <span class="text-danger" id="data.nom"></span>
+
+                 
+       </div>
+
+
+<div class="col-md-6 form-group">
+                  <label for="username">Prènom :*</label>
+                  {{form_widget(form.prenom ,{'id':'prenom-membre','attr':{'class': 'form-control','placeholder':'Prènom'}})}}                 
+                    <span class="text-danger" id="data.prenom"></span>
+
+                 
+       </div>
+
+
+       <div class="col-md-6 form-group">
+                  <label for="username">Date Naissance :*</label>
+                  {{form_widget(form.datenaissance ,{'id':'datenaissance','attr':{'class': 'form-control','placeholder':'Date Naissance'}})}}                 
+                    <span class="text-danger" id="data.datenaissance"></span>
+
+                 
+       </div>
+
+      <div class="col-md-6 form-group">
+                  <label for="username">Type Relation :*</label>
+                  {{form_widget(form.relation ,{'id':'relation-membre','attr':{'class': 'form-control','placeholder':'Type Relation'}})}}                 
+                    <span class="text-danger" id="data.relation"></span>
+
+                 
+       </div>
+
+       <div class="col-md-6 form-group">
+                  <label for="username">Ville :*</label>
+                  {{form_widget(form.ville ,{'id':'ville-membre','attr':{'class': 'form-control','placeholder':'Ville'}})}}                 
+                    <span class="text-danger" id="data.ville"></span>
+
+                 
+       </div>
+
+
+
+           <div class="col-md-6 form-group">
+                  <label for="username">Adresse :*</label>
+                  {{form_widget(form.adresse ,{'id':'adresse-membre','attr':{'class': 'form-control','placeholder':'Adresse'}})}}                 
+                    <span class="text-danger" id="data.adresse"></span>
+
+                 
+       </div>
+
+
+
+           <div class="col-md-6 form-group">
+                  <label for="username">Code Postale :*</label>
+                  {{form_widget(form.cp ,{'id':'cp-membre','attr':{'class': 'form-control','placeholder':'Code Postale'}})}}                 
+                    <span class="text-danger" id="data.cp"></span>
+
+                 
+       </div>
+
+
+          <div class="col-md-6 form-group">
+                  <label for="username">Téléphone :*</label>
+                  {{form_widget(form.telephone ,{'id':'telephone-membre','attr':{'class': 'form-control','placeholder':'Téléphone'}})}}                 
+                    <span class="text-danger" id="data.telephone"></span>
+
+                 
+       </div>
+
+
+         <div class="col-md-6 form-group">
+                  <label for="username">Téléphone 2 :*</label>
+                  {{form_widget(form.telephoneII ,{'id':'telephoneII-membre','attr':{'class': 'form-control','placeholder':'Téléphone 2'}})}}                 
+                    <span class="text-danger" id="data.telephoneII"></span>
+
+                 
+       </div>
+
+
+
+         <div class="col-md-6 form-group">
+                  <label for="username">Fix :*</label>
+                  {{form_widget(form.fix ,{'id':'fix-membre','attr':{'class': 'form-control','placeholder':'Fix'}})}}                 
+                    <span class="text-danger" id="data.fix"></span>
+
+                 
+       </div>
+
+
+
+
+
+
+      
+
+
+
+
+        <div class="col-md-12 form-group">
+                  <label for="username">Autres détailles :</label>
+                  {{form_widget(form.autres ,{'id':'autres-membre','attr':{'class': 'form-control','placeholder':'Autres détailles'}})}}                 
+                    <span class="text-danger" id="data.autres"></span>
+
+                 
+       </div> 
+
+  
+</div>
+</div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="close-modale-add-membre">Close</button>
+        <button type="submit" class="btn btn-primary" id="btn-add-membre"> <span>Enregistrer</span><i id="spin-add-membre"></i></button>
+      </div>
+      {{ form_end(form) }}
+    </div>
+  </div>
+</div>
+
+
+
+
+
+

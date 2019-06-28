@@ -1,0 +1,436 @@
+{% extends '@Admin/default/templateadmin.html.twig' %}
+{% block section_haider %}
+<section class="content-header">
+      <h1>
+        Activations des comptes 
+        <small>Services 216</small>
+      </h1>
+      <ol class="breadcrumb">
+       
+        <li class="active"><i class="fa fa-check"></i> Activation des comptes</li>
+      </ol>
+    </section>
+{%endblock%}
+
+
+
+
+
+ {% block content %}
+
+
+
+
+  <div class="row">
+<div class="col-md-12">
+
+
+
+<div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Activation des comptes</h3><br/>
+            
+
+
+
+
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="tableactivation" class="table table-bordered table-striped" >
+                <thead>
+                <tr>
+                 <th class="text-center">Raison</th>
+                  <th class="text-center">Responsable</th>
+                  <th class="text-center">Service</th>
+                  <th class="text-center">Status</th>
+                  <th class="text-center">Action</th>
+                </tr>
+                </thead>
+                
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</div>
+
+
+
+
+
+
+
+<div class="modal fade" tabindex="-1" id="modalvoircompte" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Voir compte</h4>
+      </div>
+      <div class="modal-body">
+       <div class="containercompte">
+
+
+       </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" id="delete-o"><span>Activé</span><i id="spin-active-compte"></i></button>
+        <button type="button" class="btn btn-warning" id="delete-o"><span>Envoyer mail</span><i id="spin-delete-offre"></i></button>
+
+      </div>
+
+
+
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+<div class="modal fade" tabindex="-1" id="modalactivercompte" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Activé compte</h4>
+      </div>
+      <div class="modal-body">
+       <p>Vous avez sur d&apos;activé ce compte ?</p>
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" id="btn-active-compte"><span>Activé</span><i id="spin-active-compte"></i></button>
+      
+
+      </div>
+
+
+
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+
+ #loadingvoir{
+               text-align: center;
+               background:url(' {{asset('uploads/loader.gif')}}') no-repeat center;
+               height:150px;
+                    } 
+          
+            </style>
+
+
+
+
+
+
+  {% endblock %}
+  {%block aside %}
+  {% endblock %}
+
+  {%block javascript%}
+  <script>
+
+    var activation;
+
+  $(document).ready(function($){
+ 
+ activation=$("#tableactivation").DataTable({
+     columnDefs: [
+    {
+        targets: -1,
+        className: 'dt-body-left'
+    }
+  ],
+  'destroy':true,
+   
+    'ajax':'{{path('all_compte')}}',
+     'order': []
+});
+
+
+});
+
+
+</script>
+
+
+
+
+<script>
+function voircompte(id)
+{
+$('.containercompte').html('<div id="loadingvoir" style=""></div>');
+
+
+
+$.ajax({
+ dataType:"json",
+url:'/voir-compte-agent',
+type:'POST',
+data:{id:id},
+success:function(data,status,object){
+  
+ 
+    $('.containercompte').html(data.output);
+  
+
+}
+
+});
+
+}
+
+function activercompte(id)
+{
+ 
+if(id){
+  $("#btn-active-compte").unbind('click').bind('click',function(){
+   
+     $('#btn-active-compte').prop('disabled',true);
+    $("#spin-active-compte").addClass('fa fa-spinner fa-spin fa-register');
+
+ $.ajax({
+ dataType:"json",
+url:'/activer-compte-function',
+type:'POST',
+data:{id:id},
+success:function(data,status,object){
+  
+    var message=data.message;
+                       if(data.success==true)
+                          {
+
+                           $("#spin-active-compte").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn-active-compte').prop('disabled',false);
+
+                             $('#modalactivercompte').modal('hide');
+                             activation.ajax.reload(null,false);
+
+                               toastr.success(message,'Success', {
+                                      
+                                      "closeButton": false,
+                                       "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": true,
+                                        "positionClass": "toast-top-right",
+                                         "preventDuplicates": false,
+                                         "onclick": null,
+                                          "showDuration": "300",
+                                          "hideDuration": "1000",
+                                           "timeOut": "5000",
+                                           "extendedTimeOut": "1000",
+                                           "showEasing": "swing",
+                                           "hideEasing": "linear",
+                                           "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                              
+
+
+                               });
+
+                             
+
+                          }else{
+                          
+                             
+                           $("#spin-active-compte").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn-active-compte').prop('disabled',false);
+                             $('#modalactivercompte').modal('hide');
+
+                               toastr.error(message,'Error', {
+                                      
+                                      "closeButton": false,
+                                       "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": true,
+                                        "positionClass": "toast-top-right",
+                                         "preventDuplicates": false,
+                                         "onclick": null,
+                                          "showDuration": "300",
+                                          "hideDuration": "1000",
+                                           "timeOut": "5000",
+                                           "extendedTimeOut": "1000",
+                                           "showEasing": "swing",
+                                           "hideEasing": "linear",
+                                           "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                              
+
+
+                               });
+
+
+
+
+                          }
+
+
+
+   
+  
+
+}
+
+});
+
+
+});
+}
+
+
+
+}
+
+
+
+
+function  envoyermail(id)
+{
+  
+if(id){
+
+
+ $.ajax({
+ dataType:"json",
+url:'/inactive',
+type:'POST',
+data:{id:id},
+success:function(data,status,object){
+  
+    var message=data.message;
+                       if(data.success==true)
+                          {
+
+                     
+
+
+                               toastr.success(message,'Success', {
+                                      
+                                      "closeButton": false,
+                                       "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": true,
+                                        "positionClass": "toast-top-right",
+                                         "preventDuplicates": false,
+                                         "onclick": null,
+                                          "showDuration": "300",
+                                          "hideDuration": "1000",
+                                           "timeOut": "5000",
+                                           "extendedTimeOut": "1000",
+                                           "showEasing": "swing",
+                                           "hideEasing": "linear",
+                                           "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                              
+
+
+                               });
+
+                             
+
+                          }else{
+       
+
+                               toastr.error(message,'Error', {
+                                      
+                                      "closeButton": false,
+                                       "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": true,
+                                        "positionClass": "toast-top-right",
+                                         "preventDuplicates": false,
+                                         "onclick": null,
+                                          "showDuration": "300",
+                                          "hideDuration": "1000",
+                                           "timeOut": "5000",
+                                           "extendedTimeOut": "1000",
+                                           "showEasing": "swing",
+                                           "hideEasing": "linear",
+                                           "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                              
+
+
+                               });
+
+
+
+
+                          }
+
+
+
+   
+  
+
+}
+
+});
+
+
+}
+
+
+
+
+
+}
+</script>
+
+  {% endblock %}

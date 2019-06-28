@@ -1,0 +1,259 @@
+.activity_home {
+    background: #fff;
+    padding: 20px;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px -2px rgba(0, 0, 0, 0.3);
+    display: inline-block;
+    vertical-align: top;
+    border: 1px solid #e2e2e2;
+        width: 800px;
+        height:600px;
+}
+
+.post-header h2{
+	  height: 29px;
+    line-height: 29px;
+    font-weight: bold;
+    color: #515151;
+    margin-left: 8px;
+    overflow: hidden;
+}
+
+.list-div{
+	    height: 451px;
+    overflow-x: hidden;
+    list-style: none;
+}
+
+.activity{
+	margin: 0;
+}
+
+.postd{  border-bottom: 1px solid #e2e2e2;
+    width: 750px;
+    min-height: 150px;
+    position: relative;
+
+}
+
+.postd:hover{
+    background-color: #f8f8f8;
+}
+
+.post_conteneur{
+	    padding: 25px 0;
+    position: relative;
+}
+.vignette_annonce div{
+
+	    width: 174px;
+    height: 110px;
+    position: relative;
+
+}
+
+.box_vignette_annonce{
+	text-align: center;
+    background: #f1f1f1;
+}
+
+.vignette_annonce img {
+    border: 1px solid #e2e2e2;
+    height: 110px;}
+
+    .home_text_annonce{
+    	text-align: left;
+    	    width: 550px;
+    margin-left: 9px;
+    }
+
+
+.floatleft {
+    float: left;
+}
+
+.block_info_top {
+    width: 100px;
+}
+
+.floatright {
+    float: right;
+}
+
+.block_info_top > div {
+    margin-bottom: 5px;
+}
+
+.tarif_annonce, .km_annonce {
+    background-color: #fff;
+    min-height: 38px;
+    width: 98px;
+    border: 1px solid #e2e2e2;
+}
+
+.tarif_annonce p{
+    margin: 0;
+    padding: 0;
+}
+
+.km_annonce p{
+    margin: 0;
+    padding: 0;
+}
+
+.tarif_annonce {
+    line-height: 17px;
+}
+
+
+
+
+.block_info_top p {
+    color: #515151 !important;
+    margin-left: 11px;
+}
+
+
+
+
+
+
+.tarif_annonce p {
+    padding-bottom: 5px;
+}
+
+.font_big {
+    font-size: 18px !important;
+    font-weight: bold !important;
+}
+
+
+.tarif_annonce p span,
+ .km_annonce p span {
+    color: #999;
+}
+
+.tarif_annonce span {
+    display: inline-block;
+    line-height: 18px;
+}
+
+.tarif_annonce span {
+    font-size: 12px;
+}
+
+.font_normal {
+    font-weight: 400;
+}
+
+.titre_annonce_profil {
+    margin-top: -4px;
+}
+
+.block a,ul{
+	margin: 0;
+	padding :0;
+}
+
+.titre_annonce_profil, .critere_annonce {
+    width: 360px;
+}
+
+.titre_annonce_profil span.proposition {
+    /*color: #ec6600;*/
+    color:#565656;
+}
+
+.titre_annonce_profil span, .titre_annonce_profil a {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+
+.critere_annonce li:first-child {
+    padding-bottom: 2px;
+}
+
+
+ul.critere_annonce li, ul.critere_annonce li span, ul.critere_annonce li span a {
+    list-style: none;
+    font-size: 13px;
+    line-height: 19px;
+}
+
+.critere_annonce li:first-child span {
+    font-size: 13px;
+    color: #2f2f2f;
+}
+
+
+ul.critere_annonce li, ul.critere_annonce li span, ul.critere_annonce li span a {
+    list-style: none;
+    font-size: 13px;
+    line-height: 19px;
+}
+
+.home_text_annonce li > span, .result_page_content_activity li > span {
+    background: #fff;
+    display: inline-block;
+    float: left;
+    font-size: 14px;
+    margin: 6px 10px 6px 0;
+    padding: 8px 9px;
+    border: 1px solid #dce0ec;
+}
+
+.critere_annonce .home_extract_ad {
+    line-height: 15px;
+    width: 400px;
+    height: 46px;
+    color: #7d7c7c;
+
+}
+
+ul.critere_annonce li, ul.critere_annonce li span, ul.critere_annonce li span a {
+    list-style: none;
+    font-size: 13px;
+    line-height: 19px;
+}
+
+.home_extract_ad {
+    text-transform: lowercase;
+    overflow: hidden;
+}
+
+.nofloat {
+    clear: both;
+}
+
+.titre_annonce_profil h2 a {
+    font-size: 1.063em;
+    font-weight: bold;
+}
+
+a {
+    text-decoration: none;
+    transition-duration: 0.3s;
+}
+
+.titre_annonce_profil a {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.titre_annonce_profil h2 {
+    font-size: 1.063em;
+    font-weight: 400;
+    white-space: nowrap;}
+
+    .titre_annonce_profil h2 {
+    font-size: 1.063em;
+    font-weight: 400;
+    white-space: nowrap;
+    margin: 0 0 3px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+

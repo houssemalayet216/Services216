@@ -1,0 +1,350 @@
+body{
+
+   background-color: #ededed!important;
+
+}
+
+.animo17-formrech {
+    background-color: #ededed!important;
+    min-height: inherit!important;
+    margin-bottom: 16px;
+}
+
+.animo17-formrech .v2-formcontent {
+    margin-top: 20px;
+}
+
+
+.v2-formcontent {
+    min-height: 98px;
+    padding: 14px;
+    position: relative;
+    background-color: #3d3638;
+   
+   
+}
+
+.fin {
+    clear: both;
+}
+
+.formrecherche
+{
+	margin:20px 0 0 40px;
+}
+
+.formrecherche select, .formrecherche input[type=text] {
+    height: 38px;
+    width: 250px!important;
+    /*background: transparent;*/
+    padding: 5px 55px 5px 5px;
+    margin: 0!important;
+    font-size: 13px;
+    line-height: 2;
+    border: 0;
+    border-radius: 0;
+    -webkit-appearance: none;
+}
+
+.formrecherche input[type="submit"] {
+    background-color: #ff5457;
+    border: 0;
+    display: block;
+    cursor: pointer;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    height: 44px;
+    padding: 0 44px 0 44px;
+    font-family: 'Open Sans Condensed','Open Sans',sans-serif;
+   /* float: right;*/
+}
+
+
+.formrecherche input[type="submit"]:hover, .formrecherche input[type="submit"]:focus {
+    background-color: #d33033;
+    text-decoration: none;
+    color: #fff;
+}
+
+ /* ------------------------------------------post-----------------------------------------*/
+
+.allpage {
+    margin: 0 auto;
+    
+    width: 996px;
+    position: relative;
+}
+
+
+
+ .post_container {
+    padding: 15px 0 0 3px!important;
+}
+
+.post_container {
+    display: inline-block;
+    padding-left: 3px;
+    width: 660px;
+    z-index: 0;
+    float: right;
+}
+
+
+
+.annonce {
+    background-color: #FFF;
+    width: 660px;
+    margin: 0 0 20px 0;
+    position: relative;
+    display: inline-block;
+    border: 1px solid #e5e5e5;
+}
+
+
+
+
+.annonce:hover, .annonce:focus {
+    box-shadow: 0 4px 12px 0 rgba(0,0,0,0.2);
+    -webkit-box-shadow: rgba(0,0,0,0.2) 0 4px 12px 0;
+    -moz-box-shadow: rgba(0,0,0,0.2) 0 4px 12px 0;
+}
+
+.annonce a {
+    text-decoration: none;
+    color: #595959;
+}
+
+.img {
+    border: 0;
+}
+
+
+
+.img_annonce {
+    float: left;
+    width: 224px;
+    height: 150px;
+    position: relative;
+    text-align: center;
+    background-color: #d4d4d4;
+    overflow: hidden;
+}
+
+.img_annonce img {
+    border: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.txtannonce {
+    padding: 15px;
+    float: left;
+    width: 406px;
+    color: #000;
+    height: 120px;
+}
+
+
+
+.flol {
+    float: left;
+}
+
+
+
+
+
+
+.txtannonce h3, .txtannonce p.infoVers {
+    width: 270px;
+    padding: 0;
+    margin: 0;
+    float: left;
+    font-size: 15px;
+    display: block;
+}
+
+
+.txtannonce cite {
+    color: #595959;
+    display: block;
+    font-size: 11px;
+    font-style: normal;
+}
+
+
+ .txtannonce h3.lo {
+    font-size: 11px;
+    color: #000;
+    font-style: normal;
+    font-weight: bold;
+    padding-top: 8px;
+    display: block;
+}
+
+
+
+
+.txtannonce cite.texte {
+    color: #595959;
+    display: block;
+    font-size: 12px;
+    font-style: normal;
+    width: 250px;
+    padding-top: 10px;
+}
+
+
+
+
+
+
+
+
+
+.ergov3-priceannonce {
+    font-size: 18px;
+    color: #000;
+    float: right;
+    font-weight: normal;
+    width: 135px;
+    text-align: right;
+    padding-bottom: 5px;
+    line-height: 20px;
+}
+
+
+.ergov3-bottomannmini {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 406px;
+}
+
+.ergov3-bottomannonce {
+    padding: 10px 15px 15px 15px;
+}
+
+.ergov3-voirann {
+    float: right;
+}
+
+
+
+.ergov3-rightmini {
+    float: right;
+    display: block;
+    clear: both;
+    padding: 6px 0 6px 0;
+}
+
+.ergov3-voirann a.voirann, .ergov3-voirann a.voirautres, .ergov3-voirann span.voirann, .ergov3-voirann span.voirautres {
+    float: left;
+    margin-left: 11px;
+    border: 0!important;
+}
+
+
+
+
+
+
+
+
+.ergov3-voirann a.voirann, .ergov3-voirann span.voirann {
+    height: 42px;
+    line-height: 42px;
+    padding: 0 10px 0 10px;
+    font-weight: bold;
+    color: #fff;
+    font-size: 13px;
+    display: block;
+    font-family: 'Open Sans',sans-serif;
+    background-color: #ff5457;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+}
+
+
+
+.ergov3-voirann a {
+	 text-decoration: none;
+}
+
+.ergov3-voirann a.voirann:hover, .ergov3-voirann a.voirann:focus, .ergov3-voirann span.voirann:hover, .ergov3-voirann span.voirann:focus {
+    text-decoration: none;
+    background-color: #d33033!important;
+}
+
+
+ /* ------------------------------------------filter-----------------------------------------*/
+
+ .sidefilter {
+    /*margin-top: 10!important;*/
+    padding: 15px 0 0 3px!important;
+    margin-right: 4px!important;
+}
+
+.sidefiltere {
+    width: 300px;
+    float: left;
+  /*  margin-top: 10px;*/
+    margin-right: 2px;
+}
+
+.blockright {
+
+	/*padding-top: 30px;*/
+    width: 300px;
+    min-height: 600px;
+    padding-bottom: 5px;
+   /* border: 1px solid #e2e2e2;*/
+    /*background: #ffffff;*/
+}
+
+
+/*.enteteblockright {
+    background: #f8f8f8;
+    border: 1px solid #e2e2e2;
+    border-bottom: none;
+}
+
+.titreentete {
+    min-height: 34px;
+    z-index: 3;
+}
+
+.titre_bg {
+    padding-top: 3px;
+    margin-left: 5px;
+}
+
+.titre_bg h1, .titre_bg h3, .titre_bg_02 h3 {
+    font-size: 15px;
+    height: 29px;
+    line-height: 29px;
+    font-weight: bold;
+    color: #515151;
+    margin-left: 8px;
+    overflow: hidden;
+}*/
+
+
+
+
+.blockright select{
+  width: 80%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 1px;
+  resize: vertical;
+}
+
+
+/*.espacefilter{
+	padding-bottom: 30px;
+}*/

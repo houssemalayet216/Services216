@@ -1,0 +1,349 @@
+{% extends '@Back/default/templatefournisseur.html.twig' %}
+{% block section_haider %}
+<section class="content-header">
+      <h1>
+        Tableau de bord
+        <small>Services 216 </small>
+      </h1>
+      <ol class="breadcrumb">
+       
+        <li class="active"> <i class="fa fa-dashboard"></i>Taleau de bord </li>
+      </ol>
+    </section>
+{%endblock%}
+
+
+
+
+
+ {% block content %}
+
+   <section class="content">
+ <div class="row">
+   
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-red"><i class="fa fa-sticky-note-o"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Offres</span>
+              <span class="info-box-number">{{annonces}}</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+
+       
+        <div class="clearfix visible-sm-block"></div>
+
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-green"><i class="fa fa-share"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Propositions envoyer</span>
+              <span class="info-box-number">{{propositions}}</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-yellow"><i class="fa fa-reply"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Demandes reçues</span>
+              <span class="info-box-number">{{demandes}}</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+    
+  </div>
+
+
+
+
+
+  <div class="row">
+<div class="col-md-12">
+
+
+ <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">Derniers payements reçues</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+               {%if payments|length > 0 %}
+              <table class="table table-bordered">
+                <tr>
+
+                  <th>Clients</th>
+                  <th>Catégorie</th>
+                  <th>Montant</th>
+                  <th>devis</th>
+                    <th>Date de payement</th>
+                </tr>
+               
+                {% for payment in payments %}
+                <tr>
+                 
+                <td>{{payment.client.nom}} {{payment.client.prenom}}</td>
+                <td>{{payment.annonce.specialite.titre}}</td>
+                <td>{{payment.montant}}</td>
+                  {%if payment.tarification =='eur' %}
+                <td>Euro</td>
+                 {%else%}
+                  <td>Usd</td>
+                 {%endif%}
+                <td>{{payment.datepayment|date("m/d/Y H:i") }}</td>
+                   
+
+
+
+                </tr>
+                {%endfor%}
+               
+          
+                
+              </table>
+               {%else%}
+                <tr style="text-align:center;"> <h2 class="center"style="margin-left:330px;">Aucune résultat trouvé </h2> </tr>
+                {%endif%}
+            </div>
+         
+          </div>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ {% endblock %}
+  {%block aside %}
+  {% endblock %}
+
+   {% block javascript %}
+
+    <script>
+
+
+    $(document).ready(function() {
+
+   $.ajax({
+
+
+    url:'/user/home/bar-chart-agent',
+                       type:'POST',
+                       success:function (data,status,object)
+                       {
+     var datachart=data.chart_data;
+   
+      console.log(datachart);
+
+Morris.Bar({
+element:'chartbar',
+data:data.missions,
+xkey:'mois',
+ykeys:['nbr'],
+labels:['Nombres missions'],
+hideHover:'auto',
+resize:true,
+barGap:1,
+barSizeRatio:0.05,
+
+
+});
+
+}
+
+
+});
+
+
+  google.charts.load('current', {
+        'packages':['geochart'],
+        'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+      });
+      google.charts.setOnLoadCallback(drawRegionsMap);
+
+      function drawRegionsMap() {
+
+    $.ajax({
+
+  url:'/user/home/geo-chart-agent',
+                       type:'POST',
+                       success:function (data,status,object)
+                       {
+                           
+                        var pays=data.output;
+                               
+                          
+                  
+                          
+
+
+         var tab=[];
+
+var Header= ['Pays', 'nbr',{type: 'string',role:'tooltip'}];
+
+tab.push(Header);
+
+for (var i = 0; i < pays.length; i++) {
+
+      var temp=[];
+      temp.push(pays[i].Pays);
+      temp.push(pays[i].nbr);
+       temp.push(pays[i].Pays);
+   
+      tab.push(temp);
+  }
+
+var chartdata =  google.visualization.arrayToDataTable(tab);
+
+console.log(tab);
+                           
+
+        var options = {
+      
+        datalessRegionColor: '#ffcc80',
+
+        };
+
+     
+
+        var chart = new google.visualization.GeoChart(document.getElementById('chartgeo'));
+
+        chart.draw(chartdata, options);
+
+
+
+
+
+
+
+
+                       }
+
+
+    });
+
+
+
+
+
+     
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+});
+
+
+
+
+    </script>
+
+  {% endblock %}

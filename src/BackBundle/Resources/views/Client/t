@@ -1,0 +1,465 @@
+{{ form_start(form, {'method': 'post', 'action': path('create_annonce'), 'attr': {'id':'add-annonce-form'}}) }}
+<ul class="nav nav-tabs">
+      <li class="nav-item">
+      <a class="nav-link active_tab1" style="border:1px solid #ccc" id="list_demande">Demande</a> 
+
+      </li>
+
+        <li class="nav-item">
+      <a class="nav-link inactive_tab1" style="border:1px solid #ccc" id="list_personaliser">Personalisez votre demande</a> 
+
+      </li>
+
+
+
+
+        <li class="nav-item">
+      <a class="nav-link inactive_tab1" style="border:1px solid #ccc" id="list_cordonner">Précisez vos cordonnées</a> 
+
+      </li>
+
+
+     <li class="nav-item">
+      <a class="nav-link inactive_tab1" style="border:1px solid #ccc" id="list_membre">Membres famille</a> 
+
+      </li>
+
+
+
+     <li class="nav-item">
+      <a class="nav-link inactive_tab1" style="border:1px solid #ccc" id="list_confirmation">Confirmation</a> 
+
+      </li>
+
+
+     </ul>
+
+
+ <div class="tab-content" style="margin-top:16px;">
+
+          <div class="tab-pane active" id="demande">
+            <div class="panel panel-default">
+              <div class="panel-heading">Demande</div>
+              <div class="panel-body">
+              
+                   
+       <div class="col-md-6 form-group">
+                  <label for="username">Service :*</label>
+                  {{form_widget(form.service ,{'id':'service-demande','attr':{'class': 'form-control'}})}}                 
+                    <span class="text-danger" id="data.service"></span>
+
+                 
+       </div>
+
+
+       <div class="col-md-6 form-group">
+                  <label for="username">Option :*</label>
+                      <select class="form-control" id="option-demande" name="option-demande">
+                      </select>           
+                    <span class="text-danger" id="data.option"></span>
+
+                 
+       </div>
+
+
+
+
+
+ <div class="col-md-6 form-group">
+                  <label for="username">Titre :*</label>
+                  {{form_widget(form.titre ,{'id':'titre-demande','attr':{'class': 'form-control','placeholder':'Titre'}})}}                 
+                    <span class="text-danger" id="data.titre"></span>
+
+                 
+       </div>
+
+
+     <div class="col-md-12 form-group">
+                  <label for="username">Description :*</label>
+                  {{form_widget(form.description ,{'id':'description-demande','attr':{'class': 'form-control','placeholder':'Titre'}})}}                 
+                    <span class="text-danger" id="data.description"></span>
+
+                 
+       </div>
+
+
+
+       <div class="col-md-12 form-group">
+                  <label for="username">Specification :</label>
+                  {{form_widget(form.specification ,{'id':'specification-demande','attr':{'class': 'form-control','placeholder':'Specification'}})}}                 
+                    <span class="text-danger" id="data.specification"></span>
+
+                 
+       </div>
+
+     
+
+         <div class="col-md-6 form-group">
+                  <label for="username">Type de visite :</label>
+                  {{form_widget(form.typeVisite ,{'id':'typevisite-demande','attr':{'class': 'form-control','placeholder':'Détails'}})}}                 
+                    <span class="text-danger" id="data.typeVisite"></span>
+
+                 
+       </div>
+
+
+         <div class="col-md-12 form-group">
+                  <label for="username">Détails :</label>
+                  {{form_widget(form.autres ,{'id':'autres-demande','attr':{'class': 'form-control','placeholder':'Détails'}})}}                 
+                    <span class="text-danger" id="data.autres"></span>
+
+                 
+       </div>
+
+
+                <div class="col-md-6 form-group">
+                  <button type="button" name="btn_demande" id="btn_demande" class="btn btn-info ">Suivant</button>
+                </div>
+
+
+              </div>
+              
+            </div>
+          </div>
+
+
+          <div class="tab-pane fade " id="personalisez">
+            <div class="panel panel-default">
+              <div class="panel-heading">Personalisez votre demande</div>
+              <div class="panel-body">
+
+              
+
+               <div class="col-md-6 form-group">
+                  <label for="username">Nbr des personnes vont bénéficier du service :</label>
+                    <input type="number" class="form-control" id="number_visite_demande" name="number_visite_demande" min="1" max="4"/>       
+                    <span class="text-danger" id="data.nbrvisite"></span>
+
+                 </div>
+
+
+
+
+
+
+
+
+                 <div class="col-md-6 form-group">
+                  <label for="username">Nbr de visite :</label>
+                    <input type="number" class="form-control" id="number_visite_demande" name="number_visite_demande" min="1" max="6"/>       
+                    <span class="text-danger" id="data.nbrvisite"></span>
+
+                 </div>
+
+                     <div class="col-md-12 form-group">
+                  <label for="username">Sélectionnez les jours corresponds a votre demande :</label>
+                  {{form_widget(form.jours ,{'id':'joursdemande','attr':{'class': 'form-control','placeholder':'jour','multiple': 'multiple'}})}}                 
+                    <span class="text-danger" id="data.jour"></span>
+
+                 
+       </div>
+
+                   <div class="col-md-12 form-group">
+                  <label for="username">Sélectionnez le temp correspond a votre demande :</label>
+                  {{form_widget(form.datePrevu ,{'id':'datePrevu','attr':{'class': 'form-control','placeholder':'datePrevu'}})}}                 
+                    <span class="text-danger" id="data.datePrevu"></span>
+
+                 
+       </div>
+
+
+
+
+                <div class="col-md-6 form-group">
+                  <button type="button" name="previous_btn_personalisez" id="previous_btn_personalisez" class="btn btn-default ">Previous</button>
+                  <button type="button" name="btn_personalisez" id="btn_personalisez" class="btn btn-info ">Next</button>
+                </div>
+
+
+              </div>
+              
+            </div>
+          </div>
+
+
+
+            
+
+
+            <div class="tab-pane fade" id="membre">
+            <div class="panel panel-default">
+              <div class="panel-heading">Membres famille</div>
+              <div class="panel-body">
+               
+                            <div class="col-md-12 form-group">
+                  <label for="username">Sélectionnez les membres de famille bénéficier du service :</label>
+                  {{form_widget(form.membres ,{'id':'selectmembres','attr':{'class': 'form-control','placeholder':'Membres','multiple': 'multiple'}})}}                 
+                    <span class="text-danger" id="data.membres"></span>
+
+                 
+       </div>
+
+
+                <div  class="col-md-6 form-group">
+                  <button type="button" name="previous_btn_membre" id="previous_btn_membre" class="btn btn-default ">Previous</button>
+                  <button type="button" name="btn_membre" id="btn_membre" class="btn btn-info ">Next</button>
+                </div>
+
+
+              </div>
+              
+            </div>
+          </div>
+
+
+            
+          <div class="tab-pane fade " id="cordonner">
+            <div class="panel panel-default">
+              <div class="panel-heading">Précisez vos cordonnées que vous voulez afficher</div>
+              <div class="panel-body">
+             
+             
+
+                <div  class="col-md-6 form-group">
+                  <button type="button" name="previous_btn_cordonner" id="previous_btn_cordonner" class="btn btn-default ">Previous</button>
+                  <button type="button" name="btn_cordonner" id="btn_cordonner" class="btn btn-info ">Next</button>
+                </div>
+
+
+              </div>
+              
+            </div>
+          </div>
+
+
+
+          <div class="tab-pane fade" id="confirmation">
+            <div class="panel panel-default">
+              <div class="panel-heading">Précisez vos cordonnées que vous voulez afficher</div>
+              <div class="panel-body">
+             
+              
+                 
+
+                <div  class="col-md-6 form-group">
+                  <button type="button" name="previous_btn_confirmation" id="previous_btn_confirmation" class="btn btn-default ">Previous</button>
+                  <button type="button" name="btn_confirmation" id="btn_confirmation" class="btn btn-info ">Next</button>
+                </div>
+
+
+              </div>
+              
+            </div>
+          </div>
+
+
+
+
+
+    {{ form_end(form) }}
+
+ 
+
+
+
+{%endblock%}
+
+  
+
+
+ 
+
+
+
+
+      <script>
+
+
+       
+
+     $('#btn_demande').click(function(){
+     
+         $('#list_demande').removeClass('active active_tab1');
+           $('#list_demande').removeAttr('href data-toggle');
+           $('#demande').removeClass('active');
+           $('#list_demande').addClass('inactive_tab1');
+           $('#list_personaliser').removeClass('inactive_tab1');
+             $('#list_personaliser').addClass('active active_tab1');
+             $('#list_personaliser').attr('href','#personalisez');
+             $('#list_personaliser').attr('data-toggle','tab');
+               $('#personalisez').addClass('active in');
+    });
+
+        $('#previous_btn_personalisez').click(function(){
+         $('#list_personaliser').removeClass('active active_tab1');
+           $('#list_personaliser').removeAttr('href data-toggle');
+           $('#personalisez').removeClass('active');
+           $('#list_personaliser').addClass('inactive_tab1');
+           $('#list_demande').removeClass('inactive_tab1');
+             $('#list_demande').addClass('active active_tab1');
+             $('#list_demande').attr('href','#demande');
+             $('#list_demande').attr('data-toggle','tab');
+               $('#demande').addClass('active in');
+    });
+
+
+       $('#btn_personalisez').click(function(){
+         $('#list_personaliser').removeClass('active active_tab1');
+           $('#list_personaliser').removeAttr('href data-toggle');
+           $('#personalisez').removeClass('active');
+           $('#list_personaliser').addClass('inactive_tab1');
+           $('#list_cordonner').removeClass('inactive_tab1');
+             $('#list_cordonner').addClass('active active_tab1');
+             $('#list_cordonner').attr('href','#cordonner');
+             $('#list_cordonner').attr('data-toggle','tab');
+               $('#cordonner').addClass('active in');
+    });
+
+
+
+       $('#previous_btn_cordonner').click(function(){
+         $('#list_cordonner').removeClass('active active_tab1');
+           $('#list_cordonner').removeAttr('href data-toggle');
+           $('#cordonner').removeClass('active');
+           $('#list_cordonner').addClass('inactive_tab1');
+           $('#list_personaliser').removeClass('inactive_tab1');
+             $('#list_personaliser').addClass('active active_tab1');
+             $('#list_personaliser').attr('href','#personalisez');
+             $('#list_personaliser').attr('data-toggle','tab');
+               $('#personalisez').addClass('active in');
+    });
+
+
+
+
+        $('#btn_cordonner').click(function(){
+         $('#list_cordonner').removeClass('active active_tab1');
+           $('#list_cordonner').removeAttr('href data-toggle');
+           $('#cordonner').removeClass('active');
+           $('#list_cordonner').addClass('inactive_tab1');
+           $('#list_membre').removeClass('inactive_tab1');
+             $('#list_membre').addClass('active active_tab1');
+             $('#list_membre').attr('href','#membre');
+             $('#list_membre').attr('data-toggle','tab');
+               $('#membre').addClass('active in');
+    });
+
+
+     
+   $('#previous_btn_membre').click(function(){
+         $('#list_membre').removeClass('active active_tab1');
+           $('#list_membre').removeAttr('href data-toggle');
+           $('#membre').removeClass('active');
+           $('#list_membre').addClass('inactive_tab1');
+           $('#list_cordonner').removeClass('inactive_tab1');
+             $('#list_cordonner').addClass('active active_tab1');
+             $('#list_cordonner').attr('href','#cordonner');
+             $('#list_cordonner').attr('data-toggle','tab');
+               $('#cordonner').addClass('active in');
+    });
+
+
+        
+   $('#btn_membre').click(function(){
+         $('#list_membre').removeClass('active active_tab1');
+           $('#list_membre').removeAttr('href data-toggle');
+           $('#membre').removeClass('active');
+           $('#list_membre').addClass('inactive_tab1');
+           $('#list_confirmation').removeClass('inactive_tab1');
+             $('#list_confirmation').addClass('active active_tab1');
+             $('#list_confirmation').attr('href','#confirmation');
+             $('#list_confirmation').attr('data-toggle','tab');
+               $('#confirmation').addClass('active in');
+    });
+   
+
+
+
+
+
+      $('#previous_btn_confirmation').click(function(){
+         $('#list_confirmation').removeClass('active active_tab1');
+           $('#list_confirmation').removeAttr('href data-toggle');
+           $('#confirmation').removeClass('active');
+           $('#list_confirmation').addClass('inactive_tab1');
+           $('#list_membre').removeClass('inactive_tab1');
+             $('#list_membre').addClass('active active_tab1');
+             $('#list_membre').attr('href','#membre');
+             $('#list_membre').attr('data-toggle','tab');
+               $('#membre').addClass('active in');
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       </script>
+     
+
+
+<style type="text/css">
+  
+.boxx{
+  width: 800px;
+  
+  margin:0 auto;
+} 
+
+
+  
+
+.active_tab1
+{
+  background-color: #fff;
+  color:#333;
+  font-weight: 600;
+}
+
+
+.inactive_tab1
+{
+
+  background-color: #f5f5f5;
+  color:#333;
+  font-weight: 600;
+
+}
+
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+

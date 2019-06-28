@@ -1,0 +1,358 @@
+/* 
+
+1. Add your custom Css styles below
+2. Place the this code in your template: 
+
+ <link href="css/custom.css" rel="stylesheet">
+
+*/
+
+
+  #topbar .top-menu-left {
+    /*list-style: outside none none;
+     margin: 0;
+    padding: 0;
+    float: right; */
+
+     float: left;
+    height: 100%;
+      margin: 5px;
+    padding: 5px;
+
+
+
+
+
+
+
+  }
+
+
+.motclefront{
+  border-radius: 3px;
+  padding: 10px;
+}
+
+
+
+ .btnoutline {
+  border: 2px solid black;
+  background-color: white;
+  color: black;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+
+.dangeroutline {
+  border-color: #f44336;
+  color: red
+}
+
+.dangeroutline:hover {
+  background: #f44336;
+  color: white;
+}
+
+
+
+
+
+.imagepublisher{
+  border-radius: 50%;
+  text-align: center;
+}
+
+
+.haiderannonceur{
+    font-size: 20px;
+    font-family: "Open Sans Condensed",sans-serif;
+    width: 100%;
+    height: 44px;
+    line-height: 44px;
+    color: #ffffff;
+    text-align: center;
+    background-color: #231f20;
+
+      /*background-color: #900000;*/
+    font-weight: bold;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+
+.similairetitre{
+  width: 270px;
+  
+    font-size: 15px;
+   
+    color:black;
+  }
+
+
+
+    .haiderannonceur p{
+     
+      padding-top: 5px;
+    margin: 0;}
+
+    .imagesimalaire{
+      margin-left: 5px;
+    }
+
+
+.haiderannonceur p b{
+    color:#ffffff; 
+    }
+
+
+    #topbar .top-menu-left > li {
+      display: inline-block;
+      height: 40px;
+      line-height: 40px; }
+      #topbar .top-menu-left > li > a {
+      /*  display: block;*/
+        font-size: 12px;
+        font-weight: 500;
+        height: 40px;
+        margin-right: 16px; 
+      
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  #logo-top #logo {
+      float: left;
+      font-size: 28px;
+      position: relative;
+      z-index: 1;
+      transition: all .4s ease-in-out;
+      height: 60px; }
+      #logo-top #logo a > img {
+        vertical-align: inherit;
+        transition: all .4s ease-in-out;
+        height: 60px;
+        width: auto; }
+
+
+
+element.style {
+}
+#mainMenu.menu-lines nav > ul > li.current > a, #mainMenu.menu-lines nav > ul > li:hover > a, #mainMenu.menu-lines nav > ul > li:focus > a {
+    color: #1abc9c;
+    /* color: #ffffff;*/
+     
+}
+#mainMenu.menu-lines nav > ul > li > a {
+    border-radius: 0;
+    border: none;
+      padding-bottom: 8px;
+}
+#mainMenu nav > ul > li.hover-active > a, #mainMenu nav > ul > li.hover-active > span, #mainMenu nav > ul > li.current > a, #mainMenu nav > ul > li.current > span, #mainMenu nav > ul > li:hover > a, #mainMenu nav > ul > li:hover > span, #mainMenu nav > ul > li:focus > a, #mainMenu nav > ul > li:focus > span {
+    color: #1abc9c;
+    /*color: #ffffff;*/
+}
+#mainMenu nav > ul > li > a {
+    position: relative;
+    font-family: "Raleway", "Helvetica", "Arial", sans-serif;
+    padding: 11px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+/*    color: #252525;*/
+    color: #565656;
+
+    /* color: #ffffff;*/
+    text-transform: uppercase;
+    border-radius: 0;
+    border-width: 0;
+    border-style: solid;
+    border-color: transparent;
+    transition: all .3s ease;
+    line-height: normal;
+}
+
+#mainMenu.menu-lines nav > ul > li.current > a:after, #mainMenu.menu-lines nav > ul > li:hover > a:after, #mainMenu.menu-lines nav > ul > li:focus > a:after {
+    width: 100%;
+    left: 0%;
+    /*background-color: #ffffff;*/
+  
+}
+
+
+
+
+
+
+
+#header.header-sticky #header-wrap {
+    background-color: #ffffff !important;
+  /*  background-color: #ee1c24 !important;*/
+    transition: top .8s ease-in-out;
+    position: fixed;
+    top: -140px;
+    box-shadow: 0 12px 6px rgba(0, 0, 0, 0.06); }
+    #header.header-sticky #header-wrap #logo {
+      font-size: 20px; }
+  #header.header-sticky.sticky-active #header-wrap {
+    top: 0; }
+  #header.header-sticky.dark #header-wrap {
+    background-color: #252525 !important; }
+
+      #header.header-modern:not(.header-active) {
+    margin: 40px auto 0;
+    width: 1200px; }
+
+       #header.header-modern:not(.header-active).header-colored #header-wrap {
+      background-color: #1abc9c;
+      border-bottom: 0; }
+
+
+
+
+
+      #mainMenu nav > ul > li .dropdown-menu {
+          background-position: right bottom;
+          background-repeat: no-repeat;
+          visibility: hidden;
+          display: block;
+          opacity: 0;
+          transition: all 0.3s ease;
+          min-width: 230px;
+          top: auto;
+          background-color: #ffffff;
+          /*background-color: #222222;*/
+          border: 0;
+          border-style: solid;
+          border-color: #eeeeee;
+          /*border-color: #222222;*/
+          border-width: 1px !important;
+          left: auto;
+          margin: 0;
+          margin-top: -6px;
+          /*border-radius: 4px;*/
+          border-radius: 1px;
+          box-shadow: 0px 0px 18px 0 rgba(0, 0, 0, 0.05);
+          /*padding: 10px;*/
+
+
+
+           }
+          
+
+            #mainMenu nav > ul > li .dropdown-menu > li > a,
+          #mainMenu nav > ul > li .dropdown-menu > li > span,
+          #mainMenu nav > ul > li .dropdown-menu > li [class*="col-"] > ul > li > a {
+            font-family: "Montserrat", "Helvetica", "Arial", sans-serif;
+            font-size: 13px;
+            line-height: 14px;
+            font-weight: 400;
+            font-style: normal;
+            /*color: #ffffff;*/
+            color: #3e3e3e;
+         
+            padding: 12px 20px 12px 18px;
+            display: block;
+            /*transition: .3s ease; */
+            transition: all 0.3s;
+            border-bottom:1px solid #e0e0e0;
+
+           
+        }
+
+
+
+              #mainMenu nav > ul > li .dropdown-menu > li > a:focus, #mainMenu nav > ul > li .dropdown-menu > li > a:hover, #mainMenu nav > ul > li .dropdown-menu > li > a:active,
+            #mainMenu nav > ul > li .dropdown-menu > li > span:focus,
+            #mainMenu nav > ul > li .dropdown-menu > li > span:hover,
+            #mainMenu nav > ul > li .dropdown-menu > li > span:active,
+            #mainMenu nav > ul > li .dropdown-menu > li [class*="col-"] > ul > li > a:focus,
+            #mainMenu nav > ul > li .dropdown-menu > li [class*="col-"] > ul > li > a:hover,
+            #mainMenu nav > ul > li .dropdown-menu > li [class*="col-"] > ul > li > a:active {
+              /*background-color: transparent;*/
+              /*background-color: #f03c02;*/
+              /*color: #1abc9c;*/
+              /*color: #f03c02;*/
+               /*color: #ffffff;*/
+              
+              cursor: pointer; 
+               padding-left: 10px;
+	      transition: all 0.3s;
+
+          }
+            #mainMenu nav > ul > li .dropdown-menu > li > a > i,
+            #mainMenu nav > ul > li .dropdown-menu > li > span > i,
+            #mainMenu nav > ul > li .dropdown-menu > li [class*="col-"] > ul > li > a > i {
+              margin-left: -4px;
+              margin-right: 6px;
+              min-width: 14px; }
+          #mainMenu nav > ul > li .dropdown-menu > li.current > a,
+          #mainMenu nav > ul > li .dropdown-menu > li.current > span, #mainMenu nav > ul > li .dropdown-menu > li:hover > a,
+          #mainMenu nav > ul > li .dropdown-menu > li:hover > span, #mainMenu nav > ul > li .dropdown-menu > li:focus > a,
+          #mainMenu nav > ul > li .dropdown-menu > li:focus > span, #mainMenu nav > ul > li .dropdown-menu > li:active > a,
+          #mainMenu nav > ul > li .dropdown-menu > li:active > span, #mainMenu nav > ul > li .dropdown-menu > li.hover-active > a,
+          #mainMenu nav > ul > li .dropdown-menu > li.hover-active > span {
+            /*color: #1abc9c !important;*/
+              /*color: #f03c02 !important;*/
+             /* color: #ffffff;*/
+             } 
+
+
+
+
+.simple .tabs-navigation li a {
+  background-color: transparent;
+  border-width: 0 0 2px;
+  margin-bottom: -1px; }
+.simple .tabs-navigation li.active a,
+.simple .tabs-navigation li.active a:focus,
+.simple .tabs-navigation li a:hover {
+  border-color: #274abb;
+  color: #274abb;
+  background-color: transparent; }
+
+  .color-btn{
+    background-color:#ff5457;
+    border: 0;
+  }
+
+
+
+   .color-btn:hover{
+    background-color:#d33033;
+   }
+ 
+ .bootstrap-datetimepicker-widget table td span {
+/*  background-color:#2f51be;*/
+    color:#868686;
+ }
+
+ .btn:hover, .btn:focus, .btn:active, .btn.active {
+    /*outline: 0 !important;
+    background-color: #148f77;
+    border-color: #148f77;
+    color: #fff;*/ }
+
+
+    .notificationcolor {
+  position: absolute;
+ /* top: -10px;
+  right: -10px;
+  padding: 1px 1px;*/
+  border-radius: 50%;
+  background: red;
+  color:white;
+}

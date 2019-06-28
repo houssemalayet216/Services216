@@ -1,0 +1,572 @@
+{% extends '@Back/default/templatefournisseur.html.twig' %}
+{% block section_haider %}
+<section class="content-header">
+      <h1>
+        Modifier Profile
+        <small>Services 216</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Accueille</a></li>
+        <li class="active">Modifier Profile</li>
+      </ol>
+    </section>
+{%endblock%}
+
+ {%block content%} 
+ 
+  <div class="row">
+<div class="col-md-12">
+
+
+  <div class="box box-solid">
+            <div class="box-header">
+              <h3 class="box-title" style="text-align:center">Modifier Profile</h3>
+               <div class="alert alert-editclient"></div> 
+            </div>
+           
+
+
+            
+            {{ form_start(form, {'method': 'post', 'action': path('edit_profil_fournisseur'), 'attr': {'id':'edit-profil-fournisseur'}}) }}
+
+              <div class="box-body">
+               
+              
+                <div class="col-md-6 form-group">
+                  <label for="username">Username :*</label>
+                       {{form_widget(form.username ,{'id':'usernamefournisseur','attr':{'class': 'form-control','placeholder':'Username'}})}}                 
+                    <span class="text-danger" id="editusernamef"></span>
+
+                 
+                </div>
+
+
+             
+
+                  <div class="col-md-6 form-group">
+                  <label for="username">Email :*</label>
+                          {{form_widget(form.email ,{'id':'emailfournisseur','attr':{'class': 'form-control','placeholder':'Email'}})}}           
+                    <span class="text-danger" id="editemailf"></span>
+
+                 
+                </div>
+
+                  <div class="col-md-6 form-group">
+                  <label for="username">Telephone :*</label>
+                        {{form_widget(form.telephone ,{'id':'telephonefournisseur','attr':{'class': 'form-control','placeholder':'Telephone'}})}}               
+                    <span class="text-danger" id="edittelephonef"></span>
+
+                 
+                </div>
+
+                  <div class="col-md-6 form-group">
+                  <label for="username">Adresse :*</label>
+                        {{form_widget(form.adresse ,{'id':'adressfournisseur','attr':{'class': 'form-control','placeholder':'Adresse'}})}}               
+                    <span class="text-danger" id="editadressef"></span>
+
+                 
+                </div>
+
+
+               
+
+
+                 <div class="col-md-6 form-group">
+                  <label for="username">Code Postale :*</label>
+                        {{form_widget(form.cp ,{'id':'postal_code','attr':{'class': 'form-control','placeholder':'Code Postale'}})}}               
+                    <span class="text-danger" id="editcodef"></span>
+
+                 
+                </div>
+
+                   <div class="col-md-6 form-group">
+                  <label for="username">Raison Sociale :*</label>
+                        {{form_widget(form.raison ,{'id':'raison','attr':{'class': 'form-control','placeholder':'Raison Sociale'}})}}               
+                    <span class="text-danger" id="editraison"></span>
+
+                 
+                </div>
+
+                  <div class="col-md-6 form-group">
+                  <label for="username">Responsable:*</label>
+                        {{form_widget(form.responsable ,{'id':'responsable','attr':{'class': 'form-control','placeholder':'Responsable'}})}}               
+                    <span class="text-danger" id="editresponsable"></span>
+
+                 
+                </div>
+
+              
+
+
+
+                      <div class="col-md-6 form-group">
+                  <label for="username">Numéro siret :*</label>
+                        {{form_widget(form.tva ,{'id':'tva','attr':{'class': 'form-control','placeholder':'Code Tva'}})}}               
+                    <span class="text-danger" id="edittva"></span>
+
+                 
+                </div>
+
+
+                   <div class="col-md-12 form-group">
+                  <label for="username">Numéro du compte bancaire :*</label>
+                        {{form_widget(form.ncompte ,{'id':'ncompte','attr':{'class': 'form-control','placeholder':'Numéro du compte bancaire'}})}}               
+                    <span class="text-danger" id="editncompte"></span>
+
+                 
+                </div>
+
+
+
+
+               
+
+
+
+                 <div class="col-md-6 form-group">
+                  <label for="username">Document de l'entreprise:*</label>
+                        {{form_widget(form.file ,{'id':'file'})}}               
+                    <span class="text-danger" id="editfile"></span>
+
+                 
+                </div>
+
+                <div class="col-md-6 form-group">
+                  <label for="username">Logo:*</label>
+                        {{form_widget(form.logo ,{'id':'logo-f'})}}               
+                    <span class="text-danger" id="editlogof"></span>
+
+                 
+                </div>
+                
+               
+              </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+              
+
+                     
+                      <button type="submit"  class="btn btn-primary" id="btn_edit_ajax">
+
+                   <span>Modifier</span><i id="spin-fournisseur"></i>
+                  </button>
+    </div>
+
+
+
+              </div>
+            {{ form_end(form) }}
+          </div>
+
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ {% endblock %}
+
+  {%block aside %}
+  {% endblock %}
+
+
+   {% block javascript %}
+
+             <script>
+                $(document).ready(function(){
+                   
+                     $cf = $('#telephonefournisseur');
+    $cf.blur(function(e){
+        phone = $(this).val();
+        phone = phone.replace(/[^0-9]/g,'');
+        if (phone.length != 8)
+        {
+            document.getElementById('edittelephonef').textContent='Phone number must be 8 digits. ';
+            $('#telephonefournisseur').val('');
+            $('#telephonefournisseur').focus();
+        }else{
+
+           document.getElementById('edittelephonef').textContent='';
+
+        }
+    });
+
+
+
+              
+
+                   $('#btn_edit_ajax').click(function(e){
+                  e.preventDefault();
+                    $('#btn_edit_ajax').prop('disabled',true);
+                  $("#spin-fournisseur").addClass('fa fa-spinner fa-spin fa-register');
+                    var username=$('#usernamefournisseur').val();
+                  var email=$('#emailfournisseur').val();
+                  var raison=$('#raison').val();
+                  var responsable=$('#responsable').val();
+                 
+                  var tva= $('#tva').val();
+
+
+                    
+                  
+                   var errorfArray=['editusernamef','editemailf','editraison','editresponsable','edittva'];
+                    var formFournisseur = document.getElementById("edit-profil-fournisseur");
+
+
+
+
+
+                    
+                    if(email=="")
+                  {
+                       document.getElementById('editemailf').textContent='Ce champ ne doit pas entre vide ';
+                     $("#spin-fournisseur").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_edit_ajax').prop('disabled',false); 
+                  }
+                  
+
+                    if(username=="")
+                  {
+                       document.getElementById('editusernamef').textContent='Ce champ ne doit pas entre vide ';
+                     $("#spin-fournisseur").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_edit_ajax').prop('disabled',false); 
+                  }
+
+
+                  
+
+
+                    if(raison=="")
+                  {
+                       document.getElementById('editraison').textContent='Ce champ ne doit pas entre vide ';
+                     $("#spin-fournisseur").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_edit_ajax').prop('disabled',false); 
+                  }
+                  
+
+                    if(responsable=="")
+                  {
+                       document.getElementById('editresponsable').textContent='Ce champ ne doit pas entre vide ';
+                     $("#spin-fournisseur").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_edit_ajax').prop('disabled',false); 
+                  }
+
+
+                  if(tva=="")
+                  {
+                       document.getElementById('edittva').textContent='Ce champ ne doit pas entre vide ';
+                     $("#spin-fournisseur").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_edit_ajax').prop('disabled',false); 
+                  }
+                  
+
+                 
+
+
+
+
+
+                        $('#usernamefournisseur').change(function(){
+                  
+                 if($.trim(document.getElementById('editusernamef').textContent) !== "")
+
+                                  {
+                                    document.getElementById('editusernamef').textContent="";
+                                  }
+                    
+                                 });
+
+
+                                 $('#emailfournisseur').change(function(){
+                  
+                 if($.trim(document.getElementById('editemailf').textContent) !== "")
+
+                                  {
+                                    document.getElementById('editemailf').textContent="";
+                                  }
+                    
+                                 });
+
+
+                    
+           
+
+
+
+                        $('#raison').change(function(){
+                  
+                 if($.trim(document.getElementById('editraison').textContent) !== "")
+
+                                  {
+                                    document.getElementById('editraison').textContent="";
+                                  }
+                    
+                                 });
+
+
+                                 $('#responsable').change(function(){
+                  
+                 if($.trim(document.getElementById('editresponsable').textContent) !== "")
+
+                                  {
+                                    document.getElementById('editresponsable').textContent="";
+                                  }
+                    
+                                 });
+
+                      
+
+          
+
+
+
+                        $('#tva').change(function(){
+                  
+                 if($.trim(document.getElementById('edittva').textContent) !== "")
+
+                                  {
+                                    document.getElementById('edittva').textContent="";
+                                  }
+                    
+                                 });
+
+
+                       
+
+                      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                 if(email!==""&&username!==""&&raison!==""&&responsable!==""&&tva!=="")
+               {
+               
+
+                      $.ajax({
+                       dataType:"json",
+                       url:$("#edit-profil-fournisseur").attr('action'),
+                       type:$("#edit-profil-fournisseur").attr('method'),
+                        data:new FormData(formFournisseur),
+                       contentType:false,
+                       processData:false,
+                       cache:false,
+                       success:function (data,status,object)
+                       {
+
+                       $('.alert-editclient').show();
+                       var message=data.message;
+                       if(data.success==true)
+                          {
+
+
+                         
+                               errorfArray.forEach(function(error){
+                                  if($.trim(document.getElementById(error).textContent) !== "")
+
+                                  {
+                                    document.getElementById(error).textContent="";
+                                  }
+                               });
+                             
+
+                            toastr.success(message,'Success', {
+                                      
+                                      "closeButton": false,
+                                       "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": true,
+                                        "positionClass": "toast-top-right",
+                                         "preventDuplicates": false,
+                                         "onclick": null,
+                                          "showDuration": "300",
+                                          "hideDuration": "1000",
+                                           "timeOut": "5000",
+                                           "extendedTimeOut": "1000",
+                                           "showEasing": "swing",
+                                           "hideEasing": "linear",
+                                           "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                              
+
+
+                               });
+
+                            document.location.reload(true);
+                            
+
+                          }
+
+                          else{
+
+                             toastr.error('message','Error', {
+                                      
+                                      "closeButton": false,
+                                       "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": true,
+                                        "positionClass": "toast-top-right",
+                                         "preventDuplicates": false,
+                                         "onclick": null,
+                                          "showDuration": "300",
+                                          "hideDuration": "1000",
+                                           "timeOut": "5000",
+                                           "extendedTimeOut": "1000",
+                                           "showEasing": "swing",
+                                           "hideEasing": "linear",
+                                           "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                              
+
+
+                               });
+
+
+
+
+                            if(data.errors)
+                            {
+                              errorfArray.forEach(function(error){
+
+                               if($.trim(document.getElementById(error).textContent) !== "")
+
+                                  {
+                                    document.getElementById(error).textContent="";
+                                  }
+
+                              });
+
+                              data.errors.forEach(function(error)
+                              {
+
+                               document.getElementById(error.elementId).textContent=error.errorMessage;
+                              });
+
+                            }
+
+                          }
+                                
+
+                        
+                         $("#spin-fournisseur").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_edit_ajax').prop('disabled',false); 
+                          
+
+                          },
+                          error:function (data,status,object)
+                          {
+                             console.log(data.message);
+                          }
+
+
+
+
+
+
+
+
+                       });
+
+
+
+
+
+
+
+
+
+
+
+                    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                  });
+
+
+
+
+
+
+
+                 
+
+
+
+   
+                  
+
+                });
+
+
+
+
+
+
+
+
+
+
+                </script>
+
+            
+
+     {% endblock %}          

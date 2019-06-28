@@ -1,0 +1,468 @@
+{% extends '@Back/default/templateclient.html.twig' %}
+{% block section_haider %}
+<section class="content-header">
+      <h1>
+        Modifier profile
+        <small>Services 216</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i>Acceille</a></li>
+        <li class="active">Modifier profile</li>
+      </ol>
+    </section>
+{%endblock%}
+
+ {%block content%} 
+ 
+  <div class="row">
+<div class="col-md-12">
+
+
+  <div class="box box-solid">
+            <div class="box-header with-border">
+              <h3 class="box-title">Modifier Profile</h3>
+
+              <div class="alert alert-editclient"></div> 
+            </div>
+         
+            
+           
+
+            
+            {{ form_start(form, {'method': 'post', 'action': path('edit_profil_client'), 'attr': {'id':'edit_client'}}) }}
+
+              <div class="box-body">
+                <div class="col-md-6 form-group">
+                  <label for="nom">Nom :*</label>
+                   
+
+                      {{form_widget(form.nom ,{'id':'nomclient','attr':{'class': 'form-control','placeholder':'Nom'}})}}
+                                       
+                      <span class="text-danger" id="editnom"></span>
+                </div>
+                <div class="col-md-6 form-group">
+                  <label for="prenom">Prenom :*</label>
+                     {{form_widget(form.prenom ,{'id':'prenomclient','attr':{'class': 'form-control','placeholder':'Prenom'}})}}                 
+                    <span class="text-danger" id="editprenom"></span>
+                </div>
+                <div class="col-md-6 form-group">
+                  <label for="username">Username :*</label>
+                       {{form_widget(form.username ,{'id':'usernameclient','attr':{'class': 'form-control','placeholder':'Username'}})}}                 
+                    <span class="text-danger" id="editusername"></span>
+
+                 
+                </div>
+
+
+
+                 <div class="col-md-6 form-group">
+                  <label for="username">Civilite :*</label>
+                       {{form_widget(form.civilite ,{'id':'civilite','attr':{'class': 'form-control','placeholder':'Civilite'}})}}                 
+                    <span class="text-danger" id="editcivilite"></span>
+
+                 
+                </div>
+
+               
+             
+
+                  <div class="col-md-6 form-group">
+                  <label for="username">Email :*</label>
+                          {{form_widget(form.email ,{'id':'emailclient','attr':{'class': 'form-control','placeholder':'Email'}})}}           
+                    <span class="text-danger" id="editemail"></span>
+
+                 
+                </div>
+
+                  <div class="col-md-6 form-group">
+                  <label for="username">Telephone :*</label>
+                        {{form_widget(form.telephone ,{'id':'telephoneclient','attr':{'class': 'form-control','placeholder':'Telephone'}})}}               
+                    <span class="text-danger" id="edittelephone"></span>
+
+                 
+                </div>
+
+                  <div class="col-md-6 form-group">
+                  <label for="username">Adresse :*</label>
+                        {{form_widget(form.adresse ,{'id':'adressclient','attr':{'class': 'form-control','placeholder':'Adresse'}})}}               
+                    <span class="text-danger" id="editadresse"></span>
+
+                 
+                </div>
+
+
+                  <div class="col-md-6 form-group">
+                  <label for="username">Pays :*</label>
+                        {{form_widget(form.pays ,{'id':'country','attr':{'class': 'form-control','placeholder':'Pays'}})}}               
+                    <span class="text-danger" id="editpays"></span>
+
+                 
+                </div>
+
+
+                 <div class="col-md-6 form-group">
+                  <label for="username">Code Postale :*</label>
+                        {{form_widget(form.cp ,{'id':'postal_code','attr':{'class': 'form-control','placeholder':'Code Postale'}})}}               
+                    <span class="text-danger" id="editcode"></span>
+
+                 
+                </div>
+
+                   <div class="col-md-6 form-group">
+                  <label for="username">Type Resident :*</label>
+                        {{form_widget(form.residence ,{'id':'type Residence','attr':{'class': 'form-control','placeholder':'typeresident'}})}}               
+                    <span class="text-danger" id="editresidence"></span>
+
+                 
+                </div>
+
+                  <div class="col-md-6 form-group">
+                  <label for="username">Fonction:*</label>
+                        {{form_widget(form.post ,{'id':'post','attr':{'class': 'form-control','placeholder':'Fonction'}})}}               
+                    <span class="text-danger" id="editpost"></span>
+
+                 
+                </div>
+
+             
+
+                 <div class="col-md-6 form-group">
+                  <label for="username">Logo:*</label>
+                        {{form_widget(form.logo ,{'id':'logo','attr':{'class': 'form-control','placeholder':'Logo'}})}}               
+                    <span class="text-danger" id="editlogo"></span>
+
+                 
+                </div>
+                
+               
+              </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+              
+
+                     
+                      <button type="submit"  class="btn btn-primary" id="btn_editclient_ajax">
+
+                   <span>Modifier</span><i id="spin-client"></i>
+                  </button>
+      
+    </div>
+
+
+
+              </div>
+            {{ form_end(form) }}
+          </div>
+
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ {% endblock %}
+
+  {%block aside %}
+  {% endblock %}
+
+
+   {% block javascript %}
+
+             <script>
+                $(document).ready(function(){
+
+                 $('.alert-editclient').hide();
+
+
+                 $cf = $('#telephoneclient');
+    $cf.blur(function(e){
+        phone = $(this).val();
+        phone = phone.replace(/[^0-9]/g,'');
+        if (phone.length != 8)
+        {
+            document.getElementById('edittelephone').textContent='Phone number must be 8 digits. ';
+            $('#telephoneclient').val('');
+            $('#telephoneclient').focus();
+        }else{
+
+           document.getElementById('edittelephone').textContent='';
+
+        }
+    });
+
+                   $('#btn_editclient_ajax').click(function(e){
+                  e.preventDefault();
+                    $('#btn_editclient_ajax').prop('disabled',true);
+                  $("#spin-client").addClass('fa fa-spinner fa-spin fa-register');
+                   
+                     var username=$('#usernameclient').val();
+                  var email=$('#emailclient').val();
+
+                  
+                   var errorcArray=['editnom','editprenom','editusername','editemail','edittelephone'];
+                    var formclient = document.getElementById("edit_client");
+
+                    if(email=="")
+                  {
+                       document.getElementById('editemail').textContent='Ce champ ne doit pas entre vide ';
+                     $("#spin-client").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_editclient_ajax').prop('disabled',false); 
+                  }
+                  
+
+                    if(username=="")
+                  {
+                       document.getElementById('editusername').textContent='Ce champ ne doit pas entre vide ';
+                     $("#spin-client").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_editclient_ajax').prop('disabled',false); 
+                  }
+
+
+
+                        $('#usernameclient').change(function(){
+                  
+                 if($.trim(document.getElementById('editusername').textContent) !== "")
+
+                                  {
+                                    document.getElementById('editusername').textContent="";
+                                  }
+                    
+                                 });
+
+
+                                 $('#emailclient').change(function(){
+                  
+                 if($.trim(document.getElementById('editemail').textContent) !== "")
+
+                                  {
+                                    document.getElementById('editemail').textContent="";
+                                  }
+                    
+                                 });
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+           if(email!==""&&username!=="")
+
+             {
+                      $.ajax({
+                       dataType:"json",
+                       url:$("#edit_client").attr('action'),
+                       type:$("#edit_client").attr('method'),
+                        data:new FormData(formclient),
+                       contentType:false,
+                       processData:false,
+                       cache:false,
+                       success:function (data,status,object)
+                       {
+
+                      
+                       var message=data.message;
+                       if(data.success==true)
+                          {
+
+
+                         
+                               errorcArray.forEach(function(error){
+                                  if($.trim(document.getElementById(error).textContent) !== "")
+
+                                  {
+                                    document.getElementById(error).textContent="";
+                                  }
+                               });
+                             
+
+                            toastr.success(message,'Success', {
+                                      
+                                      "closeButton": false,
+                                       "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": true,
+                                        "positionClass": "toast-top-right",
+                                         "preventDuplicates": false,
+                                         "onclick": null,
+                                          "showDuration": "300",
+                                          "hideDuration": "1000",
+                                           "timeOut": "5000",
+                                           "extendedTimeOut": "1000",
+                                           "showEasing": "swing",
+                                           "hideEasing": "linear",
+                                           "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                              
+
+
+                               });
+
+                            document.location.reload(true);
+                            
+
+                          }
+
+                          else{
+
+                             toastr.error('message','Error', {
+                                      
+                                      "closeButton": false,
+                                       "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": true,
+                                        "positionClass": "toast-top-right",
+                                         "preventDuplicates": false,
+                                         "onclick": null,
+                                          "showDuration": "300",
+                                          "hideDuration": "1000",
+                                           "timeOut": "5000",
+                                           "extendedTimeOut": "1000",
+                                           "showEasing": "swing",
+                                           "hideEasing": "linear",
+                                           "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                              
+
+
+                               });
+
+
+
+
+                            if(data.errors)
+                            {
+                              errorcArray.forEach(function(error){
+
+                               if($.trim(document.getElementById(error).textContent) !== "")
+
+                                  {
+                                    document.getElementById(error).textContent="";
+                                  }
+
+                              });
+
+                              data.errors.forEach(function(error)
+                              {
+
+                               document.getElementById(error.elementId).textContent=error.errorMessage;
+                              });
+
+                            }
+
+                          }
+                                
+
+                        
+                         $("#spin-client").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_editclient_ajax').prop('disabled',false); 
+                          
+
+                          },
+                          error:function (data,status,object)
+                          {
+                             console.log(data.message);
+                          }
+
+
+
+
+
+
+
+
+                       });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                  });
+
+
+
+
+
+
+
+                 
+
+
+
+   
+                  
+
+                });
+
+
+
+
+
+
+
+
+
+
+                </script>
+
+     {% endblock %}          

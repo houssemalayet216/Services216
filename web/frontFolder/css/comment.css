@@ -1,0 +1,77 @@
+.service-box{
+
+	text-align:center;
+padding:35px 15px;
+overflow: hidden;
+position:relative;
+transition: all 0.3s ease 0s;
+}
+
+
+.service-box:hover
+{
+	background: #ee1c24;
+}
+
+
+.service-box:before 
+{
+	content:"";
+	width:40px;
+	height:40px;
+	border-width:20px;
+	border-style:solid;
+	border-color:white white rgba(1,1,1,0.2) rgba(0,0,0,0.2);
+	position:absolute;
+	top:-40px;
+	right:-40px;
+	transition: all 0.3s ease 0s;
+}
+
+.service-box:hover:before
+{
+	top:0;
+	right:0;
+}
+
+.service-box i
+{
+	display:block;
+	font-size: 55px;
+	/*color:#967128;*/
+	color:#ee1c24;
+	
+	margin-bottom: 14px;
+	transition: all 0.3s ease 0s;
+}
+
+.service-box .title
+{
+font-size:18px;
+font-weight: 900;
+color:#545454;
+line-height: 25px;
+text-transform: capitalize;
+margin:0 0 16px 0;
+transition:all 0.3s ease 0s;
+
+}
+
+
+.service-box .description
+{
+
+font-size: 15px;
+color:#545454;
+line-height:25px;
+margin:0;
+transition:all 0.3s ease 0s;
+
+}
+
+.service-box:hover i,
+.service-box:hover .title,
+.service-box:hover .description
+{
+	color:white;
+}

@@ -1,0 +1,16 @@
+.textdescription{
+
+white-space: nowrap; 
+  width: 200px; 
+  overflow: hidden;
+  text-overflow:ellipsis;
+}
+
+
+.cachetexte{
+	white-space: nowrap; 
+  width: 5px; 
+  overflow: hidden;
+    text-overflow: ellipsis; 
+
+}

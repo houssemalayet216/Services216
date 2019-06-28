@@ -1,0 +1,1014 @@
+ {% extends '@Front/default/template.html.twig' %}
+
+
+
+
+{% block pageContainer %}
+   <div id="slider" class="inspiro-slider slider-fullscreen arrows-large arrows-creative dots-creative" data-height-xs="360">
+           
+            <div class="slide background-overlay-dark" data-parallax-image="{{asset('frontFolder/images/parallax/frontimage.jpg')}}" >
+                <div class="container">
+                 
+                
+                   
+                   <div class="slide-captions">
+                      
+                      <div class="row titrerecherche">
+                      <h5 class="text-center" >Proposer et trouver des services </h5>
+                  </div>
+
+                      <form method="POST" action="{{path('recherche_annonce')}}">
+                      
+                         <div class="row" style="margin-left: 90px;margin-bottom: 80px;">
+
+                           
+                           <div class="form-group col-md-3">
+
+                          
+                        
+                         
+                          
+                           <select  name="option_front_recherche">
+                           <option selected disabled value="" >Catégories</option>
+                          
+                           {%for optionrecherche in menu().optionsrecherches %}
+                           <option value="{{optionrecherche.id}}">{{optionrecherche.titre}}</option>
+                           {% endfor %}
+                      
+                        </select>
+                      
+                        </div>
+
+                        <div class="form-group col-md-3">
+                          
+                        
+                     
+                         
+                        <input type="text"  name="mot_cle_front_recherche" class="motclefront"  placeholder="Mot Cle" style="  border-radius: 3px; padding: 10px;">
+                     
+                        </div>
+
+                          
+
+                   
+
+
+                        
+
+                       
+
+                          <div class="form-group col-md-3">
+                         
+                          
+                          
+                            
+                            
+                             <select  name="ville_front_recherche">
+                             <option selected disabled value="" >Ville</option>
+                    <option value="Tunis">Tunis</option>
+                    <option value="Beja">Beja</option>
+                    <option value="Ariana">Ariana</option>
+                    <option value="Ben arous">Ben arous</option>
+                     <option value="Bizert">Bizert</option>
+                    <option value="Gabes">Gabes</option>
+                     <option value="Gafsa">Gafsa</option>
+                    <option value="Jendouba">Jendouba</option>
+                     <option value="Kairouan">Kairouan</option>
+                    <option value="Kasserine">kasserine</option>
+                     <option value="kébili">Kébili</option>
+                    <option value="Kef">Kef</option>
+                     <option value="Mahdia">Mahdia</option>
+                    <option value="Manouba">Manouba</option>
+                     <option value="Médnine">Médnine</option>
+                    <option value="Nabeul">Nabeul</option>
+                     <option value="Sfax">Sfax</option>
+                    <option value="Sidi Bouzid">Sidi Bouzid</option>
+                     <option value="Siliana">Siliana</option>
+                    <option value="Sousse">Sousse</option>
+                     <option value="Tataouine">Tataouine</option>
+                    <option value="Touzeur">Touzeur</option>
+                    
+                              </select>
+
+                     
+
+                             </div>
+                    
+
+                     
+
+                        
+                        
+
+                         <div class="form-group   col-md-3">
+                            
+                                        
+                  <button type="submit" id="widget-widget-search-form-button" value="chercher" class="btn btn-danger" style="margin-top:5px;" >chercher <i class="fa fa-search"></i></button>
+                 
+                
+                  
+               
+                     </div>
+
+                    </div>
+               
+
+
+
+                         
+                       </form>
+
+
+         </div>
+
+                       
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                 </div>
+
+                 
+
+
+              </div>
+          </div>
+            <!-- end: Slide 1 -->
+        </div>
+        <!--end: Inspiro Slider -->
+
+
+
+
+
+
+
+<section class="background-grey">
+  <div class="container">
+    <div class="heading heading-center">
+      <h2>Comment ça marche</h2>
+
+    </div>
+    
+    
+
+    <div class="col-md-3 col-sm-6">
+ <div class="service-box">
+  <i class="fa fa-plus-circle"></i>
+  <h4 class="title">Publier votre annonce</h4>
+  <p class="description">
+   Publiez votre offre ou demande depuis front ou votre tableau de bord.
+
+  </p>
+  
+ </div> 
+</div>
+
+
+<div class="col-md-3 col-sm-6">
+ <div class="service-box">
+  <i class="fa fa-sticky-note-o"></i>
+  <h4 class="title">Sélectionnez</h4>
+  <p class="description">
+  Rcevez instantannement des offres parmi des centaines d&apos;agent verifies.
+
+  </p>
+  
+ </div> 
+</div>
+
+
+<div class="col-md-3 col-sm-6">
+ <div class="service-box">
+  <i class="fa fa-exchange"></i>
+  <h4 class="title"> Suivi votre demande</h4>
+  <p class="description">
+   Accedez a votre tableau bord et suivi votre annonces.
+
+  </p>
+  
+ </div> 
+</div>
+
+<div class="col-md-3 col-sm-6">
+ <div class="service-box">
+  <i class="fa fa-edit"></i>
+  <h4 class="title">Evaluez</h4>
+  <p class="description">
+ Apres la fin du service, evaluez l&apos;agent pour nous aider a fournir les meilleurs offres.
+
+  </p>
+  
+ </div> 
+</div>
+ 
+
+
+
+
+
+
+  </div>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section >
+  <div class="container">
+    <div class="heading heading-center">
+      <h2>Services</h2>
+   
+    </div>
+
+    
+         <div class="row">
+        <div class="col-md-6">
+     <div class="single-services service-left">
+      <div class="row">
+        <div class="col-md-7 col-md-offset-2">
+          <div class="services-text-left">
+                <h4>Sante</h4>
+                 <p>Profiter des services  d&apos;assistance respiratoire a domicile,docteurs,infirmieres et l&apos;aides soignant. </p>
+             </div>     
+            
+          </div>
+
+          <div class="col-md-3">
+            <div class="service-icon">
+            
+            <i class="fa fa-stethoscope"></i>
+
+            </div>
+          </div>
+          
+        </div>
+        
+      </div>
+      
+     </div> 
+
+
+
+       <div class="col-md-6">
+     <div class="single-services service-right">
+      <div class="row">
+
+          <div class="col-md-3">
+            <div class="service-icon">
+            
+            <i class="fa fa-car"></i>
+
+            </div>
+          </div>
+
+
+
+        <div class="col-md-7 ">
+          <div class="services-text-right">
+                <h4>Transport</h4>
+                 <p>Profiter des services de  Covoiturage ,chouffeur pour votre famille ,balade .</p>
+             </div>     
+            
+          </div>
+
+        
+          
+        </div>
+        
+      </div>
+      
+     </div> 
+
+
+
+
+
+  </div> 
+
+
+
+
+
+
+    <div class="row middle-row">
+    <div class="col-md-6">
+     <div class="single-services service-left">
+      <div class="row">
+        <div class="col-md-7 col-md-offset-2">
+          <div class="services-text-left">
+                <h4>Achat</h4>
+                 <p>Profiter des services d&apos;achat  pour votre famille. </p>
+             </div>     
+            
+          </div>
+
+          <div class="col-md-3">
+            <div class="service-icon">
+            
+            <i class="fa fa-shopping-cart"></i>
+
+            </div>
+          </div>
+          
+        </div>
+        
+      </div>
+      
+     </div> 
+
+
+
+       <div class="col-md-6">
+     <div class="single-services service-right">
+      <div class="row">
+
+          <div class="col-md-3">
+            <div class="service-icon">
+            
+            <i class="fa fa-wrench"></i>
+
+            </div>
+          </div>
+
+
+
+        <div class="col-md-7 ">
+          <div class="services-text-right">
+                <h4>Bricolage</h4>
+                 <p>Profiter des services de  Maintenance,d&apos;electiricite et jardinage.</p>
+             </div>     
+            
+          </div>
+
+        
+          
+        </div>
+        
+      </div>
+      
+     </div> 
+
+
+
+
+
+    </div>  
+
+
+
+
+
+
+
+
+
+
+
+ <div class="row">
+    <div class="col-md-6">
+     <div class="single-services service-left">
+      <div class="row">
+        <div class="col-md-7 col-md-offset-2">
+          <div class="services-text-left">
+                <h4>Assistance</h4>
+                 <p>Profiter d&apos;assistance.</p>
+             </div>     
+            
+          </div>
+
+          <div class="col-md-3">
+            <div class="service-icon">
+            
+            <i class="fa fa-wheelchair"></i>
+
+            </div>
+          </div>
+          
+        </div>
+        
+      </div>
+      
+     </div> 
+
+
+
+       <div class="col-md-6">
+     <div class="single-services service-right">
+      <div class="row">
+
+          <div class="col-md-3">
+            <div class="service-icon">
+            
+            <i class="fa fa-home"></i>
+
+            </div>
+          </div>
+
+
+
+        <div class="col-md-7 ">
+          <div class="services-text-right">
+                <h4>Ménage</h4>
+                 <p>Profiter des services de Repassage a domicile,Nettoyage et menage.</p>
+             </div>     
+            
+          </div>
+
+        
+          
+        </div>
+        
+      </div>
+      
+     </div> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="background-grey">
+  <div class="container">
+    <div class="heading heading-center">
+      <h2>Annonces par service</h2>
+
+    </div>
+  
+   <div class="row text-center">
+
+    <div class="textwithBlurredBg">
+  <img src="{{asset('frontFolder/images/parallax/sante1.jpg')}}">
+  <h4>Santé</h4>
+  <h5>583 annonces</h5>
+</div>
+
+
+
+<div class="textwithBlurredBg">
+  <img src="{{asset('frontFolder/images/parallax/chauffeur_prive.jpg')}}">
+  <h4>Transport</h4>
+  <h5>370 annonces</h5>
+</div>  
+
+
+
+
+<div class="textwithBlurredBg">
+  <img src="{{asset('frontFolder/images/parallax/achat.jpg')}}">
+  <h4>Achat</h4>
+  <h5>170 annonces</h5>
+</div>
+
+
+
+<div class="textwithBlurredBg">
+  <img src="{{asset('frontFolder/images/parallax/bricolage.jpg')}}">
+  <h4>Bricolage</h4>
+  <h5>300 annonces</h5>
+</div>  
+
+
+
+<div class="textwithBlurredBg">
+  <img src="{{asset('frontFolder/images/parallax/maison.jpg')}}">
+  <h4>Ménage</h4>
+  <h5>417 annonces</h5>
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+  </div>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="background-grey">
+  <div class="container text-center">
+  <div class="heading heading-center">
+      <h2>Derniers annonces</h2>
+
+    </div>
+
+<div class="activity_home">
+
+        <div class="block">
+
+
+        <div id="tabs-033" class="tabs no-border" >
+
+        <ul class="tabs-navigation">
+            <li class="active"><a href="#offre">Offre</a> </li>
+            <li><a href="#demande"></i>Demande</a> </li>
+          </ul>
+         
+        <div class="tabs-content" style="padding:0;">
+            <div class="tab-pane active" id="offre">
+
+          <ul class="list-div">
+            <li class="activity">
+
+
+             {%for  offre in menu().offres %}
+ 
+              <div class="postd">
+                <div class="post_conteneur">
+                  <span class="ad_date"></span>
+                  <div class=" vignette_annonce floatleft">
+                    <div class="box_vignette_annonce">
+
+                        {%if offre.image!= null %}
+                       <img src="{{asset('')}}uploads/logo/{{offre.image}}"style="max-width:174px;max-height:150px;">
+                        {%else%}
+                        <img src="{{asset('FrontFolder/images/petitannonce.jpg')}}" style="max-width: 174px;">
+                        {%endif%}
+                    </div>
+                    
+                  </div>
+                            
+
+
+
+
+                            <div class="home_text_annonce floatleft">
+                              <div class="block_info_top floatright">
+                                
+                                    <div>
+                                   <a href="{{path('single_annonce',{'id':offre.id})}}" class="  hreffrontannonce" style="margin-top:70px;"><span>Voir</span></a>
+                                   </div>
+
+
+
+                                
+                              </div>
+
+                                <div class="titre_annonce_profil">
+                                  <span class="proposition"> {{offre.titre}}</span>
+                               
+                                </div>
+
+                                <ul class="critere_annonce floatleft">
+                                   {%if offre.typeAnnance == 'demande'%}
+                                  <li><span>{{offre.user.nom}} {{offre.user.prenom}}</span></li>
+                                    {%else%}
+                                     <li><span>{{offre.user.raison}}</span></li>
+                                    {%endif%}
+
+                                  <li class="home_extract_ad">  
+                                   {{offre.description}}
+                                  </li>
+                                </ul>
+
+
+
+
+
+
+
+
+
+                              
+                            </div>
+                            <div class="nofloat"></div>
+
+
+
+
+                </div>
+                
+              </div>
+              {%endfor%}
+
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </li>
+            
+          </ul>
+
+      
+
+
+
+
+
+      </div>
+        <div class="tab-pane" id="demande">
+             
+           
+             <ul class="list-div">
+            <li class="activity">
+
+              {% for demande in menu().demandes %}
+              
+                <div class="postd">
+                <div class="post_conteneur">
+                  <span class="ad_date"></span>
+                  <div class=" vignette_annonce floatleft">
+                    <div class="box_vignette_annonce">
+
+                        {%if demande.image != null %}
+                     <img src="{{asset('')}}uploads/logo/{{demande.image}}"style="max-width:174px;max-height:150px;">
+                        {%else%}
+                        <img src="{{asset('FrontFolder/images/petitannonce.jpg')}}" style="max-width: 174px;">
+                        {%endif%}
+                    </div>
+                    
+                  </div>
+                            
+
+
+
+
+                            <div class="home_text_annonce floatleft">
+                              <div class="block_info_top floatright">
+                                
+                                    <div>
+                                   <a href="{{path('single_annonce',{'id':demande.id})}}" class="  hreffrontannonce" style="margin-top:70px;"><span>Voir</span></a>
+                                   </div>
+
+
+
+                                
+                              </div>
+
+                                <div class="titre_annonce_profil">
+                                  <span class="proposition"> {{demande.titre}}</span>
+                               
+                                </div>
+
+                                <ul class="critere_annonce floatleft">
+                                   {%if demande.typeAnnance == 'demande'%}
+                                  <li><span>{{demande.user.nom}} {{demande.user.prenom}}</span></li>
+                                    {%else%}
+                                     <li><span>{{demande.user.raison}}</span></li>
+                                    {%endif%}
+
+                                  <li class="home_extract_ad">  
+                                   {{demande.description}}
+                                  </li>
+                                </ul>
+
+
+
+
+
+
+
+
+
+                              
+                            </div>
+                            <div class="nofloat"></div>
+
+
+
+
+                </div>
+                
+              </div>
+             
+
+             {%endfor%}
+
+
+
+           </li>
+            
+          </ul>
+
+
+
+
+
+
+
+
+
+
+            </div>
+
+
+
+     <!-- tabs  -->
+
+</div>
+</div>
+
+     <!-- tabs  -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+  </div>
+  
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+</section>    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  {% endblock%}
+
+  {% block javascript %}
+
+{% endblock %}

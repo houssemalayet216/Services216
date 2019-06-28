@@ -1,0 +1,449 @@
+/* 
+
+1. Add your custom Css styles below
+2. Place the this code in your template: 
+
+ <link href="css/custom.css" rel="stylesheet">
+
+*/
+
+
+
+
+.inactive_tab1
+{
+
+  background-color: #f5f5f5;
+  color:#333;
+  font-weight: 600;
+
+}
+
+
+
+select:invalid {
+  color: gray;
+}
+
+ select option:first-child {
+  color: gray;
+}
+
+ select:invalid option:not(:first-child) {
+  color: black;
+}
+
+
+
+
+.clearfix::after {
+content: '';
+display:block;
+clear:both;
+}
+
+.text-input{
+  padding:.7rem 1rem;
+  display:block;
+  width: 100%;
+  border-radius: 5px;
+  border:1px solid #e0e0e0;
+  outline:none;
+  color:#444;
+  line-height: 1.5rem;
+  font-size: 1.2em;
+  font-family: 'Lora',serif;
+}
+
+
+
+
+
+
+
+.contentannonce{
+width:90%;
+margin:30px auto 30px;
+  
+}
+
+
+.contentannonce .main-content-annonce{
+  width:70%;
+  float :left;
+
+}
+
+.contentannonce .main-content-annonce.single{
+  background: white;
+  padding:20px 50px;
+ /* border-radius: 5px;*/
+  border: 1px solid #e2e2e2;
+}
+
+.contentannonce .main-content-annonce.single .post-title{
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+
+.contentannonce .main-content-annonce.single .btn-contact{
+
+   margin-top: 30px;
+  bottom: 10px;
+ 
+}
+
+.Namesingle{
+  font-weight: bold;
+    font-size: 14px;
+}
+
+.adressesingle , .emailsingle , .telephonesingle{
+  font-size: 12px;
+    color: #000;
+}
+
+
+
+.contentannonce .popular .postsingle {
+  border-bottom:1px solid #e0e0e0;
+ 
+    margin-bottom:10px;
+    padding-bottom: 10px;
+  /*padding-top: 10px;*/
+
+}
+
+.tabledesign tr:nth-child(odd){
+background-color: #ddd;
+}
+
+
+
+.checkedetoile{
+  color: orange;
+}
+
+.uncheckedetoile{
+  color:#fff;
+}
+
+.contentannonce .popular .postsingle img {
+  height:60px;
+  width:60px;
+  float:left;
+  margin-right:10px;
+
+}
+
+.contentannonce .sidebar{
+  width:30%;
+  float: left;
+  
+  height:300px;
+}
+
+.contentannonce .sidebar.single {
+padding:0px 10px;
+}
+.contentannonce .sidebar .sectionannonce{
+  background:white;
+  /*padding:20px;*/
+  border: 1px solid #e2e2e2;
+/*  border-radius:5px;*/
+  margin-bottom: 20px;
+}
+
+
+
+
+.contentannonce .sidebar .sectionannonce .section-title-annonce{
+ margin:10px 0px 10px 0px;
+}
+
+
+
+
+
+.contentannonce .sidebar .sectionannonce.search{
+  margin-top: 80px;
+}
+
+.contentannonce .sidebar .sectionannonce.topics ul{
+ margin:0px;
+ padding:0px;
+ list-style: none;
+ border-top:1px solid #e0e0e0;
+}
+
+.contentannonce .sidebar .sectionannonce.topics ul li a {
+  display:block;
+  padding:15px 0px 15px 0px;
+  border-bottom:1px solid #e0e0e0;
+  transition: all 0.3s;
+}
+
+
+
+/*.contentannonce .sidebar .sectionannonce.topics ul li a:hover {
+  padding-left: 10px;
+  transition: all 0.3s;
+}*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.main-search-box {
+    background-color: #fff;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.12);
+    padding: 30px;
+    padding-bottom: 20px;
+    margin-top: -9px;
+    border-radius: 3px;
+}
+
+
+.inputclass {
+
+
+	height: 41px;
+    line-height: 51px;
+    padding: 0 20px;
+    outline: none;
+    font-size: 12px;
+    color:black;
+    margin: 0 0 16px;
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+    background-color: #fcfcfc;
+    font-weight: 300;
+    border: 1px solid #e0e0e0;
+    opacity: 1;
+    border-radius: 3px;
+}
+
+
+
+
+
+
+
+.areaclass {
+
+
+    height: 50px;
+    line-height: 51px;
+    padding: 0 20px;
+    outline: none;
+    font-size: 15px;
+    color: gray;
+    margin: 0 0 16px;
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+    background-color: #fcfcfc;
+    font-weight: 500;
+    border: 1px solid #e0e0e0;
+    opacity: 1;
+    border-radius: 3px;
+}
+
+.badge-error {
+  background-color: #b94a48;
+}
+.badge-error:hover {
+  background-color: #953b39;
+}
+
+/*
+
+.post{
+  width:90%;
+  height:220px;
+  margin:10px auto;
+  border-radius: 5px;
+  background: white;
+  position:relative;
+}
+
+.post .post-image
+{
+width:30%;
+height:100%;
+float: left;
+
+}
+
+.post .post-preview {
+  width:70%;
+  padding:10px;
+  float:right;
+}
+
+
+.post .post-preview .btn {
+  padding:.5rem 1rem;
+  background: #006669;
+  border:1px solid transparent;
+    border-radius:.25rem;
+}
+
+.post .post-preview .btn:hover{
+  color:white !important;
+  background: #006669;
+}
+
+.post .post-preview .read-more{
+  position:absolute;
+  bottom: 10px;
+  right:10px;
+  border:1px solid #006669;
+  background:transparent;
+  border-radius: 0px;
+  color :#006669 !important;
+}
+
+.post .post-preview .annonce{
+  position:absolute;
+  bottom: 15px; 
+}
+
+
+.post .post-preview .read-more:hover{
+  background:#006669;
+  color: white !important;
+  transition: .25s;
+}
+
+
+
+.cardannonce {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+
+.titlecardannonce {
+  color: grey;
+  font-size: 18px;
+}
+
+.buttoncardannonce {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #3498DB;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+.cardannonce a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+}
+
+.buttoncardannonce:hover, a:hover {
+  opacity: 0.7;
+}*/
+
+
+
+
+.hreffrontannonce{
+      height: 42px;
+    line-height: 42px;
+    padding: 0 10px 0 10px;
+    font-weight: bold;
+    color: #fff;
+    font-size: 13px;
+    display: block;
+    font-family: 'Open Sans',sans-serif;
+    background-color: #ff5457;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    text-align: center;
+}
+
+    
+
+.hreffrontannonce:hover{
+background-color: #d33033; 
+}
+
+.hreffrontannonce:hover span{
+color: #fff; 
+}

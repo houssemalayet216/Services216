@@ -1,0 +1,569 @@
+{% extends '@Back/default/templatefournisseur.html.twig' %}
+{% block section_haider %}
+<section class="content-header">
+        <h1>
+        Contacter administration
+        <small>Services 216</small>
+      </h1>
+      <ol class="breadcrumb">
+
+        
+        <li class="active" ><i class="fa fa-envelope"></i> Contacter</li>
+      </ol>
+    </section>
+{%endblock%}
+
+ {%block content%} 
+
+
+ <div class="col-md-12 " style="padding-buttom:50px;">
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <div class="box" >
+            <div class="box-header with-border">
+              <h3 class="box-title">Envoi message</h3>
+            </div>
+          
+          
+              <div class="box-body">
+              
+                {{ form_start(form, {'method': 'post', 'action': path('envoi_mail_agent'), 'attr': {'id':'envoyer_message_form_agent'}}) }}
+              <div class="form-group col-md-6">
+              <label>Nom:</label>
+             
+                
+                  {{form_widget(form.nom ,{'id':'nommessage','attr':{'class': 'form-control','placeholder':'Nom'}})}} 
+                <span class="text-danger" id="data.nom"></span>
+              </div>
+
+               <div class="form-group col-md-6">
+               <label>Prènom:</label>
+                 {{form_widget(form.prenom ,{'id':'prenommessage','attr':{'class': 'form-control','placeholder':'Prénom'}})}} 
+                <span class="text-danger" id="data.prenom"></span>
+              </div>
+
+
+                <div class="form-group col-md-12">
+               <label>Email:</label>
+                 {{form_widget(form.adresse ,{'id':'emailmessage','attr':{'class': 'form-control','placeholder':'Email'}})}} 
+                <span class="text-danger" id="data.adresse"></span>
+              </div>
+
+              <div class="form-group col-md-12">
+               <label>Sujet:</label>
+                {{form_widget(form.sujet ,{'id':'sujetmessage','attr':{'class': 'form-control','placeholder':'Sujet'}})}} 
+                <span class="text-danger" id="data.sujet"></span>
+              </div>
+              <div class="form-group col-md-12">
+                  <label>Message:</label>
+                      {{form_widget(form.message ,{'id':'message','attr':{'class': 'form-control','placeholder':'Message'}})}} 
+                    <span class="text-danger" id="data.message"></span>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </div>
+              
+              <div class="box-footer">
+                
+                   <button type="submit"  id="btn_envoyer_message_agent" class="btn btn-info "> <span>Envoyer</span><i id="spin_envoyer_message_agent"></i></button>
+              </div>
+             {{ form_end(form) }}
+
+            
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+ {% endblock %}
+
+
+
+
+
+
+  {%block aside %}
+  {% endblock %}
+
+   {% block javascript %}
+
+   <script>
+
+
+$('#btn_envoyer_message_agent').click(function(e){
+                  e.preventDefault();
+                    $('#btn_envoyer_message_agent').prop('disabled',true);
+                  $("#spin_envoyer_message_agent").addClass('fa fa-spinner fa-spin fa-register');
+                   
+                   var nom=$('#nommessage').val();
+                   var prenom=$('#prenommessage').val();
+                   var adresse=$('#emailmessage').val();
+                   var sujet=$('#sujetmessage').val();
+                   var message=$('#message').val();
+
+                  
+                   var errormaArray=['data.nom','data.prenom','data.adresse','data.sujet','data.message'];
+                    var formmessageagent = document.getElementById("envoyer_message_form_agent");
+
+                    if(nom=="")
+                  {
+                       document.getElementById('data.nom').textContent='Ce champ ne doit pas entre vide ';
+                     $("#spin_envoyer_message_agent").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_envoyer_message_agent').prop('disabled',false); 
+                  }
+                  
+
+                    if(prenom=="")
+                  {
+                       document.getElementById('data.prenom').textContent='Ce champ ne doit pas entre vide ';
+                      $("#spin_envoyer_message_agent").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_envoyer_message_agent').prop('disabled',false); 
+                  }
+
+                       if(adresse=="")
+                  {
+                       document.getElementById('data.adresse').textContent='Ce champ ne doit pas entre vide ';
+                      $("#spin_envoyer_message_agent").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_envoyer_message_agent').prop('disabled',false); 
+                  }
+
+
+                         if(sujet=="")
+                  {
+                       document.getElementById('data.sujet').textContent='Ce champ ne doit pas entre vide ';
+                       $("#spin_envoyer_message_agent").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_envoyer_message_agent').prop('disabled',false); 
+                  }
+
+
+                           if(message=="")
+                  {
+                       document.getElementById('data.message').textContent='Ce champ ne doit pas entre vide ';
+                       $("#spin_envoyer_message_agent").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_envoyer_message_agent').prop('disabled',false);  
+                  }
+
+
+
+
+
+                
+
+
+                        $('#nommessage').change(function(){
+                  
+                 if($.trim(document.getElementById('data.nom').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.nom').textContent="";
+                                  }
+                    
+                                 });
+
+
+                                 $('#prenommessage').change(function(){
+                  
+                 if($.trim(document.getElementById('data.prenom').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.prenom').textContent="";
+                                  }
+                    
+                                 });
+
+
+                                     $('#emailmessage').change(function(){
+                  
+                 if($.trim(document.getElementById('data.adresse').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.adresse').textContent="";
+                                  }
+                    
+                                 });
+
+
+                                     $('#sujetmessage').change(function(){
+                  
+                 if($.trim(document.getElementById('data.sujet').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.sujet').textContent="";
+                                  }
+                    
+                                 });
+
+
+                                     $('#message').change(function(){
+                  
+                 if($.trim(document.getElementById('data.message').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.message').textContent="";
+                                  }
+                    
+                                 });
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+           if(nom!==""&&prenom!==""&&adresse!==""&&sujet!==""&&message!=="")
+
+             {
+
+               
+
+                      $.ajax({
+                       dataType:"json",
+                       url:$("#envoyer_message_form_agent").attr('action'),
+                       type:$("#envoyer_message_form_agent").attr('method'),
+                        data:new FormData(formmessageagent),
+                       contentType:false,
+                       processData:false,
+                       cache:false,
+                       success:function (data,status,object)
+                       {
+
+                      
+                       var message=data.message;
+                       if(data.success==true)
+                          {
+
+
+                         
+                               errormaArray.forEach(function(error){
+                                  if($.trim(document.getElementById(error).textContent) !== "")
+
+                                  {
+                                    document.getElementById(error).textContent="";
+                                  }
+                               });
+                             
+                                      $('#envoyer_message_form_agent')[0].reset();
+                            toastr.success(message,'Success', {
+                                      
+                                      "closeButton": false,
+                                       "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": true,
+                                        "positionClass": "toast-top-right",
+                                         "preventDuplicates": false,
+                                         "onclick": null,
+                                          "showDuration": "300",
+                                          "hideDuration": "1000",
+                                           "timeOut": "5000",
+                                           "extendedTimeOut": "1000",
+                                           "showEasing": "swing",
+                                           "hideEasing": "linear",
+                                           "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                              
+
+
+                               });
+
+                                   $("#spin_envoyer_message_agent").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_envoyer_message_agent').prop('disabled',false);
+
+                          
+                            
+
+                          }
+
+                          else{
+
+                             toastr.error('message','Error', {
+                                      
+                                      "closeButton": false,
+                                       "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": true,
+                                        "positionClass": "toast-top-right",
+                                         "preventDuplicates": false,
+                                         "onclick": null,
+                                          "showDuration": "300",
+                                          "hideDuration": "1000",
+                                           "timeOut": "5000",
+                                           "extendedTimeOut": "1000",
+                                           "showEasing": "swing",
+                                           "hideEasing": "linear",
+                                           "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                              
+
+
+                               });
+
+                    
+
+
+                            if(data.errors)
+                            {
+                              errormaArray.forEach(function(error){
+
+                               if($.trim(document.getElementById(error).textContent) !== "")
+
+                                  {
+                                    document.getElementById(error).textContent="";
+                                  }
+
+                              });
+
+                              data.errors.forEach(function(error)
+                              {
+
+                               document.getElementById(error.elementId).textContent=error.errorMessage;
+                              });
+
+                               $("#spin_envoyer_message_agent").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#spin_envoyer_message_agent').prop('disabled',false); 
+
+                            }
+
+                          }
+                                
+
+            
+                   
+                          
+
+                          },
+                          error:function (data,status,object)
+                          {
+                             console.log(data.message);
+                          }
+
+
+
+
+
+
+
+                       });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                     }
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+                  });
+
+
+
+
+
+
+
+                 
+
+
+
+   
+                  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   </script>
+
+
+
+
+
+   {% endblock %}

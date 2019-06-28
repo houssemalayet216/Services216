@@ -1,0 +1,147 @@
+{% extends '@Back/default/templatefournisseur.html.twig' %}
+{% block section_haider %}
+<section class="content-header">
+      <h1>
+        Calendrier
+        <small>Services 216</small>
+      </h1>
+      <ol class="breadcrumb">
+      
+        <li class="active"><i class="fa fa-calendar"></i>Calendrier des rendez vous</li>
+      </ol>
+    </section>
+{%endblock%}
+
+ {%block content%} 
+ 
+  <div class="row">
+<div class="col-md-12">
+
+  
+          <div class="box box-primary">
+            <div class="box-body">
+              
+              <div id="calendar"></div>
+            </div>
+          
+          </div>
+        
+   
+
+  <div class="modal fade" tabindex="-1" id="Modalviewcalendar" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Voir Mission</h4>
+      </div>
+      <div class="modal-body">
+       
+          <div class="table-responsive">
+            <table class="table">
+             <div id="divviewcalendar">
+              
+             </div>
+
+            </table>
+          </div>
+      </div>
+      <div class="modal-footer">
+       
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</div>
+
+
+{% endblock %}
+
+  {%block aside %}
+  {% endblock %}
+
+
+   {% block javascript %}
+
+      <script>
+          $(document).ready(function(){
+              var calendar =$('#calendar').fullCalendar({
+
+                 
+                header:{
+                 left:'prev,next today',
+                 center:'title',
+                 right:'month,agendaWeek,agendaDay'
+                },
+                events:'/user/home/event-calendrier',
+                disableDragging: true,
+                editable: false,
+                
+                
+                 eventClick:function(event)
+                {
+                  
+                      var id=event.id;
+                       var start=$.fullCalendar.formatDate(event.start,"Y-MM-DD HH:mm:ss");
+                        $('#Modalviewcalendar').modal('show');
+                  
+
+                 
+                  $.ajax({
+                         url:"/user/home/view-calendar",
+                         type:"POST",
+                          data:{id:id,start:start},
+
+                         success:function(data)
+                         {
+                          
+                          $('#divviewcalendar').html(data.output);
+                         
+
+                         }
+                        });
+
+
+
+                }
+
+
+                });
+                });
+
+
+
+
+
+</script>
+
+   {% endblock %}

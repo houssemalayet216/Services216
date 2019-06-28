@@ -1,0 +1,1358 @@
+{% extends '@Back/default/templateclient.html.twig' %}
+{% block section_haider %}
+<section class="content-header">
+        <h1>
+        Publier Annonces
+        <small>Services216</small>
+      </h1>
+      <ol class="breadcrumb">
+
+      
+        <li class="active"><i class="fa fa-plus"></i> Publier  Annonces</li>
+      </ol>
+    </section>
+{%endblock%}
+
+ {%block content%} 
+
+
+<div class="boxx">
+{{ form_start(form, {'method': 'post', 'action': path('create_annonce'), 'attr': {'id':'add-annonce-form'}}) }}
+<ul class="nav nav-tabs">
+      <li class="nav-item">
+      <a class="nav-link active_tab1" style="border:1px solid #ccc" id="list_demande">Demande</a> 
+
+      </li>
+
+        <li class="nav-item">
+      <a class="nav-link inactive_tab1" style="border:1px solid #ccc" id="list_personaliser">Personalisez votre demande</a> 
+
+      </li>
+
+
+
+
+        <li class="nav-item">
+      <a class="nav-link inactive_tab1" style="border:1px solid #ccc" id="list_cordonner">Précisez vos cordonnées</a> 
+
+      </li>
+
+
+     <li class="nav-item">
+      <a class="nav-link inactive_tab1" style="border:1px solid #ccc" id="list_membre">Membres famille</a> 
+
+      </li>
+
+
+
+    
+
+
+     </ul>
+
+
+ <div class="tab-content" style="margin-top:16px;">
+ {%if nbrmembre < 1 %}
+
+<div class="alert alert-info alert-dismissible" class="text-center" >
+            <span id="alert_member" class="alert_member"> Vous devez ajouter au moin un membre famille !!<span>
+              </div>
+
+
+{% endif %}
+
+
+          <div class="tab-pane active" id="demande">
+            <div class="panel panel-default">
+              <div class="panel-heading">Demande</div>
+              <div class="panel-body">
+              
+                   
+       <div class="col-md-6 form-group">
+                  <label for="username">Service :*</label>
+                  {{form_widget(form.service ,{'id':'service_demande','attr':{'class': 'form-control'}})}}                 
+                    <span class="text-danger" id="data.service"></span>
+
+                 
+       </div>
+
+
+       <div class="col-md-6 form-group">
+                  <label for="username">Catégories :*</label>
+                      <select class="form-control" id="option_demande" name="option_demande">
+                      </select>           
+                    <span class="text-danger" id="data.option"></span>
+
+                 
+       </div>
+
+
+     
+
+     <div class="col-md-12 form-group" id="missiondemande">
+
+     </div>
+
+
+
+
+
+ <div class="col-md-12 form-group">
+                  <label for="username">Titre :*</label>
+                  {{form_widget(form.titre ,{'id':'titre_demande','attr':{'class': 'form-control','placeholder':'Titre'}})}}                 
+                    <span class="text-danger" id="data.titre"></span>
+
+                 
+       </div>
+
+
+
+      
+
+
+     <div class="col-md-12 form-group">
+                  <label for="username">Description :*</label>
+                  {{form_widget(form.description ,{'id':'description_demande','attr':{'class': 'form-control','placeholder':'Titre'}})}}                 
+                    <span class="text-danger" id="data.description"></span>
+
+                 
+       </div>
+
+
+
+
+  <div class="col-md-12 form-group">
+                 
+                 <div>
+  <input type="checkbox" id="aporter-demande" name="aporter-demande" value='aporter'>
+  <label>Le jobber apporte ses outils  </label>
+</div>                
+  <span class="text-danger" id="data.aporter"></span>
+
+                 
+       </div> 
+
+
+
+
+
+
+
+
+
+     <div class="col-md-12 form-group">
+                 
+                 <div>
+  <input type="checkbox" id="fourniture-demande" name="fourniture-demande" value='acheter'>
+  <label>Le jobber doit acheter les fournitures et les outilles indiqué dans l&apos;annonce </label>
+</div>   
+
+  <span class="text-danger" id="data.fourniture"></span>
+
+                 
+       </div> 
+
+
+
+  
+
+
+
+
+
+         <div class="col-md-12 form-group">
+                  <label for="username">Détails :</label>
+                  {{form_widget(form.autres ,{'id':'autres_demande','attr':{'class': 'form-control','placeholder':'Détails'}})}}                 
+                    <span class="text-danger" id="data.autres"></span>
+
+                 
+       </div>
+
+              {% if nbrmembre < 1 %}
+                   <div class="col-md-6 form-group">
+                  <button type="button"  class="btn btn-info " disabled>Suivant</button>
+                </div>
+                {%else%}
+                <div class="col-md-6 form-group">
+                  <button type="button" name="btn_demande" id="btn_demande" class="btn btn-info ">Suivant</button>
+                </div>
+                {%endif%}
+
+
+              </div>
+              
+            </div>
+          </div>
+
+
+          <div class="tab-pane fade " id="personalisez">
+            <div class="panel panel-default">
+              <div class="panel-heading">Personalisez votre demande</div>
+              <div class="panel-body">
+
+              <div class="col-md-12 form-group" id="listedesproduits">
+
+              </div>
+
+              <div  id="divdeplacement">
+             
+              </div>
+
+
+
+
+
+
+
+
+                   <div class="col-md-6 form-group">
+                  <label for="username">Récurence du besoin *:</label>
+                  {{form_widget(form.typeVisite ,{'id':'typevisite_demande','attr':{'class': 'form-control','placeholder':'Détails'}})}}                 
+                    <span class="text-danger" id="data.typeVisite"></span>
+
+                 
+                   </div>
+
+
+                 <div class="col-md-12 form-group">
+                  <label for="username">Sélectionnez les dates corresponds a votre demande *:</label>
+                           
+
+                          <input type="text" id="datedemande" name="datedemande" class="form-control" placeholder="Dates Visites" />    
+                    <span class="text-danger" id="data.dateVisite"></span>
+
+                 
+       </div>
+
+
+
+
+
+                   <div class="col-md-12 form-group">
+                  <label for="username">Sélectionnez le temp correspond a votre demande *:</label>
+                           {{form_widget(form.datePrevu ,{'id':'timedemande','attr':{'class': 'form-control','placeholder':'Temp prévu'}})}}       
+                    <span class="text-danger" id="data.datePrevu"></span>
+
+                 
+       </div>
+
+
+
+
+                <div class="col-md-6 form-group">
+                  <button type="button" name="previous_btn_personalisez" id="previous_btn_personalisez" class="btn btn-default ">Previous</button>
+                  <button type="button" name="btn_personalisez" id="btn_personalisez" class="btn btn-info ">Next</button>
+                </div>
+
+
+              </div>
+              
+            </div>
+          </div>
+
+
+
+            
+
+
+     
+
+
+            
+          <div class="tab-pane fade " id="cordonner">
+            <div class="panel panel-default">
+              <div class="panel-heading">Précisez vos cordonnées que vous voulez afficher</div>
+              <div class="panel-body">
+             
+
+                <div class="col-md-6 form-group">
+                  <label for="username">Téléphone :*</label>
+                        <input type="text" id="telephone_demande" name="telephone_demande" class="form-control">          
+                    <span class="text-danger" id="data.telephone"></span>
+
+                 
+       </div>
+
+
+                   <div class="col-md-6 form-group">
+                  <label for="username">Téléphone 2 :</label>
+                        <input type="text" id="telephone2_demande" name="telephone2_demande" class="form-control">          
+                    <span class="text-danger" id="data.telephoneII"></span>
+
+                 
+       </div>
+
+
+
+                   <div class="col-md-6 form-group">
+                  <label for="username">Fix :</label>
+                        <input type="text" id="fix_demande" name="fix_demande" class="form-control">          
+                    <span class="text-danger" id="data.fix"></span>
+
+                 
+       </div>
+
+
+                <div class="col-md-6 form-group">
+                  <label for="username">Email :*</label>
+                        <input type="text" id="email_demande" name="email_demande" class="form-control">          
+                    <span class="text-danger" id="data.email"></span>
+
+                 
+       </div>
+
+           <div class="col-md-6 form-group">
+                  <label for="username">Pays :*</label>
+                       
+
+                        <select  id="ville_demande" name="ville_demande" class="form-control">
+                            <option value="Åland Islands">Åland Islands</option>
+                          <option value="Afghanistan">Afghanistan</option>
+                          <option value="Albania">Albania</option>
+                          <option value="Algeria">Algeria</option>
+                          <option value="Andorra">Andorra</option>
+                          <option value="Angola">Angola</option>
+                          <option value="Anguilla">Anguilla</option>
+                          <option value="Antarctica">Antarctica</option>
+                          <option value="Antigua et Barbuda">Antigua et Barbuda</option>
+                          <option value="Argentina">Argentina</option>
+                          <option value="Armenia">Armenia</option>
+                          <option value="Aruba">Aruba</option>
+                          <option value="Australia">Australia</option>
+                          <option value="Austria">Austria</option>
+                          <option value="Azerbaijan">Azerbaijan</option>
+                          <option value="Bahamas">Bahamas</option>
+                          <option value="Bahrain">Bahrain</option>
+                          <option value="Bangladesh">Bangladesh</option>
+                          <option value="Barbados">Barbados</option>
+                          <option value="Belarus">Belarus</option>
+                          <option value="Belau">Belau</option>
+                          <option value="Belgium">Belgium</option>
+                          <option value="Belize">Belize</option>
+                          <option value="Benin">Benin</option>
+                          <option value="Bermuda">Bermuda</option>
+                          <option value="Bhutan">Bhutan</option>
+                          <option value="Bolivia">Bolivia</option>
+                          <option value="Saint Eustatius">Bonaire, Saint Eustatius and Saba</option>
+                          <option value="Bosnia">Bosnia and Herzegovina</option>
+                          <option value="Botswana">Botswana</option>
+                          <option value="Bouvet">Bouvet Island</option>
+                          <option value="Brazil">Brazil</option>
+                          <option value="British Indian ">British Indian Ocean Territory</option>
+                          <option value="British Virgin">British Virgin Islands</option>
+                          <option value="Brunei">Brunei</option>
+                          <option value="Bulgaria">Bulgaria</option>
+                          <option value="Burkina Faso">Burkina Faso</option>
+                          <option value="Burundi">Burundi</option>
+                          <option value="Cambodia">Cambodia</option>
+                          <option value="Cameroon">Cameroon</option>
+                          <option value="Canada">Canada</option>
+                          <option value="Cape Verde">Cape Verde</option>
+                          <option value="Cayman Islands">Cayman Islands</option>
+                          <option value="Central African Republic">Central African Republic</option>
+                          <option value="Chad">Chad</option>
+                          <option value="Chile">Chile</option>
+                          <option value="China">China</option>
+                          <option value="Christmas Island">Christmas Island</option>
+                          <option value="CC">Cocos (Keeling) Islands</option>
+                          <option value="Colombia">Colombia</option>
+                          <option value="KM">Comoros</option>
+                          <option value="CG">Congo (Brazzaville)</option>
+                          <option value="CD">Congo (Kinshasa)</option>
+                          <option value="CK">Cook Islands</option>
+                          <option value="Costa Rica">Costa Rica</option>
+                          <option value="Croatia">Croatia</option>
+                          <option value="CU">Cuba</option>
+                          <option value="CW">CuraÇao</option>
+                          <option value="Cyprus">Cyprus</option>
+                          <option value="Czech Republic">Czech Republic</option>
+                          <option value="Denmark">Denmark</option>
+                          <option value="DJ">Djibouti</option>
+                          <option value="DM">Dominica</option>
+                          <option value="DO">Dominican Republic</option>
+                          <option value="EC">Ecuador</option>
+                          <option value="Egypt">Egypt</option>
+                          <option value="SV">El Salvador</option>
+                          <option value="GQ">Equatorial Guinea</option>
+                          <option value="ER">Eritrea</option>
+                          <option value="EE">Estonia</option>
+                          <option value="ET">Ethiopia</option>
+                          <option value="FK">Falkland Islands</option>
+                          <option value="FO">Faroe Islands</option>
+                          <option value="FJ">Fiji</option>
+                          <option value="Finland">Finland</option>
+                          <option value="France">France</option>
+                          <option value="GF">French Guiana</option>
+                          <option value="PF">French Polynesia</option>
+                          <option value="TF">French Southern Territories</option>
+                          <option value="GA">Gabon</option>
+                          <option value="GM">Gambia</option>
+                          <option value="Georgia">Georgia</option>
+                          <option value="Germany">Germany</option>
+                          <option value="Ghana">Ghana</option>
+                          <option value="GI">Gibraltar</option>
+                          <option value="Greece">Greece</option>
+                          <option value="GL">Greenland</option>
+                          <option value="GD">Grenada</option>
+                          <option value="GP">Guadeloupe</option>
+                          <option value="GT">Guatemala</option>
+                          <option value="GG">Guernsey</option>
+                          <option value="GN">Guinea</option>
+                          <option value="GW">Guinea-Bissau</option>
+                          <option value="GY">Guyana</option>
+                          <option value="HT">Haiti</option>
+                          <option value="HM">Heard Island and McDonald Islands</option>
+                          <option value="HN">Honduras</option>
+                          <option value="HK">Hong Kong</option>
+                          <option value="Hungary">Hungary</option>
+                          <option value="IS">Iceland</option>
+                          <option value="IN">India</option>
+                          <option value="ID">Indonesia</option>
+                          <option value="IR">Iran</option>
+                          <option value="IQ">Iraq</option>
+                          <option value="IM">Isle of Man</option>
+                          <option value="IL">Israel</option>
+                          <option value="IT">Italy</option>
+                          <option value="CI">Ivory Coast</option>
+                          <option value="JM">Jamaica</option>
+                          <option value="Japan">Japan</option>
+                          <option value="JE">Jersey</option>
+                          <option value="JO">Jordan</option>
+                          <option value="KZ">Kazakhstan</option>
+                          <option value="KE">Kenya</option>
+                          <option value="KI">Kiribati</option>
+                          <option value="KW">Kuwait</option>
+                          <option value="KG">Kyrgyzstan</option>
+                          <option value="LA">Laos</option>
+                          <option value="LV">Latvia</option>
+                          <option value="Lebanon">Lebanon</option>
+                          <option value="LS">Lesotho</option>
+                          <option value="LR">Liberia</option>
+                          <option value="LY">Libya</option>
+                          <option value="LI">Liechtenstein</option>
+                          <option value="Lithuania">Lithuania</option>
+                          <option value="Luxembourg">Luxembourg</option>
+                          <option value="MO">Macao S.A.R., China</option>
+                          <option value="MK">Macedonia</option>
+                          <option value="MG">Madagascar</option>
+                          <option value="MW">Malawi</option>
+                          <option value="MY">Malaysia</option>
+                          <option value="MV">Maldives</option>
+                          <option value="ML">Mali</option>
+                          <option value="MT">Malta</option>
+                          <option value="MH">Marshall Islands</option>
+                          <option value="MQ">Martinique</option>
+                          <option value="MR">Mauritania</option>
+                          <option value="MU">Mauritius</option>
+                          <option value="YT">Mayotte</option>
+                          <option value="Mexico">Mexico</option>
+                          <option value="FM">Micronesia</option>
+                          <option value="Moldova">Moldova</option>
+                          <option value="Monaco">Monaco</option>
+                          <option value="MN">Mongolia</option>
+                          <option value="ME">Montenegro</option>
+                          <option value="MS">Montserrat</option>
+                          <option value="Morocco">Morocco</option>
+                          <option value="MZ">Mozambique</option>
+                          <option value="MM">Myanmar</option>
+                          <option value="NA">Namibia</option>
+                          <option value="NR">Nauru</option>
+                          <option value="NP">Nepal</option>
+                          <option value="Netherlands">Netherlands</option>
+                          <option value="AN">Netherlands Antilles</option>
+                          <option value="NC">New Caledonia</option>
+                          <option value="NZ">New Zealand</option>
+                          <option value="NI">Nicaragua</option>
+                          <option value="NE">Niger</option>
+                          <option value="NG">Nigeria</option>
+                          <option value="NU">Niue</option>
+                          <option value="NF">Norfolk Island</option>
+                          <option value="KP">North Korea</option>
+                          <option value="Norway">Norway</option>
+                          <option value="OM">Oman</option>
+                          <option value="PK">Pakistan</option>
+                          <option value="PS">Palestinian Territory</option>
+                          <option value="PA">Panama</option>
+                          <option value="PG">Papua New Guinea</option>
+                          <option value="Paraguay">Paraguay</option>
+                          <option value="PE">Peru</option>
+                          <option value="PH">Philippines</option>
+                          <option value="PN">Pitcairn</option>
+                          <option value="Poland">Poland</option>
+                          <option value="Portugal">Portugal</option>
+                          <option value="Qatar">Qatar</option>
+                          <option value="Republic of Ireland">Republic of Ireland</option>
+                          <option value="RE">Reunion</option>
+                          <option value="Romania">Romania</option>
+                          <option value="Russia">Russia</option>
+                          <option value="RW">Rwanda</option>
+                          <option value="ST">São Tomé and Príncipe</option>
+                          <option value="BL">Saint Barthélemy</option>
+                          <option value="SH">Saint Helena</option>
+                          <option value="KN">Saint Kitts and Nevis</option>
+                          <option value="LC">Saint Lucia</option>
+                          <option value="SX">Saint Martin (Dutch part)</option>
+                          <option value="MF">Saint Martin (French part)</option>
+                          <option value="PM">Saint Pierre and Miquelon</option>
+                          <option value="VC">Saint Vincent and the Grenadines</option>
+                          <option value="SM">San Marino</option>
+                          <option value="Saudi Arabia">Saudi Arabia</option>
+                          <option value="SN">Senegal</option>
+                          <option value="RS">Serbia</option>
+                          <option value="SC">Seychelles</option>
+                          <option value="SL">Sierra Leone</option>
+                          <option value="SG">Singapore</option>
+                          <option value="SK">Slovakia</option>
+                          <option value="Slovenia">Slovenia</option>
+                          <option value="SB">Solomon Islands</option>
+                          <option value="SO">Somalia</option>
+                          <option value="South Africa">South Africa</option>
+                          <option value="GS">South Georgia/Sandwich Islands</option>
+                          <option value="KR">South Korea</option>
+                          <option value="SS">South Sudan</option>
+                          <option value="Spain">Spain</option>
+                          <option value="LK">Sri Lanka</option>
+                          <option value="SD">Sudan</option>
+                          <option value="SR">Suriname</option>
+                          <option value="SJ">Svalbard and Jan Mayen</option>
+                          <option value="Swaziland">Swaziland</option>
+                          <option value="Sweden">Sweden</option>
+                          <option value="Switzerland">Switzerland</option>
+                          <option value="SY">Syria</option>
+                          <option value="TW">Taiwan</option>
+                          <option value="TJ">Tajikistan</option>
+                          <option value="TZ">Tanzania</option>
+                          <option value="TH">Thailand</option>
+                          <option value="TL">Timor-Leste</option>
+                          <option value="TG">Togo</option>
+                          <option value="TK">Tokelau</option>
+                          <option value="TO">Tonga</option>
+                          <option value="TT">Trinidad and Tobago</option>
+                       
+                          <option value="Turkey">Turkey</option>
+                          <option value="TM">Turkmenistan</option>
+                          <option value="TC">Turks and Caicos Islands</option>
+                          <option value="TV">Tuvalu</option>
+                          <option value="UG">Uganda</option>
+                          <option value="Ukraine">Ukraine</option>
+                          <option value="United Arab Emirates">United Arab Emirates</option>
+                          <option  value="United Kingdom ">United Kingdom (UK)</option>
+                          <option value="United States">United States (US)</option>
+                          <option value="UY">Uruguay</option>
+                          <option value="UZ">Uzbekistan</option>
+                          <option value="VU">Vanuatu</option>
+                          <option value="VA">Vatican</option>
+                          <option value="VE">Venezuela</option>
+                          <option value="VN">Vietnam</option>
+                          <option value="WF">Wallis and Futuna</option>
+                          <option value="EH">Western Sahara</option>
+                          <option value="WS">Western Samoa</option>
+                          <option value="YE">Yemen</option>
+                          <option value="ZM">Zambia</option>
+                          <option value="ZW">Zimbabwe</option>
+
+
+
+                        </select>         
+                    <span class="text-danger" id="data.ville"></span>
+
+                 
+       </div>
+
+
+        <div class="col-md-6 form-group">
+                  <label for="username">Adresse :*</label>
+                        <input type="text" id="adresse_demande" name="adresse_demande" class="form-control">          
+                    <span class="text-danger" id="data.adresse"></span>
+
+                 
+       </div>
+
+
+          <div class="col-md-6 form-group">
+                  <label for="username">Cp :*</label>
+                        <input type="number" id="cp_demande" name="cp_demande" class="form-control">          
+                    <span class="text-danger" id="data.cp"></span>
+
+                 
+       </div>
+
+
+              
+                 
+ <div class="col-md-12 form-group">
+                 
+                 <div>
+  <input type="checkbox" id="affichercord-demande" name="affichercord-demande" value='affiche'>
+  <label>Afficher vos coordonnées sur l&apos;annonce </label>
+</div>                
+  <span class="text-danger" id="data.cordaffiche"></span>
+
+                 
+       </div>          
+                    
+
+                 
+    
+
+             
+
+                <div  class="col-md-6 form-group">
+                  <button type="button" name="previous_btn_cordonner" id="previous_btn_cordonner" class="btn btn-default ">Previous</button>
+                     <button type="button" name="btn_cordonner" id="btn_cordonner" class="btn btn-info ">Next</button> 
+                </div>
+
+
+              </div>
+              
+            </div>
+          </div>
+
+
+
+
+
+
+
+       <div class="tab-pane fade" id="membre">
+            <div class="panel panel-default">
+              <div class="panel-heading">Membres famille</div>
+              <div class="panel-body">
+               
+             
+
+
+
+
+
+                            <div class="col-md-12 form-group">
+                  <label for="username">Sélectionnez les membres de famille bénéficier du service :</label>
+                  {{form_widget(form.membres ,{'id':'selectmembres','attr':{'class': 'form-control','placeholder':'Membres','multiple': 'multiple'}})}}                 
+                    <span class="text-danger" id="data.membres"></span>
+
+                 
+       </div>
+
+
+                <div  class="col-md-6 form-group">
+                  <button type="button" name="previous_btn_membre" id="previous_btn_membre" class="btn btn-default ">Previous</button>
+                   <button type="submit" name="btn_membre" id="btn_membre" class="btn btn-info "> <span>Enregistrer</span><i id="spin-add-annonce"></i></button>
+
+                </div>
+
+
+              </div>
+              
+            </div>
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+</div>
+
+
+  <style type="text/css">
+  
+.boxx{
+  width: 900px;
+  
+  margin:0 auto;
+} 
+
+
+  
+
+.active_tab1
+{
+  background-color: #fff;
+  color:#333;
+  font-weight: 600;
+}
+
+
+.inactive_tab1
+{
+
+  background-color: #f5f5f5;
+  color:#333;
+  font-weight: 600;
+
+}
+
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {{ form_end(form) }}
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+{%endblock%}
+
+
+
+  {%block aside %}
+  {% endblock %}
+
+
+   {% block javascript %}
+
+
+
+    <script>
+  
+
+$('#ville_demande').select2({
+                
+                   minimumInputLength: 3,
+                placeholder:'Ville ',
+                allowClear: true,
+                 theme: "bootstrap"
+              
+            });
+
+ $('#timedemande').datetimepicker({
+ format:'HH:mm'
+ });
+
+
+       var total=0;
+       var params={format:'dd/mm/yyyy',startDate:new Date(),};
+       
+       var membres_demande_selected; 
+       var service_demande_selected;  
+       var option_demande_selected; 
+       var visite_demande_selected;
+       var heure_demande_selected;
+      
+
+
+
+ $('#typevisite_demande').on('change', function () {
+
+if($("#typevisite_demande option:selected").val()=='Une')
+{
+ 
+
+
+
+
+ params.multidate = false;
+ 
+
+$('#datedemande').datepicker(params);
+
+
+
+
+
+
+
+
+
+ 
+
+}else{
+  
+ 
+ 
+
+
+ params.multidate = true;
+
+
+$('#datedemande').datepicker(params);
+
+
+
+
+
+
+
+
+}
+
+
+
+
+});
+
+
+
+                 
+                 
+      function isEmail(email) {
+  var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,6})+$/;
+  return regex.test(email);
+}
+
+
+
+
+
+          $emailvalidation = $('#email_demande');
+    $emailvalidation.blur(function(e){
+         emailv= $(this).val();
+    
+        if (!isEmail(emailv))
+        {
+            document.getElementById('data.email').textContent='email invalide. ';
+            $('#email_demande').val('');
+            $('#email_demande').focus();
+        }else{
+
+           document.getElementById('data.email').textContent='';
+
+        }
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              $telephonevalidation = $('#telephone_demande');
+    $telephonevalidation.blur(function(e){
+        phone = $(this).val();
+        phone = phone.replace(/[^0-9]/g,'');
+        if (phone.length != 8)
+        {
+            document.getElementById('data.telephone').textContent='telephone doit etre 8 numero.';
+            $('#telephone_demande').val('');
+            $('#telephone_demande').focus();
+        }else{
+
+           document.getElementById('data.telephone').textContent='';
+
+        }
+    });
+
+
+
+
+
+                 $telephoneIIvalidation = $('#telephone2_demande');
+    $telephoneIIvalidation.blur(function(e){
+        phonee = $(this).val();
+        phonee = phonee.replace(/[^0-9]/g,'');
+        if (phonee.length != 8)
+        {
+            document.getElementById('data.telephoneII').textContent='telephone doit etre 8 numero. ';
+            $('#telephone2_demande').val('');
+            $('#telephone2_demande').focus();
+        }else{
+
+           document.getElementById('data.telephoneII').textContent='';
+
+        }
+    });
+
+
+
+                 $fixvalidation = $('#fix_demande');
+    $fixvalidation.blur(function(e){
+        fixs = $(this).val();
+        fixs = fixs.replace(/[^0-9]/g,'');
+        if (fixs.length != 8)
+        {
+            document.getElementById('data.fix').textContent='numero fix doit etre 8 numero. ';
+            $('#fix_demande').val('');
+            $('#fix_demande').focus();
+        }else{
+
+           document.getElementById('data.fix').textContent='';
+
+        }
+    });
+
+
+
+
+
+                   $cpvalidation = $('#cp_demande');
+    $cpvalidation.blur(function(e){
+        cps = $(this).val();
+      
+        if (cps.length != 4)
+        {
+            document.getElementById('data.cp').textContent='code postale invalide. ';
+            $('#cp_demande').val('');
+            $('#cp_demande').focus();
+        }else{
+
+           document.getElementById('data.cp').textContent='';
+
+        }
+    });
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   
+               
+                  
+
+
+
+
+
+     $('#btn_demande').click(function(){
+
+      var serv=$('#service_demande option:selected').val();
+                
+                  var titre= $('#titre_demande').val();
+                   var description= $('#description_demande').val();
+        
+        if(serv=="")
+        {
+         document.getElementById('data.service').textContent='Ce champ ne doit pas etre vide ';       
+        }
+   
+
+     
+      
+
+          if(titre=="")
+        {
+         document.getElementById('data.titre').textContent='Ce champ ne doit pas etre vide ';       
+        }
+
+
+           if(description=="")
+        {
+         document.getElementById('data.description').textContent='Ce champ ne doit pas etre vide ';       
+        }
+
+
+         $('#service_demande').change(function(){
+                  
+                 if($.trim(document.getElementById('data.service').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.service').textContent="";
+                                  }
+                    
+                                 });
+
+
+        
+
+
+
+
+                           $('#titre_demande').change(function(){
+                  
+                 if($.trim(document.getElementById('data.titre').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.titre').textContent="";
+                                  }
+                    
+                                 });
+
+
+
+                                    $('#description_demande').change(function(){
+                  
+                 if($.trim(document.getElementById('data.description').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.description').textContent="";
+                                  }
+                    
+                                 });
+
+                     if(serv!==""&&titre!==""&&description!=="")
+                     {                                                                      
+
+     
+         $('#list_demande').removeClass('active active_tab1');
+           $('#list_demande').removeAttr('href data-toggle');
+           $('#demande').removeClass('active');
+           $('#list_demande').addClass('inactive_tab1');
+           $('#list_personaliser').removeClass('inactive_tab1');
+             $('#list_personaliser').addClass('active active_tab1');
+             $('#list_personaliser').attr('href','#personalisez');
+             $('#list_personaliser').attr('data-toggle','tab');
+               $('#personalisez').addClass('active in');
+
+              
+
+               }
+    });
+
+        $('#previous_btn_personalisez').click(function(){
+         $('#list_personaliser').removeClass('active active_tab1');
+           $('#list_personaliser').removeAttr('href data-toggle');
+           $('#personalisez').removeClass('active');
+           $('#list_personaliser').addClass('inactive_tab1');
+           $('#list_demande').removeClass('inactive_tab1');
+             $('#list_demande').addClass('active active_tab1');
+             $('#list_demande').attr('href','#demande');
+             $('#list_demande').attr('data-toggle','tab');
+               $('#demande').addClass('active in');
+    });
+
+
+       $('#btn_personalisez').click(function(){
+
+               var tvisite= $('#typevisite_demande').val();
+                   
+                   var datev=$('#datedemande').val(); 
+                   var timev=$('#timedemande').val();
+
+
+
+              if(tvisite=="")
+        {
+         document.getElementById('data.typeVisite').textContent='Ce champ ne doit pas etre vide ';       
+        }
+   
+
+     
+
+      
+
+          if(datev=="")
+        {
+         document.getElementById('data.dateVisite').textContent='Ce champ ne doit pas etre vide ';       
+        }
+
+
+           if(timev=="")
+        {
+         document.getElementById('data.datePrevu').textContent='Ce champ ne doit pas etre vide ';       
+        }
+
+
+         $('#typevisite_demande').change(function(){
+                  
+                 if($.trim(document.getElementById('data.typeVisite').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.typeVisite').textContent="";
+                                  }
+                    
+                                 });
+
+
+      
+
+
+
+ $('#datedemande').change(function(){
+                  
+                 if($.trim(document.getElementById('data.dateVisite').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.dateVisite').textContent="";
+                                  }
+                    
+                                 });
+
+
+
+
+
+
+
+ $('#timedemande').change(function(){
+                  
+                 if($.trim(document.getElementById('data.datePrevu').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.datePrevu').textContent="";
+                                  }
+                    
+                                 });
+
+if(tvisite!==""&&datev!==""&&timev!="")
+{
+
+
+         $('#list_personaliser').removeClass('active active_tab1');
+           $('#list_personaliser').removeAttr('href data-toggle');
+           $('#personalisez').removeClass('active');
+           $('#list_personaliser').addClass('inactive_tab1');
+           $('#list_cordonner').removeClass('inactive_tab1');
+             $('#list_cordonner').addClass('active active_tab1');
+             $('#list_cordonner').attr('href','#cordonner');
+             $('#list_cordonner').attr('data-toggle','tab');
+               $('#cordonner').addClass('active in');
+
+               }
+    });
+
+
+
+       $('#previous_btn_cordonner').click(function(){
+         $('#list_cordonner').removeClass('active active_tab1');
+           $('#list_cordonner').removeAttr('href data-toggle');
+           $('#cordonner').removeClass('active');
+           $('#list_cordonner').addClass('inactive_tab1');
+           $('#list_personaliser').removeClass('inactive_tab1');
+             $('#list_personaliser').addClass('active active_tab1');
+             $('#list_personaliser').attr('href','#personalisez');
+             $('#list_personaliser').attr('data-toggle','tab');
+               $('#personalisez').addClass('active in');
+    });
+
+
+
+
+        $('#btn_cordonner').click(function(){
+         
+
+            var phone=$('#telephone_demande').val();
+                    var ville=$('#ville_demande').val();
+                   var adresse=$('#adresse_demande').val();
+                   var cp=$('#cp_demande').val();
+
+          
+
+              if(phone=="")
+        {
+         document.getElementById('data.telephone').textContent='Ce champ ne doit pas etre vide ';       
+        }
+   
+
+        if(ville=="")
+        {
+         document.getElementById('data.ville').textContent='Ce champ ne doit pas etre vide ';       
+        }
+
+      
+
+          if(adresse=="")
+        {
+         document.getElementById('data.adresse').textContent='Ce champ ne doit pas etre vide ';       
+        }
+
+
+           if(cp=="")
+        {
+         document.getElementById('data.cp').textContent='Ce champ ne doit pas etre vide ';       
+        }
+
+
+         $('#telephone_demande').change(function(){
+                  
+                 if($.trim(document.getElementById('data.telephone').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.telephone').textContent="";
+                                  }
+                    
+                                 });
+
+
+       
+         $('#ville_demande').change(function(){
+                  
+                 if($.trim(document.getElementById('data.ville').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.ville').textContent="";
+                                  }
+                    
+                                 });
+
+
+
+ $('#adresse_demande').change(function(){
+                  
+                 if($.trim(document.getElementById('data.adresse').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.adresse').textContent="";
+                                  }
+                    
+                                 });
+
+
+
+
+
+
+
+ $('#cp_demande').change(function(){
+                  
+                 if($.trim(document.getElementById('data.cp').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.cp').textContent="";
+                                  }
+                    
+                                 });
+
+
+
+
+
+
+if(phone!=""&&ville!=""&&adresse!=""&&cp!="")
+
+
+{
+
+       
+
+         $('#list_cordonner').removeClass('active active_tab1');
+           $('#list_cordonner').removeAttr('href data-toggle');
+           $('#cordonner').removeClass('active');
+           $('#list_cordonner').addClass('inactive_tab1');
+           $('#list_membre').removeClass('inactive_tab1');
+             $('#list_membre').addClass('active active_tab1');
+             $('#list_membre').attr('href','#membre');
+             $('#list_membre').attr('data-toggle','tab');
+               $('#membre').addClass('active in');
+               }
+    });
+
+
+     
+   $('#previous_btn_membre').click(function(){
+         $('#list_membre').removeClass('active active_tab1');
+           $('#list_membre').removeAttr('href data-toggle');
+           $('#membre').removeClass('active');
+           $('#list_membre').addClass('inactive_tab1');
+           $('#list_cordonner').removeClass('inactive_tab1');
+             $('#list_cordonner').addClass('active active_tab1');
+             $('#list_cordonner').attr('href','#cordonner');
+             $('#list_cordonner').attr('data-toggle','tab');
+               $('#cordonner').addClass('active in');
+    });
+
+
+        
+ 
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       </script>
+
+       <style>
+       .alert_member{
+       text-align: center;
+       }
+       </style>
+     
+   {% endblock %}

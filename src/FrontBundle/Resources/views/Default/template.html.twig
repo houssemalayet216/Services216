@@ -1,0 +1,841 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+ <head>  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <meta name="author" content="INSPIRO" /> <meta name="description" content="Themeforest Template Polo"> <!-- Document title --> <title>Services216</title> <!-- Stylesheets & Fonts --> 
+   <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,800,700,600|Montserrat:400,500,600,700|Raleway:100,300,600,700,800" rel="stylesheet" type="text/css" />
+
+
+
+<!-- Latest compiled and minified JavaScript -->
+
+
+
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link href="  {{asset('frontFolder/css/plugins.css')}}" rel="stylesheet"> 
+    <link href="  {{asset('frontFolder/css/style.css')}}" rel="stylesheet">
+     <link href="  {{asset('frontFolder/css/responsive.css')}}" rel="stylesheet">
+      <link href="{{asset('frontFolder/css/custom.css')}}" rel="stylesheet"> 
+     <link href="{{asset('frontFolder/css/custom1.css')}}" rel="stylesheet">
+     
+      <link href="{{asset('frontFolder/css/sinscrire.css')}}" rel="stylesheet">
+
+      <link href="{{asset('frontFolder/css/styleform1.css')}}" rel="stylesheet"> 
+       <link href="{{asset('frontFolder/css/comment.css')}}" rel="stylesheet">
+       <link href="{{asset('frontFolder/css/service.css')}}" rel="stylesheet">
+        <link href="{{asset('frontFolder/css/overimage.css')}}" rel="stylesheet">
+         <link href="{{asset('frontFolder/css/stylelogin.css')}}" rel="stylesheet">
+        <link href="{{asset('frontFolder/css/post2.css')}}" rel="stylesheet">
+        <link rel="stylesheet"  href="{{asset('frontFolder/css/stylefilter.css')}}" rel="stylesheet">
+
+         <link rel="stylesheet"  href="{{asset('frontFolder/css/forms.css')}}" rel="stylesheet">
+        
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+
+     <!--     <link rel="stylesheet"  href="{{asset('frontFolder/css/roboto-font.css')}}" rel="stylesheet"> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://select2.github.io/select2-bootstrap-theme/css/select2-bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/sweetalert2/6.1.0/sweetalert2.min.css" />
+  <!--   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css"> -->
+   
+     <link href="  {{asset('frontFolder/css/jquery-ui.multidatespicker.css')}}" rel="stylesheet">
+        <link rel="stylesheet" href="{{asset('backFolder/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="{{asset('backFolder/bower_components/bootstrap-daterangepicker/daterangepicker.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
+        <link rel="stylesheet" type="text/css" href="{{asset('backFolder/dist/css/multi-select.css')}}">
+          <link rel="stylesheet" type="text/css" href="{{asset('frontFolder/css/stylemultistep.css')}}">
+
+
+      </head>
+
+<body id="template">
+
+    <!-- Wrapper -->
+
+
+{%block header%}
+
+
+    <div id="wrapper">
+
+
+    
+        <!-- Header -->
+      
+        <!-- end: Header -->
+
+{% if is_granted("IS_AUTHENTICATED_FULLY") %}
+ <!--  <header id="header">
+            <div id="header-wrap">
+                <div class="container">
+                   
+                    <div id="logo">
+                        <a href="index.html" class="logo" data-dark-logo="{{asset('frontFolder/images/logo-dark.png')}}">
+                            <img src="  {{asset('frontFolder/images/logo.png')}}" alt="Polo Logo">
+                        </a>
+                    </div>
+     
+
+                 
+                    <div id="mainMenu" >
+                        <div class="container">
+                            <nav>
+                                <ul>
+                                    <li ><a href="{{path('filter_service',{'service':'Santé'})}}">Santé</a>
+                                    
+
+
+                                      <ul class="dropdown-menu">
+                                        {%for sante in menu().santes %}
+                                  <li><a href="{{path('filter_option' , {'option':sante.titre}) }}">{{sante.titre}} </a></li>
+                                    {%endfor%}
+                                    </ul>
+
+
+
+
+
+
+
+
+
+
+                                    </li>
+                                       <li ><a href="{{path('filter_service',{'service':'Achat'})}}">Achat</a></li>
+                                    <li><a href="{{path('filter_service',{'service':'Transport'})}}">Transport</a>
+                                     
+                                      
+                                      <ul class="dropdown-menu ">
+                                        {%for transport in menu().Transports%}
+                                  <li><a href="{{path('filter_option' , {'option':transport.titre}) }}">{{transport.titre}} </a></li>
+                                    {%endfor%}
+                                    </ul>
+
+
+                                    </li>
+                                    <li><a href="{{path('filter_service',{'service':'Entretien à la maison'})}}">Ménage</a>
+                                      <ul class="dropdown-menu ">
+                                        {%for menage in menu().menages%}
+                                  <li><a href="{{path('filter_option' , {'option':menage.titre}) }}">{{menage.titre}} </a></li>
+                                    {%endfor%}
+                                    </ul>
+
+
+
+                                    </li>
+                                    <li><a href="{{path('filter_service',{'service':'Bricolage'})}}">Bricolage</a>
+                                     <ul class="dropdown-menu ">
+                                        {%for bricolage in menu().bricolages %}
+                                  <li><a href="{{path('filter_option' , {'option':bricolage.titre}) }}">{{bricolage.titre}} </a></li>
+                                    {%endfor%}
+                                    </ul>
+
+
+                                    </li>
+                                     <li class="dropdown"><a href="#" >Mon Compte</a>
+                      <ul class="dropdown-menu ">
+                                  <li><a href="widgets.html"><i class="fa fa-user"></i>Profile </a></li>
+                                    <li><a href="widgets.html"><i class="fa fa-globe"></i>Notification </a></li>
+                                    <li><a href="{{path('espacepage')}}"><i class="fa fa-home"></i>Votre espace </a></li>
+                                     <li><a href="{{path('fos_user_security_logout')}}"><i class="fa fa-sign-out"></i>Déconnecté </a></li>
+                                    </ul>
+                                  </li>
+
+                                  <li>
+                              <a href="{{path('deposer_annonce')}}" class="btn btn-rounded">Déposer une annonce gratuite</a> 
+
+
+                            </li>
+
+
+
+                                   
+                                </ul>
+                            </nav>
+
+                        </div>
+                    </div>
+
+                     
+                  
+                </div>
+            </div>
+        </header>
+ -->
+
+
+        <div id="topbar" >
+            <div class="container">
+                <div class="row">
+                     <div class="top-menu-left" >
+                       <li ><a href="index.html">Contacter</a></li>
+                       <li ><a href="index.html">Aide</a></li> 
+                </div> 
+
+                  
+                    <div >
+                        <div>
+                          <ul class="top-menu">
+                            <li ><a href="{{path('deposer_annonce')}}" class="btn btn-danger">Déposer une annonce gratuite</a></li> 
+                          </ul>  
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+             <header id="header" >
+            <div id="header-wrap">
+                <div class="container">
+                
+                      
+                   
+                  <div id="logo">
+                   <!--      <a href="index.html" class="logo" data-dark-logo="{{asset('frontFolder/images/logo-dark.png')}}">
+                            <img src="{{asset('frontFolder/images/logo.png')}}" alt="Services Logo"> -->
+
+                            <a href="{{path('frontpage')}}" class="logo" data-dark-logo="{{asset('frontFolder/images/logo-dark.png')}}">
+                            <img src="{{asset('frontFolder/images/servicesss.png')}}" alt="Services Logo">
+                        </a>
+                    </div>
+              
+
+
+
+                    <!--Navigation-->
+                    <div id="mainMenu" class="menu-lines">
+                        <div class="container">
+                            <nav>
+                                <ul>
+                                 
+                                  <li ><a href="{{path('filter_service',{'service':'Santé'})}}">Santé</a>
+                                    
+
+
+                                      <ul class="dropdown-menu">
+                                        {%for sante in menu().santes %}
+                                  <li><a href="{{path('filter_option' , {'option':sante.titre}) }}">{{sante.titre}} </a></li>
+                                    {%endfor%}
+                                    </ul>
+
+
+
+
+
+
+
+
+
+
+                                    </li>
+                                       <li ><a href="{{path('filter_service',{'service':'Achat'})}}">Achat</a></li>
+                                    <li><a href="{{path('filter_service',{'service':'Transport'})}}">Transport</a>
+                                     
+                                      
+                                      <ul class="dropdown-menu ">
+                                        {%for transport in menu().Transports%}
+                                  <li><a href="{{path('filter_option' , {'option':transport.titre}) }}">{{transport.titre}} </a></li>
+                                    {%endfor%}
+                                    </ul>
+
+
+                                    </li>
+                                    <li><a href="{{path('filter_service',{'service':'Entretien a domicile'})}}">Entretien a domicile</a>
+                                      <ul class="dropdown-menu ">
+                                        {%for menage in menu().menages%}
+                                  <li><a href="{{path('filter_option' , {'option':menage.titre}) }}">{{menage.titre}} </a></li>
+                                    {%endfor%}
+                                    </ul>
+
+
+
+                                    </li>
+                                    <li><a href="{{path('filter_service',{'service':'Bricolage'})}}">Bricolage</a>
+                                     <ul class="dropdown-menu ">
+                                        {%for bricolage in menu().bricolages %}
+                                  <li><a href="{{path('filter_option' , {'option':bricolage.titre}) }}">{{bricolage.titre}} </a></li>
+                                    {%endfor%}
+                                    </ul>
+
+
+                                    </li>
+                                     <li class="dropdown"><a href="#" >Mon Compte <span id="notifspan" class="badge count"></span></a>
+                      <ul class="dropdown-menu ">
+                                  <li><a href="widgets.html"><i class="fa fa-user"></i>Profile </a></li>
+                                    <li><a href="widgets.html"><i class="fa fa-globe"></i>Notification <span id="notifspan" class="badge count"></span></a></li>
+                                    <li><a href="{{path('espacepage')}}" class="hidenotification"><i class="fa fa-home"></i>Votre espace </a></li>
+                                     <li><a href="{{path('fos_user_security_logout')}}"><i class="fa fa-sign-out"></i>Déconnecté </a></li>
+                                    </ul>
+                                  </li>
+
+
+
+
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <!--end: Navigation-->
+
+                </div>
+            </div>
+        </header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {% else %}
+        <!-- Header -->
+      
+<!-- 
+  <header id="header">
+            <div id="header-wrap">
+                <div class="container">
+                  
+                    <div id="logo">
+                        <a href="index.html" class="logo" data-dark-logo="{{asset('frontFolder/images/logo-dark.png')}}">
+                            <img src="  {{asset('frontFolder/images/logo.png')}}" alt="Polo Logo">
+                        </a>
+                    </div>
+                
+                    
+                        <div class="header-extras">
+                        <ul>
+                          <li><a href="{{path('fos_user_registration_register')}}">Inscription</a></li>
+                            <li><a href="{{path('fos_user_security_login')}}">Login</a></li>  
+
+                          <li><a href="{{path('deposer_annonce')}}" class="btn btn-rounded">Déposer une annonce gratuite</a></li>  
+                        </ul>
+                    </div>
+
+
+
+
+
+
+
+                   
+                    <div id="mainMenu" class="menu-center">
+                        <div class="container">
+                            <nav>
+                                <ul>
+                                 
+                                  <li ><a href="{{path('filter_service',{'service':'Santé'})}}">Santé</a>
+                                    
+
+
+
+
+                                      <ul class="dropdown-menu ">
+                                        {%for sante in menu().santes%}
+                                  <li><a href="{{path('filter_option' , {'option':sante.titre}) }}">{{sante.titre}} </a></li>
+                                    {%endfor%}
+                                    </ul>
+
+
+
+
+
+
+
+
+
+
+                                    </li>
+                                       <li ><a href="{{path('filter_service',{'service':'Achat'})}}">Achat</a></li>
+                                    <li><a href="{{path('filter_service',{'service':'Transport'})}}">Transport</a>
+                                     
+                                      
+                                      <ul class="dropdown-menu ">
+                                        {%for transport in menu().Transports%}
+                                  <li><a href="{{path('filter_option' , {'option':transport.titre}) }}">{{transport.titre}} </a></li>
+                                    {%endfor%}
+                                    </ul>
+
+
+                                    </li>
+                                    <li><a href="{{path('filter_service',{'service':'Entretien à la maison'})}}">Ménage</a>
+                                      <ul class="dropdown-menu ">
+                                        {%for menage in menu().menages%}
+                                  <li><a href="{{path('filter_option' , {'option':menage.titre}) }}">{{menage.titre}} </a></li>
+                                    {%endfor%}
+                                    </ul>
+
+
+
+                                    </li>
+                                    <li><a href="{{path('filter_service',{'service':'Bricolage'})}}">Bricolage</a>
+                                     <ul class="dropdown-menu ">
+                                        {%for bricolage in menu().bricolages %}
+                                  <li><a href="{{path('filter_option' , {'option':bricolage.titre}) }}">{{bricolage.titre}} </a></li>
+                                    {%endfor%}
+                                    </ul>
+
+
+                                    </li>
+
+
+
+
+                                   
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </header>
+
+ -->
+
+
+
+
+
+        <div id="topbar" >
+            <div class="container">
+                <div class="row">
+                     <div class="top-menu-left" >
+                       <li ><a href="index.html">Contacter</a></li>
+                       <li ><a href="index.html">Aide</a></li> 
+                </div> 
+
+                  
+                    <div >
+                        <div>
+                          <ul class="top-menu">
+                               <li ><a href="{{path('fos_user_registration_register')}}">Inscription</a></li>
+                                     <li ><a href="{{path('fos_user_security_login')}}">Se connecter</a></li>
+                                      <li ><a href="{{path('deposer_annonce')}}" class="btn btn-danger">Déposer une annonce gratuite</a></li> 
+                          </ul>  
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+      
+
+         <header id="header" >
+            <div id="header-wrap">
+                <div class="container">
+                
+                      
+                   
+               <div id="logo">
+                        <!-- <a href="index.html" class="logo" data-dark-logo="{{asset('frontFolder/images/logo-dark.png')}}">
+                            <img src="{{asset('frontFolder/images/logo.png')}}" alt="Polo Logo">
+                        </a>  -->
+                           <a href="{{path('frontpage')}}" class="logo" data-dark-logo="{{asset('frontFolder/images/logo-dark.png')}}">
+                            <img src="{{asset('frontFolder/images/servicesss.png')}}" alt="Services Logo">
+                        </a> 
+                    </div>
+
+
+
+                    <!--Navigation-->
+                    <div id="mainMenu" class="menu-lines">
+                        <div class="container">
+                            <nav>
+                                <ul>
+                                 
+                                  <li ><a href="{{path('filter_service',{'service':'Santé'})}}">Santé</a>
+                                    
+
+
+                                      <ul class="dropdown-menu">
+                                        {%for sante in menu().santes %}
+                                  <li><a href="{{path('filter_option' , {'option':sante.titre}) }}">{{sante.titre}} </a></li>
+                                    {%endfor%}
+                                    </ul>
+
+
+
+
+
+
+
+
+
+
+                                    </li>
+                                       <li ><a href="{{path('filter_service',{'service':'Achat'})}}">Achat</a></li>
+                                    <li><a href="{{path('filter_service',{'service':'Transport'})}}">Transport</a>
+                                     
+                                      
+                                      <ul class="dropdown-menu ">
+                                        {%for transport in menu().Transports%}
+                                  <li><a href="{{path('filter_option' , {'option':transport.titre}) }}">{{transport.titre}} </a></li>
+                                    {%endfor%}
+                                    </ul>
+
+
+                                    </li>
+                                    <li><a href="{{path('filter_service',{'service':'Entretien a domicile'})}}">Entretien a domicile</a>
+                                      <ul class="dropdown-menu ">
+                                        {%for menage in menu().menages%}
+                                  <li><a href="{{path('filter_option' , {'option':menage.titre}) }}">{{menage.titre}} </a></li>
+                                    {%endfor%}
+                                    </ul>
+
+
+
+                                    </li>
+                                    <li><a href="{{path('filter_service',{'service':'Bricolage'})}}">Bricolage</a>
+                                     <ul class="dropdown-menu ">
+                                        {%for bricolage in menu().bricolages %}
+                                  <li><a href="{{path('filter_option' , {'option':bricolage.titre}) }}">{{bricolage.titre}} </a></li>
+                                    {%endfor%}
+                                    </ul>
+
+
+                                    </li>
+                         
+
+
+
+
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <!--end: Navigation-->
+
+                </div>
+            </div>
+        </header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- end: Header -->
+{%  endif %}
+
+
+
+
+
+{%endblock%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <!-- Inspiro Slider -->
+      
+        <!--end: Inspiro Slider -->
+
+        <!-- Content -->
+
+        {% block pageContainer %}
+
+
+
+        
+          
+           
+
+
+
+
+          
+        
+
+          {% endblock %}
+        <!-- end: Content -->
+
+
+
+       {% block footer %}
+  <footer id="footer" class="footer-light">
+    <div class="footer-content">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4"> 
+            <!-- Footer widget area 1 -->
+           ServiceS216 est une plateforme transactionnelle de services à domicile. au sein d’une interface web permettant d’aboutir à l’établissement d’un contrat de service.
+            <!-- end: Footer widget area 1 --> 
+          </div>
+          <div class="col-md-2"> 
+            <!-- Footer widget area 2 -->
+            <div class="widget">
+            
+              <ul class="list-icon list-icon-arrow">
+                <li><a href="#">Santé</a></li>
+                <li><a href="#">Achat</a></li>
+                <li><a href="#">Transport</a></li>
+                <li><a href="#">Entretien à domicile</a></li>
+                <li><a href="#">Bricolage</a></li>
+               
+              </ul>
+            </div>
+            <!-- end: Footer widget area 2 --> 
+          </div>
+
+            <div class="col-md-2"> 
+            <!-- Footer widget area 2 -->
+            <div class="widget">
+              
+              <ul class="list-icon list-icon-arrow">
+                <li><a href="#">Se connecter</a></li>
+                <li><a href="#">S'inscrire</a></li>
+                <li><a href="#">Aide</a></li>
+                <li><a href="#">Contacter Nous</a></li>
+               
+              </ul>
+            </div>
+            <!-- end: Footer widget area 2 --> 
+          </div>
+
+
+
+
+
+
+        
+          <div class="col-md-3"> 
+           
+            <div class="widget  widget-contact-us" style="background-image: url('{{asset('FrontFolder/images/world-map-dark.png')}}'); background-position: 50% 20px; background-repeat: no-repeat">
+              <h4>SQLI Services</h4>
+              <ul class="list-icon">
+                <li><i class="fa fa-map-marker"></i> Technopole Manouba 2010, Tunisie <br>
+                  </li>
+                <li><i class="fa fa-phone"></i> Tél: +216 71 123 456  </li>
+                <li><i class="fa fa-envelope"></i> <a href="mailto:first.last@example.com">E-Mail: contact@services216.com</a> </li>
+                
+              </ul>
+              <!-- Social icons -->
+              <div class="social-icons social-icons-border float-left m-t-20">
+                <ul>
+                  <li class="social-rss"><a href="#"><i class="fa fa-rss"></i></a></li>
+                  <li class="social-facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                  <li class="social-twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                  <li class="social-vimeo"><a href="#"><i class="fa fa-vimeo"></i></a></li>
+                  <li class="social-youtube"><a href="#"><i class="fa fa-youtube"></i></a></li>
+                  <li class="social-pinterest"><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                  <li class="social-gplus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                </ul>
+              </div>
+              <!-- end: Social icons --> 
+            </div>
+
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="copyright-content">
+      <div class="container">
+        <div class="copyright-text text-center">&copy; 2019 SQLI Services.Tous les droits réservé </div>
+      </div>
+    </div>
+  </footer>
+
+  {%endblock%}
+  <!-- end: Footer -->
+    </div>
+    <!-- end: Wrapper -->
+
+    <!-- Go to top button -->
+    <a id="goToTop"><i class="fa fa-angle-up top-icon"></i><i class="fa fa-angle-up"></i></a><!--Plugins-->
+     <!-- 
+ <script src="{{asset('frontFolder/js/jquery.js')}}"></script> -->
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+ <script src="{{asset('frontFolder/js/plugins.js')}}"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.js"></script> -->
+<!--Template functions-->
+ <script src="{{asset('frontFolder/js/functions.js')}}"></script> 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js"></script>
+ <script src="{{asset('frontFolder/js/custom.js')}}"></script>
+ <!-- <script src="{{asset('frontFolder/js/jquery-ui.multidatespicker.js')}}"></script> -->
+   <script src="https://cdn.jsdelivr.net/sweetalert2/6.1.0/sweetalert2.min.js"></script>
+    <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" ></script>
+    <script src="{{asset('backFolder/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+   <script src="{{asset('backFolder/bower_components/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
+     <script src="{{asset('backFolder/dist/js/jquery.multi-select.js')}}"></script> 
+       <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js'></script>
+       <script src="{{asset('frontFolder/js/index.js')}}"></script> 
+   
+<!-- datepicker -->
+
+
+
+
+ {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+
+
+   <script type="text/javascript">
+
+
+   setInterval(function()
+            {
+                load_unseen_notification();
+           
+                
+            },5000);
+
+            function load_unseen_notification(view ='')
+            {
+
+                $.ajax({
+                    url:"{{path('fetch_notification_page')}}",
+                    method:"POST",
+                    data:{view:view},
+                    dataType:"json",
+                    success:function(data)
+                    {
+
+                       
+                        if(data.unseen_notification > 0)
+                        {
+                            $('.count').html(data.unseen_notification);
+                           
+                        }
+
+
+                    }
+                });
+            }
+
+            load_unseen_notification();
+
+            $(document).on('click','.hidenotification',function(){
+                $('.count').html('');
+                
+               /* load_unseen_notification('yes');*/
+
+            });
+
+
+
+
+
+
+
+
+         
+
+
+
+
+
+
+
+   </script>
+
+   {% endif %}
+
+{% block javascript %}
+
+{% endblock %}
+
+
+</body>
+
+</html>

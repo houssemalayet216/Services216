@@ -1,0 +1,571 @@
+{% extends '@Back/default/templateclient.html.twig' %}
+{% block section_haider %}
+<section class="content-header">
+        <h1>
+         Contacter administration
+        <small>Services 216</small>
+      </h1>
+      <ol class="breadcrumb">
+
+       
+        <li class="active"><i class="fa fa-envelope"></i> Contacter </li>
+      </ol>
+    </section>
+{%endblock%}
+
+ {%block content%} 
+
+
+ <div class="col-md-12 " style="padding-buttom:50px;">
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <div class="box" >
+            <div class="box-header with-border">
+              <h3 class="box-title">Envoi message</h3>
+            </div>
+          
+          
+              <div class="box-body">
+              
+                {{ form_start(form, {'method': 'post', 'action': path('envoi_mail_client'), 'attr': {'id':'envoyer_message_form_client'}}) }}
+              <div class="form-group col-md-6">
+              <label>Nom:</label>
+             
+                
+                  {{form_widget(form.nom ,{'id':'nommessageclient','attr':{'class': 'form-control','placeholder':'Nom'}})}} 
+                <span class="text-danger" id="data.nom"></span>
+              </div>
+
+               <div class="form-group col-md-6">
+               <label>Prènom:</label>
+                 {{form_widget(form.prenom ,{'id':'prenommessageclient','attr':{'class': 'form-control','placeholder':'Prénom'}})}} 
+                <span class="text-danger" id="data.prenom"></span>
+              </div>
+
+
+                <div class="form-group col-md-12">
+               <label>Email:</label>
+                 {{form_widget(form.adresse ,{'id':'emailmessageclient','attr':{'class': 'form-control','placeholder':'Email'}})}} 
+                <span class="text-danger" id="data.adresse"></span>
+              </div>
+
+              <div class="form-group col-md-12">
+               <label>Sujet:</label>
+                {{form_widget(form.sujet ,{'id':'sujetmessageclient','attr':{'class': 'form-control','placeholder':'Sujet'}})}} 
+                <span class="text-danger" id="data.sujet"></span>
+              </div>
+              <div class="form-group col-md-12">
+                  <label>Message:</label>
+                      {{form_widget(form.message ,{'id':'messageclient','attr':{'class': 'form-control','placeholder':'Message'}})}} 
+                    <span class="text-danger" id="data.message"></span>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </div>
+              
+              <div class="box-footer">
+                
+                   <button type="submit"  id="btn_envoyer_message_client" class="btn btn-info "> <span>Envoyer</span><i id="spin_envoyer_message_client"></i></button>
+
+                 
+              </div>
+             {{ form_end(form) }}
+
+            
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+ {% endblock %}
+
+
+
+
+
+
+  {%block aside %}
+  {% endblock %}
+
+   {% block javascript %}
+
+   <script>
+
+
+$('#btn_envoyer_message_client').click(function(e){
+                  e.preventDefault();
+                    $('#btn_envoyer_message_client').prop('disabled',true);
+                  $("#spin_envoyer_message_client").addClass('fa fa-spinner fa-spin fa-register');
+                   
+                   var nom=$('#nommessageclient').val();
+                   var prenom=$('#prenommessageclient').val();
+                   var adresse=$('#emailmessageclient').val();
+                   var sujet=$('#sujetmessageclient').val();
+                   var message=$('#messageclient').val();
+
+                  
+                   var errormcArray=['data.nom','data.prenom','data.adresse','data.sujet','data.message'];
+                    var formmessageclient = document.getElementById("envoyer_message_form_client");
+
+                    if(nom=="")
+                  {
+                       document.getElementById('data.nom').textContent='Ce champ ne doit pas entre vide ';
+                     $("#spin_envoyer_message_client").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_envoyer_message_client').prop('disabled',false); 
+                  }
+                  
+
+                    if(prenom=="")
+                  {
+                       document.getElementById('data.prenom').textContent='Ce champ ne doit pas entre vide ';
+                      $("#spin_envoyer_message_client").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_envoyer_message_client').prop('disabled',false); 
+                  }
+
+                       if(adresse=="")
+                  {
+                       document.getElementById('data.adresse').textContent='Ce champ ne doit pas entre vide ';
+                      $("#spin_envoyer_message_client").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_envoyer_message_client').prop('disabled',false); 
+                  }
+
+
+                         if(sujet=="")
+                  {
+                       document.getElementById('data.sujet').textContent='Ce champ ne doit pas entre vide ';
+                       $("#spin_envoyer_message_client").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_envoyer_message_client').prop('disabled',false); 
+                  }
+
+
+                           if(message=="")
+                  {
+                       document.getElementById('data.message').textContent='Ce champ ne doit pas entre vide ';
+                       $("#spin_envoyer_message_client").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_envoyer_message_client').prop('disabled',false);  
+                  }
+
+
+
+
+
+                
+
+
+                        $('#nommessageclient').change(function(){
+                  
+                 if($.trim(document.getElementById('data.nom').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.nom').textContent="";
+                                  }
+                    
+                                 });
+
+
+                                 $('#prenommessageclient').change(function(){
+                  
+                 if($.trim(document.getElementById('data.prenom').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.prenom').textContent="";
+                                  }
+                    
+                                 });
+
+
+                                     $('#emailmessageclient').change(function(){
+                  
+                 if($.trim(document.getElementById('data.adresse').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.adresse').textContent="";
+                                  }
+                    
+                                 });
+
+
+                                     $('#sujetmessageclient').change(function(){
+                  
+                 if($.trim(document.getElementById('data.sujet').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.sujet').textContent="";
+                                  }
+                    
+                                 });
+
+
+                                     $('#messageclient').change(function(){
+                  
+                 if($.trim(document.getElementById('data.message').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.message').textContent="";
+                                  }
+                    
+                                 });
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+           if(nom!==""&&prenom!==""&&adresse!==""&&sujet!==""&&message!=="")
+
+             {
+
+               
+
+                      $.ajax({
+                       dataType:"json",
+                       url:$("#envoyer_message_form_client").attr('action'),
+                       type:$("#envoyer_message_form_client").attr('method'),
+                        data:new FormData(formmessageclient),
+                       contentType:false,
+                       processData:false,
+                       cache:false,
+                       success:function (data,status,object)
+                       {
+
+                      
+                       var message=data.message;
+                       if(data.success==true)
+                          {
+
+
+                         
+                               errormcArray.forEach(function(error){
+                                  if($.trim(document.getElementById(error).textContent) !== "")
+
+                                  {
+                                    document.getElementById(error).textContent="";
+                                  }
+                               });
+                             
+                                      $('#envoyer_message_form_client')[0].reset();
+                            toastr.success(message,'Success', {
+                                      
+                                      "closeButton": false,
+                                       "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": true,
+                                        "positionClass": "toast-top-right",
+                                         "preventDuplicates": false,
+                                         "onclick": null,
+                                          "showDuration": "300",
+                                          "hideDuration": "1000",
+                                           "timeOut": "5000",
+                                           "extendedTimeOut": "1000",
+                                           "showEasing": "swing",
+                                           "hideEasing": "linear",
+                                           "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                              
+
+
+                               });
+
+                                   $("#spin_envoyer_message_client").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn_envoyer_message_client').prop('disabled',false);
+
+                          
+                            
+
+                          }
+
+                          else{
+
+                             toastr.error('message','Error', {
+                                      
+                                      "closeButton": false,
+                                       "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": true,
+                                        "positionClass": "toast-top-right",
+                                         "preventDuplicates": false,
+                                         "onclick": null,
+                                          "showDuration": "300",
+                                          "hideDuration": "1000",
+                                           "timeOut": "5000",
+                                           "extendedTimeOut": "1000",
+                                           "showEasing": "swing",
+                                           "hideEasing": "linear",
+                                           "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                              
+
+
+                               });
+
+                    
+
+
+                            if(data.errors)
+                            {
+                              errormcArray.forEach(function(error){
+
+                               if($.trim(document.getElementById(error).textContent) !== "")
+
+                                  {
+                                    document.getElementById(error).textContent="";
+                                  }
+
+                              });
+
+                              data.errors.forEach(function(error)
+                              {
+
+                               document.getElementById(error.elementId).textContent=error.errorMessage;
+                              });
+
+                               $("#spin_envoyer_message_client").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#spin_envoyer_message_client').prop('disabled',false); 
+
+                            }
+
+                          }
+                                
+
+            
+                   
+                          
+
+                          },
+                          error:function (data,status,object)
+                          {
+                             console.log(data.message);
+                          }
+
+
+
+
+
+
+
+                       });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                     }
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+                  });
+
+
+
+
+
+
+
+                 
+
+
+
+   
+                  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   </script>
+
+
+
+
+
+   {% endblock %}

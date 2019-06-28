@@ -1,0 +1,80 @@
+{% extends '@Back/default/templateclient.html.twig' %}
+{% block section_haider %}
+<section class="content-header">
+      <h1>
+        Notifications
+        <small>Services 216</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i>Acceille</a></li>
+        <li class="active">Notifications</li>
+      </ol>
+    </section>
+{%endblock%}
+
+ {%block content%} 
+
+   <section class="content">
+
+     <div class="row">
+        <div class="col-md-12">
+     
+          <ul class="timeline">
+           
+          
+          {% for notification in  notifications %}
+
+
+            <li>
+              <i class="fa fa-bell-o bg-blue"></i>
+
+              <div class="timeline-item">
+                <span class="time"><i class="fa fa-clock-o"></i> {{notification.createdAt|date("m/d/Y H:i")}}</span>
+
+                <h3 class="timeline-header"><a href="#">{{notification.subject}}</a></h3>
+
+                <div class="timeline-body">
+                 {{notification.notificationText}}
+               
+              </div>
+            </li>
+
+            {% endfor %}
+            
+            <div style="margin-left: 200px;">{{ knp_pagination_render(notifications) }}</div>
+
+         </ul>
+
+
+        </div>
+  
+      </div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ {% endblock %}
+
+  {%block aside %}
+
+  {% endblock %}
+
+
+   {% block javascript %}
+
+
+   {% endblock %}

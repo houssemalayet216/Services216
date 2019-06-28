@@ -1,0 +1,1006 @@
+{% extends '@Back/default/templatefournisseur.html.twig' %}
+{% block section_haider %}
+<section class="content-header">
+        <h1>
+        Gérer les offres
+        <small>Services216</small>
+      </h1>
+      <ol class="breadcrumb">
+<li class="active"><a href="#"><i class="fa fa-suitcase"></i>Gérer les offres</a></li>
+       </ol>
+    </section>
+{%endblock%}
+
+ {%block content%} 
+ 
+
+ 
+
+
+
+
+
+  <div class="row">
+<div class="col-md-12">
+
+
+
+<div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Gestion des offres</h3><br/>
+            
+<div class="pull pull-right">
+
+    {{ render(controller(
+        'BackBundle:Default:addoffre'
+       
+    )) }}
+
+
+</div>
+
+
+
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="tableoffre" class="table table-bordered table-striped" >
+                <thead>
+                <tr>
+                  <th class="text-center">Titre</th>
+                  <th class="text-center">Catégorie</th>
+                 <th class="text-center">Prix</th>
+                  <th class="text-center">Devis</th>
+                  <th class="text-center">Date de publication</th>
+                  <th class="text-center">Action</th>
+                </tr>
+                </thead>
+                
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</div>
+
+
+
+
+
+ 
+
+
+
+
+
+<div class="modal fade" tabindex="-1" id="Modaloffredelete" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Supprimer offre</h4>
+      </div>
+      <div class="modal-body">
+        <p>Êtes-vous sûr de supprimer cet offre ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="delete-o"><span>Delete offre</span><i id="spin-delete-offre"></i></button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+<div class="modal fade" id="myModalEditoffre"  role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" id="close-up-edit-modale" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Ajouter offre</h4>
+      </div>
+        <form method='post' action='{{path('edit_offre')}}' id='form-edit-offre'>
+
+      <div class="modal-body">
+        
+        <div class="row">
+<div class="col-md-12">
+
+
+
+ <input type="hidden" id="id_offre"  name="id_offre"> 
+
+
+
+
+  <div class="col-md-6 form-group">
+                  <label for="username">Service :*</label>
+                     <input type="text" id="edit-secteur-offre" class="form-control" value='{{app.user.service.titre}}' disabled>    
+                    <span class="text-danger" id="secteur-offre-edit"></span>
+
+                 
+       </div> 
+
+
+    <div class="col-md-6 form-group">
+                  <label for="username">Catégorie :*</label>
+                   <input type="text" id="edit-option-offre" class="form-control"  disabled>
+                     
+                    <span class="text-danger" id="option-offre-edit"></span>
+
+                 
+       </div>
+
+
+ <div class="col-md-12 form-group" id="divcompetence">
+                 
+                 
+    </div>
+    
+
+
+
+
+
+
+ <div class="col-md-12 form-group">
+                  <label for="username">Titre :*</label>
+                 
+
+                  <input type="text" id="edit-titre-offre" name="edit-titre-offre" class="form-control">                
+                    <span class="text-danger" id="titre-offre-edit"></span>
+
+                 
+       </div>
+
+
+
+
+     
+
+
+
+     
+
+
+
+  <div class="col-md-12 form-group">
+                  <label for="username">Description :*</label>  
+                   <textarea rows="5" id="edit-description-offre" name="edit-description-offre" class="form-control"></textarea>                
+                    <span class="text-danger" id="description-offre-edit"></span>
+
+                 
+       </div>
+
+
+
+
+
+
+
+  <div class="col-md-12 form-group">
+                  <label for="username">Type taréfication:*</label>
+                   <select class="form-control" id="edit_typetarification" name="edit_typetarification">
+                   <option value="par jour">par jour</option>
+                   <option value="Par heure">Par heure</option>
+                   <option value="Par service">Par service</option>
+                   </select>             
+                    <span class="text-danger" id="prix-typetarif-edit"></span>               
+                    
+
+                 
+       </div>
+
+
+
+
+
+
+
+
+
+  <div class="col-md-6 form-group">
+                  <label for="username">Tarif:*</label>
+                    <input type="number" id="edit-prix-offre" name="edit-prix-offre" class="form-control" >                
+                    <span class="text-danger" id="prix-offre-edit"></span>               
+                    
+
+                 
+       </div>
+        
+
+        <div class="col-md-6 form-group">
+                  <label for="username">Devis:*</label>
+                   <select class="form-control" id="edit_devis" name="edit_devis">
+                   <option value="eur">Euro</option>
+                   <option value="usd">USD</option>
+                  
+                   </select>             
+                    <span class="text-danger" id="prix-devis-edit"></span>               
+                    
+
+                 
+       </div>
+
+
+
+
+
+
+
+  <div class="col-md-6 form-group">
+                  <label for="username">Zone de travail :*</label>
+                   <select class="form-control" id="edit-zone-offre" name="edit-zone-offre">
+                   
+                   <option value="tunis">Tunis</option>
+                    <option value="Beja">Beja</option>
+                     
+                    <option value="Ariana">Ariana</option>
+                    <option value="Ben arous">Ben arous</option>
+                     <option value="Bizert">Bizert</option>
+                    <option value="Gabes">Gabes</option>
+                     <option value="Gafsa">Gafsa</option>
+                    <option value="Jendouba">Jendouba</option>
+                     <option value="Kairouan">Kairouan</option>
+                    <option value="Kasserine">kasserine</option>
+                     <option value="kébili">Kébili</option>
+                    <option value="Kef">Kef</option>
+                     <option value="Mahdia">Mahdia</option>
+                    <option value="Manouba">Manouba</option>
+                     <option value="Médnine">Médnine</option>
+                    <option value="Nabeul">Nabeul</option>
+                     <option value="Sfax">Sfax</option>
+                    <option value="Sidi Bouzid">Sidi Bouzid</option>
+                     <option value="Siliana">Siliana</option>
+                    <option value="Sousse">Sousse</option>
+                     <option value="Tataouine">Tataouine</option>
+                    <option value="Touzeur">Touzeur</option>
+                    <option value="Zaghouan">Zaghouan</option>
+                   </select>                
+                    <span class="text-danger" id="zone-offre-edit"></span>
+
+                 
+       </div>
+
+
+   
+
+
+ 
+
+
+  
+
+
+
+  
+   
+
+ 
+
+
+
+ <div class="col-md-12 form-group">
+                  <label for="username">Image offre :</label>
+                   <input type="file" id="edit-image-offre" name="edit-image-offre" class="form-control">                
+                      <span class="text-danger" id="image-offre-edit"></span>
+
+                 
+       </div> 
+
+
+  
+
+ <div class="col-md-12 form-group">
+                 
+                 <div>
+  <input type="checkbox" id="affichercord-offre-edit" name="affichercord-offre-edit" value='affiche'>
+  <label>Afficher vos coordonnées sur l&apos;annonce </label>
+</div>                
+  <span class="text-danger" id="data.cordaffiche"></span>
+
+                 
+       </div> 
+
+
+
+
+
+
+        <div class="col-md-12 form-group">
+                  <label for="username">Autres détailles :</label>
+                    <textarea rows="5" id="edit-autre-offre" name="edit-autre-offre" class="form-control"></textarea>                 
+                      <span class="text-danger" id="autre-offre-edit"></span>
+
+                 
+       </div> 
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="close-modale-edit">Close</button>
+        <button type="submit" class="btn btn-primary" id="btn-edit-offre" onclick="updateoffre()"> <span>Enregistrer</span><i id="spin-edit-offre"></i></button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+{%endblock%}
+
+
+
+  {%block aside %}
+  {% endblock %}
+
+
+   {% block javascript %}
+   
+
+     <script>
+
+ 
+
+
+
+
+
+                               
+
+
+
+
+
+        
+           $('#btn-add-offre').click(function(e){
+                  e.preventDefault();
+                    $('#btn-add-offre').prop('disabled',true);
+                  $("#spin-add-offre").addClass('fa fa-spinner fa-spin fa-register');
+
+
+                    var titre=$('#titre-offre').val();
+                  var description=$('#description-offre').val();
+                  var zone=$('#zone-offre').val();
+                  var option=$('#option-offre').val();
+                  var horaire= $('#horaire-offre').val();
+                
+                    
+                  
+                   var errorfArray=['data.titre','data.description','data.zone','data.option'];
+                    var formoffre = document.getElementById("add-offre-form");
+
+
+
+
+
+                    
+                    if(titre=="")
+                  {
+                       document.getElementById('data.titre').textContent='Ce champ ne doit pas etre vide ';
+                     $("#spin-add-offre").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn-add-offre').prop('disabled',false); 
+                  }
+                  
+
+                    if(description=="")
+                  {
+                       document.getElementById('data.description').textContent='Ce champ ne doit pas entre vide ';
+                     $("#spin-add-offre").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn-add-offre').prop('disabled',false); 
+                  }
+
+
+                  
+
+
+                 
+                  
+
+                    if(zone=="")
+                  {
+                       document.getElementById('data.zone').textContent='Ce champ ne doit pas entre vide ';
+                     $("#spin-add-offre").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn-add-offre').prop('disabled',false); 
+                  }
+
+
+                  if(option=="")
+                  {
+                       document.getElementById('data.option').textContent='Ce champ ne doit pas entre vide ';
+                     $("#spin-add-offre").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn-add-offre').prop('disabled',false); 
+                  }
+                  
+
+                  
+                  
+                
+
+
+
+
+
+
+
+
+                        $('#titre-offre').change(function(){
+                  
+                 if($.trim(document.getElementById('data.titre').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.titre').textContent="";
+                                  }
+                    
+                                 });
+
+
+                                 $('#description-offre').change(function(){
+                  
+                 if($.trim(document.getElementById('data.description').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.description').textContent="";
+                                  }
+                    
+                                 });
+
+
+                    
+           
+
+
+
+                     
+
+
+                                 $('#zone-offre').change(function(){
+                  
+                 if($.trim(document.getElementById('data.zone').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.zone').textContent="";
+                                  }
+                    
+                                 });
+
+                      
+
+          
+
+
+
+                        $('#option-offre').change(function(){
+                  
+                 if($.trim(document.getElementById('data.option').textContent) !== "")
+
+                                  {
+                                    document.getElementById('data.option').textContent="";
+                                  }
+                    
+                                 });
+
+
+                   
+
+
+                  
+
+                      
+
+
+
+
+
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                 if(titre!=="" &&description!=="" &&zone!==""&&option!=="")
+               {
+               
+
+                      $.ajax({
+                       dataType:"json",
+                       url:$("#add-offre-form").attr('action'),
+                       type:$("#add-offre-form").attr('method'),
+                        data:new FormData(formoffre),
+                       contentType:false,
+                       processData:false,
+                       cache:false,
+                       success:function (data,status,object)
+                       {
+
+                       $('.alert-editclient').show();
+                       var message=data.message;
+                       if(data.success==true)
+                          {
+
+
+                         
+                               errorfArray.forEach(function(error){
+                                  if($.trim(document.getElementById(error).textContent) !== "")
+
+                                  {
+                                    document.getElementById(error).textContent="";
+                                  }
+                               });
+                             
+                               
+                            $('#myModal').modal('hide');
+                                offre.ajax.reload(null,true);
+                              $('#add-offre-form')[0].reset();
+                              $('#divmission').html("");
+
+                            toastr.success(message,'Success', {
+                                      
+                                      "closeButton": false,
+                                       "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": true,
+                                        "positionClass": "toast-top-right",
+                                         "preventDuplicates": false,
+                                         "onclick": null,
+                                          "showDuration": "300",
+                                          "hideDuration": "1000",
+                                           "timeOut": "5000",
+                                           "extendedTimeOut": "1000",
+                                           "showEasing": "swing",
+                                           "hideEasing": "linear",
+                                           "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                              
+
+
+                               });
+
+                          
+                            
+
+                          }
+
+                          else{
+
+                             toastr.error(message,'Error', {
+                                      
+                                      "closeButton": false,
+                                       "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": true,
+                                        "positionClass": "toast-top-right",
+                                         "preventDuplicates": false,
+                                         "onclick": null,
+                                          "showDuration": "300",
+                                          "hideDuration": "1000",
+                                           "timeOut": "5000",
+                                           "extendedTimeOut": "1000",
+                                           "showEasing": "swing",
+                                           "hideEasing": "linear",
+                                           "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                              
+
+
+                               });
+
+
+
+
+                            if(data.errors)
+                            {
+                              errorfArray.forEach(function(error){
+
+                               if($.trim(document.getElementById(error).textContent) !== "")
+
+                                  {
+                                    document.getElementById(error).textContent="";
+                                  }
+
+                              });
+
+                              data.errors.forEach(function(error)
+                              {
+
+                               document.getElementById(error.elementId).textContent=error.errorMessage;
+                              });
+
+
+                              $("#spin-add-offre").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn-add-offre').prop('disabled',false); 
+
+                            }
+
+                          }
+                                
+
+                        
+                         $("#spin-add-offre").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn-add-offre').prop('disabled',false); 
+                          
+                          
+                          },
+                          error:function (data,status,object)
+                          {
+                             console.log(data.message);
+
+                           toastr.error(data.message,'Error', {
+                                      
+                                      "closeButton": false,
+                                       "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": true,
+                                        "positionClass": "toast-top-right",
+                                         "preventDuplicates": false,
+                                         "onclick": null,
+                                          "showDuration": "300",
+                                          "hideDuration": "1000",
+                                           "timeOut": "5000",
+                                           "extendedTimeOut": "1000",
+                                           "showEasing": "swing",
+                                           "hideEasing": "linear",
+                                           "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                              
+
+
+                               });
+
+
+
+
+                         $("#spin-add-offre").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#btn-add-offre').prop('disabled',false); 
+                          }
+
+
+
+
+
+
+
+
+                       });
+
+
+
+
+
+
+
+
+
+
+
+                    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                  });
+
+
+
+
+
+
+
+
+
+
+
+
+$('#close-modale-add').on("click",function(){
+  $('#add-offre-form')[0].reset();
+ var errorfArray=['data.titre','data.description','data.zone','data.option'];
+
+  errorfArray.forEach(function(error){
+
+                               if($.trim(document.getElementById(error).textContent) !== "")
+
+                                  {
+                                    document.getElementById(error).textContent="";
+                                  }
+
+                              });
+
+$('#divmission').html("");
+
+});
+
+
+
+
+
+$('#close-up-add-modale').on("click",function(){
+  $('#add-offre-form')[0].reset();
+var errorfArray=['data.titre','data.description','data.zone','data.option'];
+
+  errorfArray.forEach(function(error){
+
+                               if($.trim(document.getElementById(error).textContent) !== "")
+
+                                  {
+                                    document.getElementById(error).textContent="";
+                                  }
+
+                              });
+                              $('#divmission').html("");
+});
+
+
+
+
+     </script>
+   
+
+   <script>
+
+  var offre;
+
+
+
+$(document).ready(function($){
+ 
+ offre=$("#tableoffre").DataTable({
+     columnDefs: [
+    {
+        targets: -1,
+        className: 'dt-body-left'
+    }
+  ],
+  'destroy':true,
+   
+    'ajax':'{{path('all-offre')}}',
+     'order': []
+});
+
+
+});
+
+
+
+
+   </script>
+
+<script>
+
+function deleteo(id){
+
+if(id){
+  $("#delete-o").unbind('click').bind('click',function(){
+   
+     $('#delete-o').prop('disabled',true);
+    $("#spin-delete-offre").addClass('fa fa-spinner fa-spin fa-register');
+
+       $.ajax({
+                       
+                       url:'/user/home/delete-offre/'+id,
+                       type:'POST',
+                       success:function (data,status,object)
+                       {
+
+                        var message=data.message;
+                       if(data.success==true)
+                          {
+
+                           $("#spin-delete-offre").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#delete-o').prop('disabled',false);
+
+                           $('#Modaloffredelete').modal('hide');
+                             offre.ajax.reload(null,false);
+
+                               toastr.success(message,'Success', {
+                                      
+                                      "closeButton": false,
+                                       "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": true,
+                                        "positionClass": "toast-top-right",
+                                         "preventDuplicates": false,
+                                         "onclick": null,
+                                          "showDuration": "300",
+                                          "hideDuration": "1000",
+                                           "timeOut": "5000",
+                                           "extendedTimeOut": "1000",
+                                           "showEasing": "swing",
+                                           "hideEasing": "linear",
+                                           "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                              
+
+
+                               });
+
+                             
+
+                          }else{
+                          
+                             
+                           $("#spin-delete-offre").removeClass('fa fa-spinner fa-spin fa-register');
+                          $('#delete-o').prop('disabled',false);
+                             $('#Modaloffredelete').modal('hide');
+
+                               toastr.error(message,'Error', {
+                                      
+                                      "closeButton": false,
+                                       "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": true,
+                                        "positionClass": "toast-top-right",
+                                         "preventDuplicates": false,
+                                         "onclick": null,
+                                          "showDuration": "300",
+                                          "hideDuration": "1000",
+                                           "timeOut": "5000",
+                                           "extendedTimeOut": "1000",
+                                           "showEasing": "swing",
+                                           "hideEasing": "linear",
+                                           "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                              
+
+
+                               });
+
+
+
+
+                          }
+
+              
+
+                       }
+
+
+
+                       });
+
+
+
+    });
+
+    }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+    <script>
+
+                 
+          
+           
+
+
+            $("#edit-zone-offre").select2({
+                
+                   minimumInputLength: 3,
+                placeholder:'Choisir votre zone de travaille ',
+                allowClear: true,
+                 theme: "bootstrap"
+              
+            });
+
+$('.timedisponibilite').datetimepicker({
+ format:'HH:mm'
+ });
+
+                </script>
+
+
+
+
+
+     
+      
+ 
+
+ 
+
+   {%endblock%}
+
+

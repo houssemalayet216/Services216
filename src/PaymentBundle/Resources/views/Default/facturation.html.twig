@@ -1,0 +1,111 @@
+{% extends '@Back/default/templateclient.html.twig' %}
+{% block section_haider %}
+<section class="content-header">
+        <h1>
+        Facturation
+        <small>Services216</small>
+      </h1>
+      <ol class="breadcrumb">
+
+      
+        <li class="active">Facturation</li>
+      </ol>
+    </section>
+{%endblock%}
+
+ {%block content%} 
+ 
+
+ 
+
+
+
+
+
+  <div class="row">
+
+
+
+
+<div class="col-md-12">
+
+        
+          <!-- /. box -->
+     
+<div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Facturation</h3><br/>
+            
+
+
+
+
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="facturationtable" class="table table-bordered table-striped" >
+                <thead>
+                <tr>
+                 <th class="text-center">Bénificaire</th>
+                  <th class="text-center">Service</th>
+                 <th class="text-center">Montant</th>
+                  <th class="text-center">Devis</th>
+                  <th class="text-center">Date de payement</th>
+                  <th class="text-center">Action</th>
+                </tr>
+                </thead>
+                
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>  
+
+
+
+
+
+
+
+{%endblock%}
+
+
+
+  {%block aside %}
+  {% endblock %}
+
+   {% block javascript %}
+    <script>
+
+    var tablefacture;
+ 
+
+
+$(document).ready(function($){
+ 
+ tablefacture=$("#facturationtable").DataTable({
+     columnDefs: [
+    {
+        targets: -1,
+        className: 'dt-body-left'
+    }
+  ],
+  'destroy':true,
+   
+    'ajax':'/facturation',
+     'order': []
+});
+
+
+});
+
+
+
+
+
+
+
+    </script>
+
+
+
+   {% endblock %}
